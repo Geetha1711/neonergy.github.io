@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoNergy - Home</title>
+    <!-- Redirect to www if accessed via naked domain -->
+  <script>
+    if (location.hostname === "neonergy.co") {
+      location.href = "https://www.neonergy.co";
+    }
+  </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
