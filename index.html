@@ -1,34 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeoNergy - Home</title>
-    <!-- Redirect to www if accessed via naked domain -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neonergy - Home</title>
+
+  <!-- Redirect to www if accessed via naked domain -->
   <script>
     if (location.hostname === "neonergy.co") {
       location.href = "https://www.neonergy.co";
     }
   </script>
-    <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Full-viewport fixed container */
+    :root { --zoom: 1; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* wrapper centers the image and lets us transform it */
+    .img-wrap {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* show the whole image by default; transform scale via CSS variable */
+    .word-cloud {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain; /* ensure entire image visible (no cropping) */
+      transform: scale(var(--zoom));
+      transition: transform 180ms ease;
+      will-change: transform;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* controls overlay */
+    .controls {
+      position: fixed;
+      left: 12px;
+      top: 12px;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      padding: 8px;
+      border-radius: 8px;
+      backdrop-filter: blur(6px);
+      font-size: 0.9rem;
+    }
+
+    .controls input[type="range"] {
+      width: 180px;
+    }
+
+    .notice {
+      position: fixed;
+      left: 12px;
+      bottom: 12px;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      z-index: 5;
+      backdrop-filter: blur(4px);
+    }
+
+    footer {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 5;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      background: rgba(0,0,0,0.35);
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+
+    /* small screens: reduce control size */
+    @media (max-width: 520px) {
+      .controls input[type="range"] { width: 120px; }
+    }
+  </style>
 </head>
 <body>
-<header>
-    <h1>Welcome to NeoNergy</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="careers.html">Careers</a>
-    </nav>
-</header>
+  <!-- controls: zoom slider + quick-fit buttons -->
+  <!-- <div class="controls" aria-hidden="false">
+    <label for="zoom">Zoom</label>
+    <input id="zoom" type="range" min="0.6" max="1.4" step="0.01" value="1" />
+    <button id="fitBtn" title="Fit entire image">Fit</button>
+    <button id="resetBtn" title="Reset zoom">Reset</button>
+  </div> -->
 
-<section>
-    <h2>Empowering a Sustainable Future</h2>
-    <p>NeoNergy is committed to driving innovation in renewable energy solutions.</p>
-</section>
+  <!-- Centered image wrapper; object-fit:contain ensures whole image visible by default -->
+  <div class="img-wrap" role="img" aria-label="NeoNergy word cloud">
+    <img src="assets/wuc.png" alt="NeoNergy word cloud (full page)" class="word-cloud" id="wordCloud">
+  </div>
 
-<footer>
-    <p>&copy; 2025 NeoNergy. All rights reserved.</p>
-</footer>
+  <!-- <div class="notice">Temporary landing page — site under development</div> -->
+  <footer>&copy; 2025 Neonergy</footer>
+
+  <script>
+    // Update CSS variable to control zoom
+    const range = document.getElementById('zoom');
+    const root = document.documentElement;
+    const fitBtn = document.getElementById('fitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function setZoom(v) { root.style.setProperty('--zoom', v); }
+
+    range.addEventListener('input', (e) => setZoom(e.target.value));
+
+    // Fit: set zoom so entire image fits (same as object-fit: contain -> zoom 1)
+    fitBtn.addEventListener('click', () => {
+      range.value = 1;
+      setZoom(1);
+    });
+
+    // Reset: bring closer to 1 (useful if user zoomed)
+    resetBtn.addEventListener('click', () => {
+      range.value = 1;
+      setZoom(1);
+    });
+
+    // Optional: match keyboard +/- for zoom
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '+' || e.key === '=') range.value = Math.min(+range.value + 0.05, +range.max);
+      if (e.key === '-') range.value = Math.max(+range.value - 0.05, +range.min);
+      setZoom(range.value);
+    });
+  </script>
 </body>
 </html>
