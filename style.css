@@ -73,14 +73,15 @@ img { max-width: 100%; display: block; }
 }
 .top-strip a:hover { color: var(--amber); }
 .top-strip .strip-sep {
-  color: #444;
+  color: var(--amber);
   font-size: 0.75rem;
 }
 .strip-social {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   margin-left: 16px;
+  margin-right: 24px;
   padding-left: 16px;
   border-left: 1px solid #333;
 }
