@@ -62,6 +62,15 @@ function renderNav() {
     dropdowns[i].innerHTML = SITE.nav[key]
       .map(item => `<a href="${item.href}">${item.label}</a>`)
       .join('');
+    // Make the parent nav-link label clickable — navigates to first dropdown item
+    const firstHref = SITE.nav[key][0] && SITE.nav[key][0].href;
+    if (firstHref && firstHref !== '#') {
+      const navLink = dropdowns[i].previousElementSibling;
+      if (navLink) {
+        navLink.style.cursor = 'pointer';
+        navLink.addEventListener('click', () => { window.location.href = firstHref; });
+      }
+    }
   });
 }
 
@@ -310,7 +319,16 @@ function renderSegments() {
   if (!sp) return;
 
   function buildSection(data, id, flip) {
-    const imgBlock = `
+    const imgBlock = data.images && data.images.length > 1 ? `
+      <div class="seg-img-wrap seg-img-collage">
+        <div class="seg-collage-top">
+          <img src="${data.images[0]}" alt="${data.heading}" />
+        </div>
+        <div class="seg-collage-bottom">
+          <img src="${data.images[1]}" alt="${data.heading}" />
+          <img src="${data.images[2]}" alt="${data.heading}" />
+        </div>
+      </div>` : `
       <div class="seg-img-wrap">
         <img src="${data.image}" alt="${data.heading}"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
@@ -374,6 +392,9 @@ function renderAbout() {
           <p>${ap.about.desc1}</p>
           <p>${ap.about.desc2}</p>
           <p>${ap.about.desc3}</p>
+        </div>
+        ${imgOrPlaceholder(ap.about.image, 'Neonergy team at work', 'about-img-right')}
+        <div class="about-stats-row-outer">
           <div class="about-stats-row">
             ${SITE.about.stats.map(s => `
               <div class="astat">
@@ -382,7 +403,6 @@ function renderAbout() {
               </div>`).join('')}
           </div>
         </div>
-        ${imgOrPlaceholder(ap.about.image, 'Neonergy team at work', 'about-img-right')}
       </div>`;
   }
 
@@ -409,12 +429,25 @@ function renderAbout() {
   // Values
   const valEl = document.getElementById('valuesContent');
   if (valEl) {
-    valEl.innerHTML = ap.values.map(v => `
-      <div class="value-card">
-        <div class="value-icon">${v.icon}</div>
-        <h3>${v.title}</h3>
-        <p>${v.desc}</p>
-      </div>`).join('');
+    valEl.innerHTML = `
+      <div class="values-cards-grid">
+        ${ap.values.map(v => `
+          <div class="value-card">
+            <div class="value-icon">${v.icon}</div>
+            <h3>${v.title}</h3>
+            <p>${v.desc}</p>
+          </div>`).join('')}
+        <div class="value-img-card">
+          <img src="assets/about/corevalues.jpeg" alt="Our Core Values" />
+        </div>
+      </div>`;
+
+    // Toggle active (golden) on click
+    valEl.querySelectorAll('.value-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
   }
 }
 
@@ -428,9 +461,9 @@ function renderTeam() {
     const words    = member.name.trim().split(' ');
     const initials = (words[0][0] + (words[words.length - 1][0] || '')).toUpperCase();
 
-    // Expected photo path: assets/team/<first-last>.jpg (lowercase, hyphenated)
+    // Use explicit photo path if provided, else fall back to slug-based
     const slug     = member.name.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    const photoSrc = `assets/team/${slug}.jpg`;
+    const photoSrc = member.photo || `assets/team/${slug}.jpg`;
 
     return `
       <div class="leader-card">

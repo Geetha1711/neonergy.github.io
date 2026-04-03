@@ -253,6 +253,43 @@
       .proj-section { padding: 40px 24px; }
       .proj-cta { padding: 40px 24px; }
     }
+
+    /* ── India Map ── */
+    .proj-map-section {
+      padding: 52px 48px;
+      background: #f4faf7;
+      border-top: 1px solid #e5f0e9;
+    }
+    .proj-map-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      align-items: center;
+    }
+    .proj-map-img-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(11,93,59,0.1);
+    }
+    .india-map-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+    .proj-map-info { padding-top: 0; display: flex; flex-direction: column; gap: 20px; }
+    .proj-ongoing-img-wrap { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(11,93,59,0.1); }
+    .proj-ongoing-img { width: 100%; height: auto; display: block; border-radius: 10px; }
+    .map-info-bullets { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .map-bul { display: flex; align-items: flex-start; gap: 10px; font-size: 0.87rem; color: #555; line-height: 1.5; }
+    .mbullet { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+    .mbullet.g { background: #0B5D3B; }
+    .mbullet.b { background: #1F3A8A; }
+    .mbullet.o { background: #F5A623; }
+    @media (max-width: 768px) {
+      .proj-map-section { padding: 40px 24px; }
+      .proj-map-layout { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -310,7 +347,7 @@
       </div>
     </nav>
     <a href="index.html" class="header-logo">
-      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <img src="assets/logo.png" alt="Neonergy Logo" />
       <div class="logo-wordmark">neonergy</div>
     </a>
     <span class="header-slogan">One Stop Energy Partner</span>
@@ -349,6 +386,30 @@
       <div class="proj-stat-lbl">States: KA &amp; TN</div>
     </div>
   </div>
+
+  <!-- India Map Section -->
+  <section class="proj-map-section">
+    <div class="proj-section-title">Project Locations</div>
+    <p class="proj-section-sub">Solar and BESS projects across Karnataka and Tamil Nadu — consultancy, PMC, and O&amp;M spanning 803+ MWp.</p>
+    <div class="proj-map-layout">
+      <div class="proj-map-img-wrap">
+        <img src="assets/indiamap.png" alt="India Project Locations Map" class="india-map-img" />
+      </div>
+      <div class="proj-map-info">
+        <div class="proj-ongoing-img-wrap">
+          <img src="assets/ongoingprojects.png" alt="Ongoing Projects" class="proj-ongoing-img" />
+        </div>
+        <div class="proj-ongoing-img-wrap">
+          <img src="assets/ongoingprojects-1.png" alt="Ongoing Projects" class="proj-ongoing-img" />
+        </div>
+        <div class="map-info-bullets">
+          <div class="map-bul"><span class="mbullet g"></span><span>7 Solar PV projects across Karnataka &amp; Tamil Nadu</span></div>
+          <div class="map-bul"><span class="mbullet b"></span><span>1 BESS project — 105 MWH, Tamil Nadu</span></div>
+          <div class="map-bul"><span class="mbullet o"></span><span>515 MW O&amp;M performance monitoring across India</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Project Capacities -->
   <section class="proj-section">
@@ -480,7 +541,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo-row">
-            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <img src="assets/logo.png" alt="Neonergy Logo" />
             <div>
               <div class="brand-name">NEONERGY</div>
               <div class="brand-sub">Engineering Pvt Ltd</div>

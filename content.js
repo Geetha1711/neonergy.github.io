@@ -166,7 +166,8 @@ const SITE = {
       heading: "Consultancy Services",
       tag:     "End-to-End Advisory",
       intro:   "We offer End to End Consultancy Services for the development of Solar PV, Wind & Hydro Power Plants — covering the entire project lifecycle from concept to commissioning.",
-      image:   "assets/segments/consultancy.jpg",
+      image:   "assets/cons-1.jpeg",
+      images:  ["assets/cons-1.jpeg", "assets/cons-2.jpeg", "assets/cons-3.jpeg"],
       services: [
         "Site Survey + Feasibility Study & Detailed Project Report",
         "Project Structuring + Fund Syndication Options",
@@ -186,7 +187,7 @@ const SITE = {
       heading: "O&M Solutions",
       tag:     "Operations & Maintenance",
       intro:   "We ensure the smooth functioning and guaranteed generation of solar energy systems through comprehensive operations, maintenance, and remote monitoring solutions.",
-      image:   "assets/segments/om.jpg",
+      image:   "assets/operationmaintenance.jpeg",
       services: [
         "Solar Panel Maintenance",
         "Equipment Testing & Analysis",
@@ -204,7 +205,7 @@ const SITE = {
       heading: "EV Charging & Battery Swap",
       tag:     "EV Infrastructure",
       intro:   "We provide Comprehensive solutions (including Consultancy, I&C, O&M services) for the development of Public EV Charging / Swapping stations and three-wheeler electric retro-fitment.",
-      image:   "assets/segments/ev.jpg",
+      image:   "assets/evcharging.jpeg",
       services: [
         "Identification & Feasibility Study for Charging Infra and Battery Swap station",
         "Market Assessment & Detailed Project Report",
@@ -224,17 +225,17 @@ const SITE = {
       desc1:   "Neonergy Engineering Pvt Ltd is an integrated Renewable Energy company committed to delivering sustainable, reliable, and cost-effective clean energy solutions — as a one-stop partner for all your renewable energy needs.",
       desc2:   "We provide end-to-end services across the complete project lifecycle — from concept and engineering to execution, commissioning, and operations — spanning Solar PV, Wind, Hydro, BESS, and EV charging infrastructure.",
       desc3:   "Founded with a goal to accelerate India's energy transition, Neonergy brings together multidisciplinary expertise in technical advisory, investment banking, EPC, O&M, and digital remote monitoring solutions.",
-      image:   "assets/about/company.jpg"
+      image:   "assets/about/neonergy.jpeg"
     },
     vision: {
       label:     "Our Vision",
       statement: "To become the most trusted one-stop partner for all renewable energy needs, enabling a cleaner and greener future.",
-      image:     "assets/about/vision.jpg"
+      image:     "assets/about/vision.jpeg"
     },
     mission: {
       label:     "Our Mission",
       statement: "To provide integrated, reliable, and sustainable renewable energy solutions across the entire project lifecycle.",
-      image:     "assets/about/mission.jpg"
+      image:     "assets/about/mission.jpeg"
     },
     values: [
       { icon: "🌱", title: "Sustainability",         desc: "Every solution we design prioritises long-term environmental impact and clean energy independence for communities and industries." },
@@ -248,6 +249,7 @@ const SITE = {
   team: [
     {
       name:  "Balakumaran J",
+      photo: "assets/team/bala",
       title: "CBO",
       bio:   "Holds an M.E. in Power Systems and MBA in Finance & Project Management, with 20+ years of experience in consulting and EPC operations for Renewable Energy Projects, Thermal Power Plants, Mining, and Industrial systems.",
       highlights: [
@@ -260,6 +262,7 @@ const SITE = {
     },
     {
       name:  "Naveen M",
+      photo: "assets/team/Naveen.JPG",
       title: "Head – RE PMC",
       bio:   "Holds an MBA in Project Management and a degree in Electronics, with 17+ years of experience in EPC operations for Renewable Energy Projects.",
       highlights: [
@@ -272,6 +275,7 @@ const SITE = {
     },
     {
       name:  "Sijith K",
+      photo: "assets/team/Sijith",
       title: "Head Contracts",
       bio:   "Brings 24 years of experience in large-scale Renewable Energy Project Development, specializing in Solar and Wind projects.",
       highlights: [
@@ -284,6 +288,7 @@ const SITE = {
     },
     {
       name:  "Raja Sekhar Reddy",
+      photo: "assets/team/reddy",
       title: "Head Construction",
       bio:   "Over 36 years of experience in EPC operations, consulting, and O&M for renewable energy projects.",
       highlights: [
@@ -294,6 +299,7 @@ const SITE = {
     },
     {
       name:  "Daniel G",
+      photo: "assets/team/Daniel.JPG",
       title: "AGM Engineering",
       bio:   "Holds a Master of Engineering in Solar Energy and a Degree in Mechanical Engineering, with over 11 years of experience in EPC operations, consulting, and O&M.",
       highlights: [
@@ -371,7 +377,7 @@ const SITE = {
         type:       "Full-Time",
         title:      "Project Manager – PMC",
         desc:       "Lead project management teams across renewable energy projects. Strong coordination, scheduling, and stakeholder management skills needed.",
-        location:   "Bangalore / Remote",
+        location:   "Bangalore / Site location",
         segment:    "📊 PMC",
         experience: "5 – 10 Years",
         travel:     true,

@@ -18,9 +18,14 @@
     .about-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
+      grid-template-rows: auto auto;
+      column-gap: 56px;
+      row-gap: 0;
+      align-items: start;
     }
+    .about-text    { grid-column: 1; grid-row: 1; }
+    .about-img-right { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
+    .about-stats-row-outer { grid-column: 1; grid-row: 2; }
     .about-text p.section-label { margin-bottom: 8px; }
     .about-text h2 {
       font-size: 1.75rem;
@@ -40,10 +45,10 @@
     .about-stats-row {
       display: flex;
       gap: 32px;
-      margin-top: 28px;
+      margin-top: 0;
       padding-top: 24px;
       border-top: 1px solid #dceee4;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
     .astat-num {
       font-size: 1.8rem;
@@ -59,17 +64,19 @@
       letter-spacing: 0.06em;
     }
 
-    /* Image wrapper — right of about */
+    /* Image wrapper — right of about, spans full height of both rows */
     .about-img-right {
       border-radius: 12px;
       overflow: hidden;
       position: relative;
+      height: 100%;
     }
     .about-img-right img {
       width: 100%;
-      height: 420px;
-      object-fit: cover;
+      height: 100%;
+      min-height: 420px;
       display: block;
+      object-fit: cover;
       border-radius: 12px;
     }
 
@@ -185,21 +192,49 @@
     }
     .values-head p { color: var(--grey-text); font-size: 0.94rem; }
 
-    .values-grid {
+    /* values-grid is just a wrapper; the real grid is values-cards-grid */
+    .values-grid { }
+    /* 3-column grid: row1 = 3 cards, row2 = 1 card + image spanning 2 cols */
+    .values-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
     .value-card {
       background: #fff;
       border: 1px solid #dceee4;
       border-top: 4px solid var(--green-dark);
       border-radius: 10px;
-      padding: 32px 26px;
+      padding: 28px 20px;
       text-align: center;
-      transition: box-shadow 0.2s, transform 0.2s;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
     }
-    .value-card:hover { box-shadow: 0 6px 24px rgba(11,93,59,0.1); transform: translateY(-4px); }
+    .value-card:hover, .value-card.active {
+      background: var(--amber);
+      box-shadow: 0 6px 24px rgba(245,166,35,0.35);
+      transform: translateY(-4px);
+      border-top-color: #c97f00;
+    }
+    .value-card:hover h3, .value-card.active h3 { color: #111; }
+    .value-card:hover p,  .value-card.active p  { color: #222; }
+    /* Image card spans last 2 columns of row 2 */
+    .value-img-card {
+      grid-column: span 2;
+      padding: 0;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .value-img-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+    .value-img-card:hover { transform: translateY(-4px); background: transparent; box-shadow: none; }
     .value-icon { font-size: 2rem; margin-bottom: 14px; }
     .value-card h3 { font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 10px; }
     .value-card p  { font-size: 0.87rem; color: var(--grey-text); line-height: 1.65; }
@@ -216,6 +251,11 @@
       .vm-text { padding: 36px 28px; }
       .vm-statement { font-size: 1.05rem; }
       .about-stats-row { gap: 20px; }
+      .values-cards-grid { grid-template-columns: 1fr 1fr; }
+      .value-img-card { grid-column: span 2; }
+      .about-split { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .about-img-right { grid-column: 1; grid-row: auto; }
+      .about-stats-row-outer { grid-column: 1; grid-row: auto; }
     }
   </style>
 </head>
@@ -274,7 +314,7 @@
       </div>
     </nav>
     <a href="index.html" class="header-logo">
-      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <img src="assets/logo.png" alt="Neonergy Logo" />
       <div class="logo-wordmark">neonergy</div>
     </a>
     <span class="header-slogan">One Stop Energy Partner</span>
@@ -336,7 +376,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo-row">
-            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <img src="assets/logo.png" alt="Neonergy Logo" />
             <div>
               <div class="brand-name">NEONERGY</div>
               <div class="brand-sub">Engineering Pvt Ltd</div>

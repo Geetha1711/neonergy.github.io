@@ -38,7 +38,7 @@
       height: 110px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid var(--green-dark);
+      border: 3px solid var(--green-light);
       background: linear-gradient(135deg, var(--green-dark), #1a8c58);
       display: flex;
       align-items: center;
@@ -124,24 +124,30 @@
       margin-bottom: 8px;
     }
     .extended-team p { color: var(--grey-text); font-size: 0.92rem; margin-bottom: 20px; }
-    .extended-names {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    /* Collage grid */
+    .team-collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 160px 160px;
+      gap: 12px;
     }
-    .name-pill {
-      background: #fff;
-      border: 1px solid #c8e3d0;
-      border-radius: 40px;
-      padding: 6px 16px;
-      font-size: 0.82rem;
-      color: #333;
+    .team-collage-img {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(11,93,59,0.1);
     }
-    .name-pill span {
-      font-size: 0.72rem;
-      color: var(--grey-text);
-      margin-left: 4px;
+    .team-collage-img:first-child { grid-column: 1 / span 2; }
+    .team-collage-wide { grid-column: span 2; }
+    .team-collage-full { grid-column: 1 / -1; }
+    .team-collage-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+      transition: transform 0.3s;
     }
+    .team-collage-img:hover img { transform: scale(1.03); }
 
     /* ── Join CTA ── */
     .team-cta {
@@ -170,6 +176,8 @@
       .leader-card { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
       .leader-highlights li { text-align: left; }
       .extended-team { padding: 28px 20px; }
+      .team-collage { grid-template-columns: 1fr 1fr; }
+      .team-collage-img:first-child { grid-column: 1 / span 2; }
       .team-cta { padding: 36px 20px; }
     }
   </style>
@@ -228,7 +236,7 @@
       </div>
     </nav>
     <a href="index.html" class="header-logo">
-      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <img src="assets/logo.png" alt="Neonergy Logo" />
       <div class="logo-wordmark">neonergy</div>
     </a>
     <span class="header-slogan">One Stop Energy Partner</span>
@@ -255,34 +263,31 @@
         <p>Our leadership brings together over 130+ years of collective experience across Solar PV, Wind, Hydro, BESS, EPC operations, investment advisory, and project management — spanning India, the Middle East, and beyond.</p>
       </div>
 
-      <p class="section-label" style="margin-bottom: 20px;">Senior Leadership</p>
+      <p class="section-label" style="margin-bottom: 20px; color: var(--blue-dark);">Senior Leadership</p>
       <div class="leader-list" id="leaderList">
         <!-- Populated by render.js -->
       </div>
 
       <!-- Extended Team -->
       <div class="extended-team">
-        <h3>Our Extended Team</h3>
-        <p>Beyond our senior leadership, Neonergy is backed by a strong team of Associate Managers, Lead Engineers, and specialists actively deployed across project sites in India.</p>
-        <div class="extended-names">
-          <div class="name-pill">Ramesh N <span>Manager</span></div>
-          <div class="name-pill">Mahesh Kumar <span>Deputy Manager</span></div>
-          <div class="name-pill">Lakshminath M <span>Associate Manager</span></div>
-          <div class="name-pill">Aftab Jannath D <span>Lead Engineer</span></div>
-          <div class="name-pill">Dikshant Kale <span>Associate Manager</span></div>
-          <div class="name-pill">Vignesh B <span>Associate Manager</span></div>
-          <div class="name-pill">Thejeshwar S <span>Associate Manager</span></div>
-          <div class="name-pill">Krishnamoorthi A <span>Associate Manager</span></div>
-          <div class="name-pill">Ponkumaran M <span>Associate Manager</span></div>
-          <div class="name-pill">Prathaban K <span>Associate Manager</span></div>
-          <div class="name-pill">Hariharan SP <span>Associate Manager</span></div>
-          <div class="name-pill">Boddu Raja <span>Associate Manager</span></div>
-          <div class="name-pill">Mohammed Ibrahim <span>Associate Manager</span></div>
-          <div class="name-pill">Rohit Kumar <span>Lead Engineer</span></div>
-          <div class="name-pill">Sourabh Ranjan <span>Lead Engineer</span></div>
-          <div class="name-pill">Manish Kumar <span>Lead Engineer</span></div>
-          <div class="name-pill">Pappu Kumar <span>Lead Engineer</span></div>
-          <div class="name-pill">Swadeep Singh <span>Lead Engineer</span></div>
+        <h3>The Neonergy Team</h3>
+        <p>Our leadership and field experts — Associate Managers, Lead Engineers, and specialists — working together across every project site in India.</p>
+        <div class="team-collage">
+          <div class="team-collage-img">
+            <img src="assets/team/team-1.JPG" alt="Neonergy Extended Team" />
+          </div>
+          <div class="team-collage-img">
+            <img src="assets/team/team-3.jpeg" alt="Neonergy Team at Work" />
+          </div>
+          <div class="team-collage-img">
+            <img src="assets/team/team-2.JPG" alt="Neonergy Team" />
+          </div>
+          <div class="team-collage-img">
+            <img src="assets/team/team-4.JPG" alt="Neonergy Team" />
+          </div>
+          <div class="team-collage-img">
+            <img src="assets/team/team-5.JPG" alt="Neonergy Team" />
+          </div>
         </div>
       </div>
 
@@ -302,7 +307,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo-row">
-            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <img src="assets/logo.png" alt="Neonergy Logo" />
             <div>
               <div class="brand-name">NEONERGY</div>
               <div class="brand-sub">Engineering Pvt Ltd</div>

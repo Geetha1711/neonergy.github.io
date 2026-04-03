@@ -105,9 +105,8 @@ img { max-width: 100%; display: block; }
   top: var(--strip-h);
   left: 0; right: 0;
   height: var(--header-h);
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: transparent;
+  backdrop-filter: blur(4px);
   z-index: 999;
   display: flex;
   align-items: center;
@@ -186,7 +185,8 @@ img { max-width: 100%; display: block; }
   border-bottom-color: var(--green-dark);
 }
 .nav-link .arrow {
-  font-size: 0.6rem;
+  font-size: 1rem;
+  color: var(--amber);
   transition: transform 0.25s;
   display: inline-block;
 }
@@ -200,7 +200,7 @@ img { max-width: 100%; display: block; }
   min-width: 220px;
   background: var(--green-dark);
   border-top: 3px solid var(--amber);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
@@ -216,15 +216,15 @@ img { max-width: 100%; display: block; }
   display: block;
   padding: 11px 20px;
   font-size: 0.82rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.88);
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
   letter-spacing: 0.03em;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   transition: background 0.18s, color 0.18s;
 }
 .dropdown a:hover {
-  background: var(--green-light);
-  color: #fff;
+  background: var(--amber);
+  color: #111;
 }
 
 /* ============================================================
