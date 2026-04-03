@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services – Neonergy Engineering Pvt Ltd</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="content.js"></script>
+  <script src="render.js"></script>
+  <style>
+    .wuc-split {
+      display: flex;
+      height: calc(100vh - var(--header-h) - var(--strip-h));
+    }
+
+    /* Left — image pane */
+    .wuc-split-img {
+      flex: 1 1 55%;
+      background: url('assets/cloud.jpeg') center center / contain no-repeat;
+      background-color: #f5f5f5;
+    }
+
+    /* Right — content pane */
+    .wuc-split-content {
+      flex: 0 0 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 60px 56px;
+      background: #f4faf7;
+    }
+
+    .wuc-icon-wrap {
+      width: 88px;
+      height: 88px;
+      background: #f0faf5;
+      border: 2px solid rgba(11,93,59,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .wuc-icon-wrap svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .wuc-tag {
+      display: inline-block;
+      background: rgba(11,93,59,0.1);
+      color: var(--green-dark);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 40px;
+      margin-bottom: 22px;
+    }
+    .wuc-split-content h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .wuc-split-content h1 span { color: var(--green-dark); }
+    .wuc-split-content p {
+      font-size: 0.95rem;
+      color: var(--grey-text);
+      line-height: 1.8;
+      margin-bottom: 10px;
+      max-width: 400px;
+    }
+    .wuc-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--green-dark);
+      border-radius: 4px;
+      margin: 28px 0;
+    }
+    .wuc-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dark);
+      color: #fff;
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .wuc-contact:hover { background: #094e30; }
+
+    @media (max-width: 768px) {
+      .wuc-split { flex-direction: column; height: auto; }
+      .wuc-split-img { flex: none; height: 260px; }
+      .wuc-split-content { flex: none; padding: 40px 28px; align-items: center; text-align: center; }
+      .wuc-split-content p { max-width: 100%; }
+      .wuc-divider { margin: 24px auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <a href="careers.html">Careers</a>
+    <span class="strip-sep">|</span>
+    <a href="#">Newsroom</a>
+    <span class="strip-sep">|</span>
+    <a href="contact.html">Contact Us</a>
+    <span class="strip-sep">|</span>
+    <a href="neocare.html">NeoCare</a>
+    <div class="strip-social"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="main-nav">
+      <div class="nav-item">
+        <span class="nav-link">The Company <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="about.html#about">About Neonergy</a>
+          <a href="about.html#vision-mission">Vision &amp; Mission</a>
+          <a href="about.html#values">Core Values</a>
+          <a href="team.html">Leadership Team</a>
+          <a href="clients.html">Clients</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Business Segments <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="segments.html#consultancy">Consultancy Services</a>
+          <a href="segments.html#om-solutions">O&amp;M Solutions</a>
+          <a href="segments.html#ev-battery">EV &amp; Battery Swap</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Services <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="services.html">Technical &amp; Business Advisory</a>
+          <a href="services.html">Transaction &amp; Investment Advisory</a>
+          <a href="services.html">Project Management (PMC/PMU)</a>
+          <a href="services.html">EPC &amp; Engineering Services</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Projects <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Solar PV Projects</a>
+          <a href="#">Wind &amp; Hydro</a>
+          <a href="#">BESS Deployments</a>
+          <a href="#">Ongoing Projects</a>
+        </div>
+      </div>
+    </nav>
+    <a href="index.html" class="header-logo">
+      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <div class="logo-wordmark">neonergy</div>
+    </a>
+    <span class="header-slogan">One Stop Energy Partner</span>
+  </header>
+
+  <!-- Floating Contact -->
+  <div class="float-contact">
+    <a href="contact.html">CONTACT EXPERTS</a>
+  </div>
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
+
+  <!-- Split Layout -->
+  <section class="wuc-split">
+    <div class="wuc-split-img"></div>
+    <div class="wuc-split-content">
+      <div class="wuc-icon-wrap">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Gear large -->
+          <circle cx="26" cy="26" r="8" stroke="#0B5D3B" stroke-width="2.5"/>
+          <path d="M26 10v4M26 38v4M10 26h4M38 26h4M14.34 14.34l2.83 2.83M34.83 34.83l2.83 2.83M14.34 37.66l2.83-2.83M34.83 17.17l2.83-2.83" stroke="#0B5D3B" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Gear small -->
+          <circle cx="46" cy="44" r="5" stroke="#F5A623" stroke-width="2"/>
+          <path d="M46 34v3M46 51v3M36 44h3M53 44h3M38.93 37.93l2.12 2.12M50.95 50.95l2.12 2.12M38.93 50.07l2.12-2.12M50.95 37.05l2.12-2.12" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
+          <!-- Wrench -->
+          <path d="M14 50l10-10" stroke="#0B5D3B" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M20 44l-4 4a3 3 0 0 0 4.24 4.24L24 48" stroke="#0B5D3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="wuc-tag">Details Addition in Progress</span>
+      <h1>Our <span>Services</span><br>Page is Being Updated</h1>
+      <p>We are building a comprehensive overview of our service offerings — from Technical &amp; Business Advisory to EPC &amp; Engineering Services.</p>
+      <p>In the meantime, feel free to reach out to us directly — we'd be happy to discuss how we can serve your energy needs.</p>
+      <div class="wuc-divider"></div>
+      <a href="contact.html" class="wuc-contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.92-.96a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 21.8 16.92z"/>
+        </svg>
+        Get in Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-row">
+            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <div>
+              <div class="brand-name">NEONERGY</div>
+              <div class="brand-sub">Engineering Pvt Ltd</div>
+            </div>
+          </div>
+          <p>Integrated Renewable Energy company committed to delivering sustainable, reliable, and cost-effective clean energy solutions.</p>
+          <div class="footer-social"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html#about">About Neonergy</a></li>
+            <li><a href="team.html">Leadership Team</a></li>
+            <li><a href="clients.html">Clients</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Technical Advisory</a></li>
+            <li><a href="#">Transaction Advisory</a></li>
+            <li><a href="#">Project Management</a></li>
+            <li><a href="#">EPC &amp; Engineering</a></li>
+            <li><a href="#">O&amp;M Solutions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <p><span class="contact-icon">📍</span> 1st Floor, 682/2, 12th Main Rd, 3rd Block, Rajajinagar, Bengaluru 560010</p>
+          <p><span class="contact-icon">✉️</span> info@neonergy.co</p>
+          <p><span class="contact-icon">📞</span> +91 8095241041</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+        <p>&copy; 2026 Neonergy Engineering Pvt Ltd. All rights reserved.</p>
+        <span class="footer-powered"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>

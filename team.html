@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership Team – Neonergy Engineering Pvt Ltd</title>
+  <meta name="description" content="Meet the experienced leadership team behind Neonergy Engineering — experts in renewable energy, project management, and EPC operations." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="content.js"></script>
+  <script src="render.js"></script>
+  <style>
+    /* ── Page intro ── */
+    .team-intro { margin-bottom: 48px; max-width: 720px; }
+    .team-intro h2 { font-size: 1.5rem; font-weight: 700; color: var(--green-dark); margin-bottom: 10px; }
+    .team-intro p  { color: var(--grey-text); line-height: 1.75; }
+
+    /* ── Leader cards ── */
+    .leader-list { display: flex; flex-direction: column; gap: 32px; margin-bottom: 64px; }
+
+    .leader-card {
+      display: flex;
+      gap: 36px;
+      background: #fff;
+      border: 1px solid #dceee4;
+      border-left: 5px solid var(--green-dark);
+      border-radius: 10px;
+      padding: 32px 36px;
+      box-shadow: 0 2px 12px rgba(11,93,59,0.06);
+      transition: box-shadow 0.25s, transform 0.25s;
+      align-items: flex-start;
+    }
+    .leader-card:hover { box-shadow: 0 8px 28px rgba(11,93,59,0.12); transform: translateY(-3px); }
+
+    /* Avatar */
+    .leader-avatar {
+      flex-shrink: 0;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--green-dark);
+      background: linear-gradient(135deg, var(--green-dark), #1a8c58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .leader-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .leader-avatar .avatar-initials {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'HandelGothic', sans-serif;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    /* Info */
+    .leader-info { flex: 1; min-width: 0; }
+
+    .leader-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      letter-spacing: 0.01em;
+    }
+    .leader-title {
+      display: inline-block;
+      background: rgba(11,93,59,0.1);
+      color: var(--green-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 40px;
+      margin-bottom: 14px;
+    }
+    .leader-bio {
+      font-size: 0.9rem;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e8f3ec;
+    }
+    .leader-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .leader-highlights li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: #333;
+      line-height: 1.55;
+    }
+    .leader-highlights li::before {
+      content: "▸";
+      color: var(--green-dark);
+      flex-shrink: 0;
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+
+    /* ── Extended team block ── */
+    .extended-team {
+      background: var(--grey-light);
+      border-radius: 10px;
+      padding: 40px 36px;
+      margin-bottom: 56px;
+    }
+    .extended-team h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    .extended-team p { color: var(--grey-text); font-size: 0.92rem; margin-bottom: 20px; }
+    .extended-names {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .name-pill {
+      background: #fff;
+      border: 1px solid #c8e3d0;
+      border-radius: 40px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      color: #333;
+    }
+    .name-pill span {
+      font-size: 0.72rem;
+      color: var(--grey-text);
+      margin-left: 4px;
+    }
+
+    /* ── Join CTA ── */
+    .team-cta {
+      background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+      border-radius: 10px;
+      padding: 48px 40px;
+      text-align: center;
+      color: #fff;
+    }
+    .team-cta h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+    .team-cta p  { color: rgba(255,255,255,0.78); margin-bottom: 24px; }
+    .team-cta a {
+      display: inline-block;
+      background: var(--amber);
+      color: #111;
+      padding: 13px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .team-cta a:hover { background: #e09010; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .leader-card { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
+      .leader-highlights li { text-align: left; }
+      .extended-team { padding: 28px 20px; }
+      .team-cta { padding: 36px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <a href="careers.html">Careers</a>
+    <span class="strip-sep">|</span>
+    <a href="#">Newsroom</a>
+    <span class="strip-sep">|</span>
+    <a href="contact.html">Contact Us</a>
+    <span class="strip-sep">|</span>
+    <a href="neocare.html">NeoCare</a>
+    <div class="strip-social"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="main-nav">
+      <div class="nav-item">
+        <span class="nav-link">The Company <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">About Neonergy</a>
+          <a href="#">Vision &amp; Mission</a>
+          <a href="team.html">Leadership Team</a>
+          <a href="#">Newsroom</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Business Segments <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Consultancy Services</a>
+          <a href="#">O&amp;M Solutions</a>
+          <a href="#">EV &amp; Battery Swap</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Services <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="services.html">Technical &amp; Business Advisory</a>
+          <a href="services.html">Transaction &amp; Investment Advisory</a>
+          <a href="services.html">Project Management (PMC/PMU)</a>
+          <a href="services.html">EPC &amp; Engineering Services</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Projects <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Solar PV Projects</a>
+          <a href="#">Wind &amp; Hydro</a>
+          <a href="#">BESS Deployments</a>
+          <a href="#">Ongoing Projects</a>
+        </div>
+      </div>
+    </nav>
+    <a href="index.html" class="header-logo">
+      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <div class="logo-wordmark">neonergy</div>
+    </a>
+    <span class="header-slogan">One Stop Energy Partner</span>
+  </header>
+
+  <!-- Floating Contact -->
+  <div class="float-contact">
+    <a href="contact.html">CONTACT EXPERTS</a>
+  </div>
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>Leadership Team</h1>
+    <p>Decades of combined expertise in renewable energy, EPC operations, and project management — driving Neonergy's mission forward.</p>
+  </section>
+
+  <!-- Page Content -->
+  <section class="page-section">
+    <div class="page-inner">
+
+      <div class="team-intro">
+        <h2>The People Behind Neonergy</h2>
+        <p>Our leadership brings together over 130+ years of collective experience across Solar PV, Wind, Hydro, BESS, EPC operations, investment advisory, and project management — spanning India, the Middle East, and beyond.</p>
+      </div>
+
+      <p class="section-label" style="margin-bottom: 20px;">Senior Leadership</p>
+      <div class="leader-list" id="leaderList">
+        <!-- Populated by render.js -->
+      </div>
+
+      <!-- Extended Team -->
+      <div class="extended-team">
+        <h3>Our Extended Team</h3>
+        <p>Beyond our senior leadership, Neonergy is backed by a strong team of Associate Managers, Lead Engineers, and specialists actively deployed across project sites in India.</p>
+        <div class="extended-names">
+          <div class="name-pill">Ramesh N <span>Manager</span></div>
+          <div class="name-pill">Mahesh Kumar <span>Deputy Manager</span></div>
+          <div class="name-pill">Lakshminath M <span>Associate Manager</span></div>
+          <div class="name-pill">Aftab Jannath D <span>Lead Engineer</span></div>
+          <div class="name-pill">Dikshant Kale <span>Associate Manager</span></div>
+          <div class="name-pill">Vignesh B <span>Associate Manager</span></div>
+          <div class="name-pill">Thejeshwar S <span>Associate Manager</span></div>
+          <div class="name-pill">Krishnamoorthi A <span>Associate Manager</span></div>
+          <div class="name-pill">Ponkumaran M <span>Associate Manager</span></div>
+          <div class="name-pill">Prathaban K <span>Associate Manager</span></div>
+          <div class="name-pill">Hariharan SP <span>Associate Manager</span></div>
+          <div class="name-pill">Boddu Raja <span>Associate Manager</span></div>
+          <div class="name-pill">Mohammed Ibrahim <span>Associate Manager</span></div>
+          <div class="name-pill">Rohit Kumar <span>Lead Engineer</span></div>
+          <div class="name-pill">Sourabh Ranjan <span>Lead Engineer</span></div>
+          <div class="name-pill">Manish Kumar <span>Lead Engineer</span></div>
+          <div class="name-pill">Pappu Kumar <span>Lead Engineer</span></div>
+          <div class="name-pill">Swadeep Singh <span>Lead Engineer</span></div>
+        </div>
+      </div>
+
+      <!-- Join CTA -->
+      <div class="team-cta">
+        <h3>Want to Join This Team?</h3>
+        <p>We're always looking for talented engineers, consultants, and project professionals who share our passion for clean energy.</p>
+        <a href="careers.html">View Open Positions →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-row">
+            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <div>
+              <div class="brand-name">NEONERGY</div>
+              <div class="brand-sub">Engineering Pvt Ltd</div>
+            </div>
+          </div>
+          <p>Integrated Renewable Energy company committed to delivering sustainable, reliable, and cost-effective clean energy solutions.</p>
+          <div class="footer-social"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="team.html">Leadership Team</a></li>
+            <li><a href="#">Business Segments</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Ongoing Projects</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Technical Advisory</a></li>
+            <li><a href="#">Transaction Advisory</a></li>
+            <li><a href="#">Project Management</a></li>
+            <li><a href="#">EPC &amp; Engineering</a></li>
+            <li><a href="#">O&amp;M Solutions</a></li>
+            <li><a href="#">EV &amp; Battery Swap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <p><span class="contact-icon">📍</span> 1st Floor, 682/2, 12th Main Rd, 3rd Block, Rajajinagar, Bengaluru 560010</p>
+          <p><span class="contact-icon">✉️</span> info@neonergy.co</p>
+          <p><span class="contact-icon">📞</span> +91 8095241041</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+        <p>&copy; 2026 Neonergy Engineering Pvt Ltd. All rights reserved.</p>
+        <span class="footer-powered"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>

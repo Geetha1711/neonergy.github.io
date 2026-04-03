@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Segments – Neonergy Engineering Pvt Ltd</title>
+  <meta name="description" content="Neonergy's three core business segments: Consultancy Services, O&M Solutions, and EV Charging & Battery Swap — end-to-end renewable energy expertise." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="content.js"></script>
+  <script src="render.js"></script>
+  <style>
+    /* ── Anchor offset ── */
+    .anchor-target { scroll-margin-top: calc(var(--header-h) + var(--strip-h) + 16px); }
+
+    /* ── Quick-jump nav ── */
+    .seg-jumps {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+    .seg-jump {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border: 2px solid var(--green-dark);
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      transition: background 0.2s, color 0.2s;
+    }
+    .seg-jump:hover { background: var(--green-dark); color: #fff; }
+    .seg-jump span { font-size: 1rem; }
+
+    /* ── Section divider ── */
+    .seg-section {
+      margin-bottom: 88px;
+      padding-bottom: 88px;
+      border-bottom: 1px solid #e5f0e9;
+    }
+    .seg-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    /* ── Section header strip ── */
+    .seg-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .seg-icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-dark), #1a8c58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .seg-header-text .seg-label-sm {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .seg-header-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.15;
+    }
+
+    /* ── Split layout ── */
+    .seg-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .seg-split--flip { direction: rtl; }
+    .seg-split--flip > * { direction: ltr; }
+
+    /* ── Text block ── */
+    .seg-tag {
+      display: inline-block;
+      background: rgba(11,93,59,0.1);
+      color: var(--green-dark);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 40px;
+      margin-bottom: 14px;
+    }
+    .seg-text h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .seg-intro {
+      font-size: 0.95rem;
+      color: var(--grey-text);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e5f0e9;
+    }
+
+    /* ── Services list ── */
+    .seg-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .seg-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: #333;
+      line-height: 1.6;
+      padding: 10px 14px;
+      background: #f9fdfb;
+      border-left: 3px solid var(--green-dark);
+      border-radius: 0 6px 6px 0;
+    }
+    .seg-list li::before {
+      content: "▸";
+      color: var(--green-dark);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    /* ── Image block ── */
+    .seg-img-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      position: sticky;
+      top: calc(var(--header-h) + var(--strip-h) + 24px);
+    }
+    .seg-img-wrap img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+    .seg-img-placeholder {
+      width: 100%;
+      height: 480px;
+      background: #f0f7f3;
+      border: 2px dashed #b2d9c1;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: #8ab8a0;
+    }
+    .seg-img-placeholder svg { width: 52px; height: 52px; stroke: #8ab8a0; }
+    .seg-img-placeholder span { font-size: 0.82rem; letter-spacing: 0.04em; }
+
+    /* ── O&M accent colour override ── */
+    #om-solutions .seg-list li { border-left-color: var(--blue-dark); }
+    #om-solutions .seg-list li::before { color: var(--blue-dark); }
+    #om-solutions .seg-tag { background: rgba(31,58,138,0.1); color: var(--blue-dark); }
+    #om-solutions .seg-text h2 { color: var(--blue-dark); }
+    #om-solutions .seg-intro { border-bottom-color: #dde4f5; }
+    #om-solutions .seg-list li { background: #f6f8fd; }
+    #om-solutions .seg-img-placeholder { background: #f0f3fb; border-color: #b2bfe8; }
+
+    /* ── EV accent colour (amber) ── */
+    #ev-battery .seg-list li { border-left-color: #b87900; }
+    #ev-battery .seg-list li::before { color: #b87900; }
+    #ev-battery .seg-tag { background: rgba(245,166,35,0.12); color: #996600; }
+    #ev-battery .seg-text h2 { color: #7a5200; }
+    #ev-battery .seg-intro { border-bottom-color: #f5e8c8; }
+    #ev-battery .seg-list li { background: #fffbf2; }
+    #ev-battery .seg-img-placeholder { background: #fffbf0; border-color: #e8d49a; }
+
+    /* ── CTA strip ── */
+    .seg-cta {
+      background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+      border-radius: 10px;
+      padding: 48px 40px;
+      text-align: center;
+      color: #fff;
+      margin-top: 64px;
+    }
+    .seg-cta h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+    .seg-cta p  { color: rgba(255,255,255,0.78); margin-bottom: 24px; font-size: 0.95rem; }
+    .seg-cta a {
+      display: inline-block;
+      background: var(--amber);
+      color: #111;
+      padding: 13px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .seg-cta a:hover { background: #e09010; }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .seg-split { grid-template-columns: 1fr; gap: 32px; }
+      .seg-split--flip { direction: ltr; }
+      .seg-img-wrap { position: static; }
+      .seg-img-wrap img,
+      .seg-img-placeholder { height: 260px; }
+      .seg-cta { padding: 36px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <a href="careers.html">Careers</a>
+    <span class="strip-sep">|</span>
+    <a href="#">Newsroom</a>
+    <span class="strip-sep">|</span>
+    <a href="contact.html">Contact Us</a>
+    <span class="strip-sep">|</span>
+    <a href="neocare.html">NeoCare</a>
+    <div class="strip-social"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="main-nav">
+      <div class="nav-item">
+        <span class="nav-link">The Company <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="about.html#about">About Neonergy</a>
+          <a href="about.html#vision-mission">Vision &amp; Mission</a>
+          <a href="about.html#values">Core Values</a>
+          <a href="team.html">Leadership Team</a>
+          <a href="clients.html">Clients</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Business Segments <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="segments.html#consultancy">Consultancy Services</a>
+          <a href="segments.html#om-solutions">O&amp;M Solutions</a>
+          <a href="segments.html#ev-battery">EV &amp; Battery Swap</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Services <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="services.html">Technical &amp; Business Advisory</a>
+          <a href="services.html">Transaction &amp; Investment Advisory</a>
+          <a href="services.html">Project Management (PMC/PMU)</a>
+          <a href="services.html">EPC &amp; Engineering Services</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Projects <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Solar PV Projects</a>
+          <a href="#">Wind &amp; Hydro</a>
+          <a href="#">BESS Deployments</a>
+          <a href="#">Ongoing Projects</a>
+        </div>
+      </div>
+    </nav>
+    <a href="index.html" class="header-logo">
+      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <div class="logo-wordmark">neonergy</div>
+    </a>
+    <span class="header-slogan">One Stop Energy Partner</span>
+  </header>
+
+  <!-- Floating Contact -->
+  <div class="float-contact">
+    <a href="contact.html">CONTACT EXPERTS</a>
+  </div>
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>Business Segments</h1>
+    <p>Three focused practice areas — Consultancy, Operations & Maintenance, and EV Infrastructure — delivered end-to-end by Neonergy.</p>
+  </section>
+
+  <!-- Page Content -->
+  <section class="page-section">
+    <div class="page-inner">
+
+      <!-- Quick-jump links -->
+      <div class="seg-jumps">
+        <a href="#consultancy" class="seg-jump"><span>🔍</span> Consultancy Services</a>
+        <a href="#om-solutions" class="seg-jump"><span>⚙️</span> O&amp;M Solutions</a>
+        <a href="#ev-battery"   class="seg-jump"><span>⚡</span> EV &amp; Battery Swap</a>
+      </div>
+
+      <!-- ── CONSULTANCY ── -->
+      <div id="consultancy" class="anchor-target seg-section">
+        <div class="seg-header">
+          <div class="seg-icon-circle">🔍</div>
+          <div class="seg-header-text">
+            <span class="seg-label-sm">Business Segment 01</span>
+            <h2>Consultancy Services</h2>
+          </div>
+        </div>
+        <div id="segConsultancy"><!-- Populated by render.js --></div>
+      </div>
+
+      <!-- ── O&M ── -->
+      <div id="om-solutions" class="anchor-target seg-section">
+        <div class="seg-header">
+          <div class="seg-icon-circle" style="background: linear-gradient(135deg, var(--blue-dark), #2d4fc4)">⚙️</div>
+          <div class="seg-header-text">
+            <span class="seg-label-sm" style="color:var(--blue-dark)">Business Segment 02</span>
+            <h2 style="color:var(--blue-dark)">O&amp;M Solutions</h2>
+          </div>
+        </div>
+        <div id="segOm"><!-- Populated by render.js --></div>
+      </div>
+
+      <!-- ── EV & BATTERY SWAP ── -->
+      <div id="ev-battery" class="anchor-target seg-section">
+        <div class="seg-header">
+          <div class="seg-icon-circle" style="background: linear-gradient(135deg, #b87900, #f5a623)">⚡</div>
+          <div class="seg-header-text">
+            <span class="seg-label-sm" style="color:#996600">Business Segment 03</span>
+            <h2 style="color:#7a5200">EV Charging &amp; Battery Swap</h2>
+          </div>
+        </div>
+        <div id="segEv"><!-- Populated by render.js --></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="seg-cta">
+        <h3>Ready to Work With Us?</h3>
+        <p>Whether you need consultancy, O&M support, or EV infrastructure solutions — our experts are ready to help you plan and execute.</p>
+        <a href="contact.html">Get in Touch →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-row">
+            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <div>
+              <div class="brand-name">NEONERGY</div>
+              <div class="brand-sub">Engineering Pvt Ltd</div>
+            </div>
+          </div>
+          <p>Integrated Renewable Energy company committed to delivering sustainable, reliable, and cost-effective clean energy solutions.</p>
+          <div class="footer-social"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Business Segments</h4>
+          <ul>
+            <li><a href="segments.html#consultancy">Consultancy Services</a></li>
+            <li><a href="segments.html#om-solutions">O&amp;M Solutions</a></li>
+            <li><a href="segments.html#ev-battery">EV &amp; Battery Swap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html#about">About Neonergy</a></li>
+            <li><a href="team.html">Leadership Team</a></li>
+            <li><a href="#">Ongoing Projects</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <p><span class="contact-icon">📍</span> 1st Floor, 682/2, 12th Main Rd, 3rd Block, Rajajinagar, Bengaluru 560010</p>
+          <p><span class="contact-icon">✉️</span> info@neonergy.co</p>
+          <p><span class="contact-icon">📞</span> +91 8095241041</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+        <p>&copy; 2026 Neonergy Engineering Pvt Ltd. All rights reserved.</p>
+        <span class="footer-powered"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Smooth scroll for jump links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>

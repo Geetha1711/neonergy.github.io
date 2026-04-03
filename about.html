@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Neonergy – Engineering Pvt Ltd</title>
+  <meta name="description" content="Learn about Neonergy Engineering — our story, vision, mission, and the values that drive every renewable energy project we deliver." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="content.js"></script>
+  <script src="render.js"></script>
+  <style>
+    /* ── Scroll anchor offset (accounts for fixed header) ── */
+    .anchor-target { scroll-margin-top: calc(var(--header-h) + var(--strip-h) + 16px); }
+
+    /* ═══ ABOUT SECTION ═══ */
+    .about-section { margin-bottom: 80px; }
+
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-text p.section-label { margin-bottom: 8px; }
+    .about-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+    .about-text p {
+      color: var(--grey-text);
+      line-height: 1.8;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+
+    /* Stats row inside about */
+    .about-stats-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid #dceee4;
+      flex-wrap: wrap;
+    }
+    .astat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+    .astat-label {
+      font-size: 0.78rem;
+      color: var(--grey-text);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Image wrapper — right of about */
+    .about-img-right {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-img-right img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* ═══ VISION & MISSION ═══ */
+    .vm-section { margin-bottom: 80px; }
+    .vm-section-head {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .vm-section-head h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+    .vm-section-head p { color: var(--grey-text); max-width: 580px; margin: 0 auto; font-size: 0.95rem; }
+
+    .vm-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(11,93,59,0.08);
+    }
+
+    /* Vision image left */
+    .vm-img {
+      position: relative;
+      min-height: 340px;
+    }
+    .vm-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Text panel */
+    .vm-text {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .vision-text  { background: var(--green-dark); }
+    .mission-text { background: var(--blue-dark); }
+
+    .vm-label-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 40px;
+      margin-bottom: 20px;
+    }
+    .vm-statement {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.65;
+      font-style: italic;
+      margin: 0;
+      border: none;
+      padding: 0;
+    }
+    .vm-statement::before { content: none; }
+
+    /* Flip layout for mission */
+    .vm-block--flip { direction: rtl; }
+    .vm-block--flip > * { direction: ltr; }
+
+    /* ═══ IMAGE PLACEHOLDER ═══ */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      background: #f0f7f3;
+      border: 2px dashed #b2d9c1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #8ab8a0;
+    }
+    .img-placeholder svg { width: 48px; height: 48px; stroke: #8ab8a0; }
+    .img-placeholder span { font-size: 0.82rem; letter-spacing: 0.04em; }
+
+    .about-img-right .img-placeholder {
+      height: 420px;
+      min-height: 420px;
+      border-radius: 12px;
+    }
+
+    /* ═══ CORE VALUES ═══ */
+    .values-section { margin-bottom: 72px; }
+    .values-head {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .values-head h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    .values-head p { color: var(--grey-text); font-size: 0.94rem; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+    }
+    .value-card {
+      background: #fff;
+      border: 1px solid #dceee4;
+      border-top: 4px solid var(--green-dark);
+      border-radius: 10px;
+      padding: 32px 26px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .value-card:hover { box-shadow: 0 6px 24px rgba(11,93,59,0.1); transform: translateY(-4px); }
+    .value-icon { font-size: 2rem; margin-bottom: 14px; }
+    .value-card h3 { font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 10px; }
+    .value-card p  { font-size: 0.87rem; color: var(--grey-text); line-height: 1.65; }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+      .about-split { grid-template-columns: 1fr; gap: 32px; }
+      .about-img-right img,
+      .about-img-right .img-placeholder { height: 260px; min-height: 260px; }
+      .vm-block { grid-template-columns: 1fr; }
+      .vm-block--flip { direction: ltr; }
+      .vm-img { min-height: 240px; }
+      .vm-img .img-placeholder { min-height: 240px; }
+      .vm-text { padding: 36px 28px; }
+      .vm-statement { font-size: 1.05rem; }
+      .about-stats-row { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <a href="careers.html">Careers</a>
+    <span class="strip-sep">|</span>
+    <a href="#">Newsroom</a>
+    <span class="strip-sep">|</span>
+    <a href="contact.html">Contact Us</a>
+    <span class="strip-sep">|</span>
+    <a href="neocare.html">NeoCare</a>
+    <div class="strip-social"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="main-nav">
+      <div class="nav-item">
+        <span class="nav-link">The Company <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="about.html#about">About Neonergy</a>
+          <a href="about.html#vision-mission">Vision &amp; Mission</a>
+          <a href="about.html#values">Core Values</a>
+          <a href="team.html">Leadership Team</a>
+          <a href="#">Clients</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Business Segments <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Consultancy Services</a>
+          <a href="#">O&amp;M Solutions</a>
+          <a href="#">EV &amp; Battery Swap</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Services <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="services.html">Technical &amp; Business Advisory</a>
+          <a href="services.html">Transaction &amp; Investment Advisory</a>
+          <a href="services.html">Project Management (PMC/PMU)</a>
+          <a href="services.html">EPC &amp; Engineering Services</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-link">Projects <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Solar PV Projects</a>
+          <a href="#">Wind &amp; Hydro</a>
+          <a href="#">BESS Deployments</a>
+          <a href="#">Ongoing Projects</a>
+        </div>
+      </div>
+    </nav>
+    <a href="index.html" class="header-logo">
+      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <div class="logo-wordmark">neonergy</div>
+    </a>
+    <span class="header-slogan">One Stop Energy Partner</span>
+  </header>
+
+  <!-- Floating Contact -->
+  <div class="float-contact">
+    <a href="contact.html">CONTACT EXPERTS</a>
+  </div>
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>About Neonergy</h1>
+    <p>Integrated renewable energy solutions across the complete project lifecycle — built on trust, expertise, and a commitment to a cleaner future.</p>
+  </section>
+
+  <!-- Page Content -->
+  <section class="page-section">
+    <div class="page-inner">
+
+      <!-- ── ABOUT ── -->
+      <div id="about" class="anchor-target about-section">
+        <div id="aboutContent">
+          <!-- Populated by render.js -->
+        </div>
+      </div>
+
+      <!-- ── VISION & MISSION ── -->
+      <div id="vision-mission" class="anchor-target vm-section">
+        <div class="vm-section-head">
+          <p class="section-label">What Drives Us</p>
+          <h2>Vision &amp; Mission</h2>
+          <p>Two guiding principles that shape every project, every partnership, and every decision we make at Neonergy.</p>
+        </div>
+        <div id="vmContent">
+          <!-- Populated by render.js -->
+        </div>
+      </div>
+
+      <!-- ── CORE VALUES ── -->
+      <div id="values" class="anchor-target values-section">
+        <div class="values-head">
+          <p class="section-label">What We Stand For</p>
+          <h2>Our Core Values</h2>
+          <p>The principles that guide how we work with clients, partners, and each other.</p>
+        </div>
+        <div class="values-grid" id="valuesContent">
+          <!-- Populated by render.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-row">
+            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <div>
+              <div class="brand-name">NEONERGY</div>
+              <div class="brand-sub">Engineering Pvt Ltd</div>
+            </div>
+          </div>
+          <p>Integrated Renewable Energy company committed to delivering sustainable, reliable, and cost-effective clean energy solutions.</p>
+          <div class="footer-social"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html#about">About Neonergy</a></li>
+            <li><a href="about.html#vision-mission">Vision &amp; Mission</a></li>
+            <li><a href="team.html">Leadership Team</a></li>
+            <li><a href="#">Ongoing Projects</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Technical Advisory</a></li>
+            <li><a href="#">Transaction Advisory</a></li>
+            <li><a href="#">Project Management</a></li>
+            <li><a href="#">EPC &amp; Engineering</a></li>
+            <li><a href="#">O&amp;M Solutions</a></li>
+            <li><a href="#">EV &amp; Battery Swap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <p><span class="contact-icon">📍</span> 1st Floor, 682/2, 12th Main Rd, 3rd Block, Rajajinagar, Bengaluru 560010</p>
+          <p><span class="contact-icon">✉️</span> info@neonergy.co</p>
+          <p><span class="contact-icon">📞</span> +91 8095241041</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+        <p>&copy; 2026 Neonergy Engineering Pvt Ltd. All rights reserved.</p>
+        <span class="footer-powered"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Smooth scroll to hash on same-page navigation
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

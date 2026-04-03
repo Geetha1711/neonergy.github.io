@@ -3,150 +3,551 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neonergy - Home</title>
+  <title>Neonergy Engineering Pvt Ltd – Your One Stop Energy Partner</title>
+  <meta name="description" content="Neonergy Engineering Pvt Ltd delivers sustainable, self-reliant energy ecosystems through engineering excellence — solar, SCADA, process automation, and more." />
 
-  <!-- Redirect to www if accessed via naked domain -->
+  <!-- Redirect naked domain to www -->
   <script>
     if (location.hostname === "neonergy.co") {
-      location.href = "https://www.neonergy.co";
+      location.href = "https://www.neonergy.co" + location.pathname;
     }
   </script>
 
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Full-viewport fixed container */
-    :root { --zoom: 1; }
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* wrapper centers the image and lets us transform it */
-    .img-wrap {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #000;
-    }
-
-    /* show the whole image by default; transform scale via CSS variable */
-    .word-cloud {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain; /* ensure entire image visible (no cropping) */
-      transform: scale(var(--zoom));
-      transition: transform 180ms ease;
-      will-change: transform;
-      display: block;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* controls overlay */
-    .controls {
-      position: fixed;
-      left: 12px;
-      top: 12px;
-      z-index: 10;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      background: rgba(0,0,0,0.45);
-      color: #fff;
-      padding: 8px;
-      border-radius: 8px;
-      backdrop-filter: blur(6px);
-      font-size: 0.9rem;
-    }
-
-    .controls input[type="range"] {
-      width: 180px;
-    }
-
-    .notice {
-      position: fixed;
-      left: 12px;
-      bottom: 12px;
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      z-index: 5;
-      backdrop-filter: blur(4px);
-    }
-
-    footer {
-      position: fixed;
-      right: 12px;
-      bottom: 12px;
-      z-index: 5;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.85rem;
-      background: rgba(0,0,0,0.35);
-      padding: 6px 8px;
-      border-radius: 6px;
-    }
-
-    /* small screens: reduce control size */
-    @media (max-width: 520px) {
-      .controls input[type="range"] { width: 120px; }
-    }
-  </style>
+  <script src="content.js"></script>
+  <script src="render.js"></script>
 </head>
 <body>
-  <!-- controls: zoom slider + quick-fit buttons -->
-  <!-- <div class="controls" aria-hidden="false">
-    <label for="zoom">Zoom</label>
-    <input id="zoom" type="range" min="0.6" max="1.4" step="0.01" value="1" />
-    <button id="fitBtn" title="Fit entire image">Fit</button>
-    <button id="resetBtn" title="Reset zoom">Reset</button>
-  </div> -->
 
-  <!-- Centered image wrapper; object-fit:contain ensures whole image visible by default -->
-  <div class="img-wrap" role="img" aria-label="NeoNergy word cloud">
-    <img src="assets/wuc.png" alt="NeoNergy word cloud (full page)" class="word-cloud" id="wordCloud">
+  <!-- ═══════════════════════════════════════════
+       TOP UTILITY STRIP
+  ═══════════════════════════════════════════ -->
+  <div class="top-strip">
+    <a href="careers.html">Careers</a>
+    <span class="strip-sep">|</span>
+    <a href="#">News Hub</a>
+    <span class="strip-sep">|</span>
+    <a href="contact.html">Contact Us</a>
+    <span class="strip-sep">|</span>
+    <a href="neocare.html">NeoCare</a>
+    <div class="strip-social"></div>
   </div>
 
-  <!-- <div class="notice">Temporary landing page — site under development</div> -->
-  <footer>&copy; 2025 Neonergy</footer>
+  <!-- ═══════════════════════════════════════════
+       MAIN HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="main-header">
 
+    <!-- Navigation – left -->
+    <nav class="main-nav">
+      <div class="nav-item">
+        <span class="nav-link">The Company <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">About Neonergy</a>
+          <a href="#">Purpose & Values &amp; Mission</a>
+          <a href="#">Leadership Team</a>
+          <a href="#">Clients</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-link">Business Segments <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Renewable Energy</a>
+          <a href="#">Process Automation</a>
+          <a href="#">SCADA Systems</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-link">Services <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="services.html">Technical &amp; Business Advisory</a>
+          <a href="services.html">Transaction &amp; Investment Advisory</a>
+          <a href="services.html">Project Management (PMC/PMU)</a>
+          <a href="#">EPC &amp; DPR Services</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-link">Projects <span class="arrow">▾</span></span>
+        <div class="dropdown">
+          <a href="#">Solar PV Projects</a>
+          <a href="#">Industrial Automation</a>
+          <a href="#">BESS Deployments</a>
+          <a href="#">Case Studies</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Logo – left -->
+    <a href="index.html" class="header-logo">
+      <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+      <div class="logo-wordmark">neonergy</div>
+    </a>
+
+    <span class="header-slogan">One Stop Energy Partner</span>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       FLOATING RIGHT SIDEBAR
+  ═══════════════════════════════════════════ -->
+  <div class="float-contact">
+    <a href="contact.html" title="Contact Experts">CONTACT EXPERTS</a>
+  </div>
+
+  <button class="scroll-top" id="scrollTopBtn" title="Scroll to top" aria-label="Scroll to top">
+    &#8679;
+  </button>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <!-- Background video – plays once, then fades to static gradient -->
+    <video class="hero-video" autoplay muted playsinline id="heroVideo">
+      <source src="assets/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+
+    <!-- Video controls: pause/play + mute -->
+    <div class="hero-video-controls" id="heroControls">
+      <!-- Pause / Play -->
+      <button class="hero-ctrl-btn" id="heroPlayBtn" aria-label="Pause video">
+        <!-- Pause icon (default – video is playing) -->
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+        </svg>
+        <!-- Play icon (shown when paused) -->
+        <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+      </button>
+
+      <!-- Mute / Unmute -->
+      <button class="hero-ctrl-btn" id="heroMuteBtn" aria-label="Unmute video">
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="hero-content hero-content--hidden" id="heroContent">
+      <div class="hero-tag">Renewable · Reliable · Resilient</div>
+      <h1>Your One Stop<br><span>Energy Partner</span></h1>
+      <p>Empowering sustainable, self-reliant energy ecosystems through engineering excellence and innovation.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Services</a>
+      </div>
+    </div>
+    <button class="hero-scroll" id="heroScroll" aria-label="Scroll to next section">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       LATEST UPDATES
+  ═══════════════════════════════════════════ -->
+  <section class="section updates" id="updates">
+    <div class="section-inner">
+      <p class="section-label">What's New</p>
+      <h2 class="section-title">Latest Updates</h2>
+      <p class="section-desc">Stay updated with the latest developments in renewable energy, industry insights, and Neonergy project milestones.</p>
+
+      <div class="updates-grid" id="updatesGrid">
+
+        <div class="update-card">
+          <div class="update-img">☀️</div>
+          <div class="update-body">
+            <span class="update-tag">Neonergy Updates</span>
+            <h3>Solar Project Commissioned in Karnataka</h3>
+            <p>Neonergy successfully commissioned a utility-scale solar project enhancing clean energy adoption across the region.</p>
+            <a href="#newsroom" class="update-link">Know More →</a>
+          </div>
+        </div>
+
+        <div class="update-card">
+          <div class="update-img">📋</div>
+          <div class="update-body">
+            <span class="update-tag">Industry News</span>
+            <h3>Renewable Energy Policy Updates – India 2026</h3>
+            <p>Key regulatory changes shaping the future of renewable investments and infrastructure development in India.</p>
+            <a href="#newsroom" class="update-link">Know More →</a>
+          </div>
+        </div>
+
+        <div class="update-card">
+          <div class="update-img">🔋</div>
+          <div class="update-body">
+            <span class="update-tag">Neonergy Updates</span>
+            <h3>BESS Integration for Industrial Client</h3>
+            <p>Advanced battery storage solutions deployed to improve energy efficiency and reliability for a major industrial client.</p>
+            <a href="#newsroom" class="update-link">Know More →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="#newsroom" class="btn-green">Know More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT NEONERGY
+  ═══════════════════════════════════════════ -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+
+        <div class="about-text">
+          <p class="section-label">Who We Are</p>
+          <h2 class="section-title">About Neonergy</h2>
+          <div id="aboutDesc"></div>
+
+          <div class="about-stats" id="aboutStats">
+          </div>
+
+          <a href="about.html#about" class="btn-green">Know More →</a>
+        </div>
+
+        <div class="about-visual">
+          <div class="about-visual-inner">
+            <div class="icon-large">⚡</div>
+            <p>Sustainable · Independent · Global</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BUSINESS SEGMENTS
+  ═══════════════════════════════════════════ -->
+  <section class="section segments" id="segments">
+    <div class="section-inner">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Our Business Segments</h2>
+      <p class="section-desc">From clean energy generation to smart automation and data-driven monitoring — we cover the full spectrum of modern energy engineering.</p>
+
+      <div class="segments-grid" id="segmentsGrid">
+
+        <div class="segment-card">
+          <div class="segment-icon">🌞</div>
+          <h3>Renewable Energy</h3>
+          <p>We design and deliver renewable energy solutions including solar PV and hydro systems, enabling clean and efficient power generation for utilities, industries, and communities.</p>
+          <a href="#" class="know-more">Know More →</a>
+        </div>
+
+        <div class="segment-card">
+          <div class="segment-icon">⚙️</div>
+          <h3>Process Automation</h3>
+          <p>Advanced automation solutions that enhance operational efficiency, reduce costs, and improve system reliability across industrial and energy infrastructure.</p>
+          <a href="#" class="know-more">Know More →</a>
+        </div>
+
+        <div class="segment-card">
+          <div class="segment-icon">📡</div>
+          <h3>SCADA Systems</h3>
+          <p>Smart monitoring and control systems for real-time performance optimization and data-driven decision-making across distributed energy assets.</p>
+          <a href="#" class="know-more">Know More →</a>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="#" class="btn-green">Know More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════ -->
+  <section class="section services" id="services">
+    <div class="section-inner">
+      <p class="section-label">How We Help</p>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-desc">End-to-end engineering and advisory services — from feasibility through commissioning and beyond.</p>
+
+      <div class="services-grid" id="servicesGrid">
+
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3>Technical &amp; Business Advisory</h3>
+          <p>End-to-end consulting covering feasibility, planning, and technical evaluation of energy projects to maximise returns.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>Transaction &amp; Investment Advisory</h3>
+          <p>Strategic guidance for investments, acquisitions, and financial structuring in renewable and infrastructure sectors.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Project Management (PMC/PMU)</h3>
+          <p>Comprehensive project management ensuring timely execution, cost control, and quality assurance from concept to close.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>EPC &amp; DPR Services</h3>
+          <p>Engineering, Procurement &amp; Construction support along with Detailed Project Reports for efficient, compliant delivery.</p>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="#" class="btn-green">Know More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════════ -->
+  <section class="section projects" id="projects">
+    <div class="section-inner">
+      <p class="section-label">Our Work</p>
+      <h2 class="section-title">Our Projects</h2>
+      <p class="section-desc">Delivering impactful energy solutions across industries through innovation, precision, and execution excellence.</p>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-visual">
+            ☀️
+            <div class="project-overlay">
+              <p>Utility-scale solar installation with optimized design and high-efficiency modules.</p>
+              <a href="#" class="btn-case">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-meta">Solar PV · Karnataka</p>
+            <h3>Solar PV Plant – 50 MW</h3>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-visual">
+            ⚙️
+            <div class="project-overlay">
+              <p>Integrated automation and energy solutions reducing operational costs by 20%.</p>
+              <a href="#" class="btn-case">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-meta">Automation · Industrial</p>
+            <h3>Industrial Energy Optimization Project</h3>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-visual">
+            🔋
+            <div class="project-overlay">
+              <p>Deployment of scalable storage systems for uninterrupted, reliable power supply.</p>
+              <a href="#" class="btn-case">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-meta">BESS · Storage</p>
+            <h3>Battery Energy Storage System (BESS)</h3>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="#" class="btn-green">Know More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CALL TO ACTION
+  ═══════════════════════════════════════════ -->
+  <section class="cta-banner">
+    <h2>Ready to Build Energy Independence?</h2>
+    <p>Partner with Neonergy to design and implement sustainable, future-ready energy solutions tailored to your needs.</p>
+    <a href="contact.html" class="btn-primary">Contact Experts</a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <div class="logo-row">
+            <img src="assets/logo.jpeg" alt="Neonergy Logo" />
+            <div>
+              <div class="brand-name">NEONERGY</div>
+              <div class="brand-sub">Engineering Pvt Ltd</div>
+            </div>
+          </div>
+          <p>Committed to delivering sustainable engineering solutions that enable energy independence and long-term value.</p>
+          <div class="footer-social">
+            <!-- LinkedIn -->
+            <a href="index.html" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <!-- Twitter / X -->
+            <a href="index.html" class="social-btn" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="index.html" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="index.html" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">The Company</a></li>
+            <li><a href="#">Business Segments</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Advisory</a></li>
+            <li><a href="#">Investment Consulting</a></li>
+            <li><a href="#">Project Management</a></li>
+            <li><a href="#">EPC &amp; DPR</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <p><span class="contact-icon">📍</span> 1st Floor, 682/2, 12th Main Rd, 3rd Block, Rajajinagar, Bengaluru 560010</p>
+          <p><span class="contact-icon">✉️</span> info@neonergy.co</p>
+          <p><span class="contact-icon">📞</span> +91 8095241041</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+        <p>&copy; 2026 Neonergy Engineering Pvt Ltd. All rights reserved.</p>
+        <span class="footer-powered"></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════ -->
   <script>
-    // Update CSS variable to control zoom
-    const range = document.getElementById('zoom');
-    const root = document.documentElement;
-    const fitBtn = document.getElementById('fitBtn');
-    const resetBtn = document.getElementById('resetBtn');
+    // Hero video – play once, then fade to static background
+    const heroVideo    = document.getElementById('heroVideo');
+    const heroControls = document.getElementById('heroControls');
+    const heroSection  = heroVideo.closest('.hero');
+    const heroContent  = document.getElementById('heroContent');
+    const playBtn      = document.getElementById('heroPlayBtn');
+    const muteBtn      = document.getElementById('heroMuteBtn');
 
-    function setZoom(v) { root.style.setProperty('--zoom', v); }
-
-    range.addEventListener('input', (e) => setZoom(e.target.value));
-
-    // Fit: set zoom so entire image fits (same as object-fit: contain -> zoom 1)
-    fitBtn.addEventListener('click', () => {
-      range.value = 1;
-      setZoom(1);
+    // Stop video at 10 s (browser-side guard; file is also trimmed to 10 s)
+    heroVideo.addEventListener('timeupdate', () => {
+      if (heroVideo.currentTime >= 10) {
+        heroVideo.pause();
+        heroVideo.dispatchEvent(new Event('ended'));
+      }
     });
 
-    // Reset: bring closer to 1 (useful if user zoomed)
-    resetBtn.addEventListener('click', () => {
-      range.value = 1;
-      setZoom(1);
+    // When video finishes: fade it out, switch to image bg, reveal content
+    heroVideo.addEventListener('ended', () => {
+      heroVideo.classList.add('hero-video--done');
+      heroControls.classList.add('hero-controls--hidden');
+      heroSection.classList.add('hero--static');
+      // Slight delay so bg transition starts before content appears
+      setTimeout(() => {
+        heroContent.classList.remove('hero-content--hidden');
+      }, 600);
     });
 
-    // Optional: match keyboard +/- for zoom
-    window.addEventListener('keydown', (e) => {
-      if (e.key === '+' || e.key === '=') range.value = Math.min(+range.value + 0.05, +range.max);
-      if (e.key === '-') range.value = Math.max(+range.value - 0.05, +range.min);
-      setZoom(range.value);
+    // Pause / play toggle
+    playBtn.addEventListener('click', () => {
+      if (heroVideo.paused || heroVideo.ended) {
+        heroVideo.play();
+        playBtn.querySelector('.icon-pause').style.display = '';
+        playBtn.querySelector('.icon-play').style.display  = 'none';
+        playBtn.setAttribute('aria-label', 'Pause video');
+        heroVideo.classList.remove('hero-video--done');
+        heroControls.classList.remove('hero-controls--hidden');
+        heroSection.classList.remove('hero--static');
+        heroContent.classList.add('hero-content--hidden');
+      } else {
+        heroVideo.pause();
+        playBtn.querySelector('.icon-pause').style.display = 'none';
+        playBtn.querySelector('.icon-play').style.display  = '';
+        playBtn.setAttribute('aria-label', 'Play video');
+      }
+    });
+
+    // Mute / unmute toggle
+    muteBtn.addEventListener('click', () => {
+      heroVideo.muted = !heroVideo.muted;
+      muteBtn.querySelector('.icon-muted').style.display   = heroVideo.muted ? '' : 'none';
+      muteBtn.querySelector('.icon-unmuted').style.display = heroVideo.muted ? 'none' : '';
+      muteBtn.setAttribute('aria-label', heroVideo.muted ? 'Unmute video' : 'Mute video');
+    });
+
+    // Scroll-to-top button visibility
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hero scroll button – scroll to first section below hero
+    document.getElementById('heroScroll').addEventListener('click', () => {
+      document.getElementById('updates').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Smooth scroll for in-page nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
   </script>
 </body>
