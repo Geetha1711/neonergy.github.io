@@ -3,16 +3,17 @@
   <!-- Top utility strip -->
   <div class="header__utility-row">
     <div class="container header__utility-inner">
-      <nav class="header__utility-links" aria-label="Utility navigation">
-        <a href="#" class="header__utility-link">Market</a>
-        <span class="header__sep" aria-hidden="true">|</span>
-        <a routerLink="/career" class="header__utility-link">Careers</a>
-        <span class="header__sep" aria-hidden="true">|</span>
-        <a routerLink="/contact" class="header__utility-link">Contact Us</a>
-        <span class="header__sep" aria-hidden="true">|</span>
-        <a href="#" class="header__utility-link">NeoCare</a>
-      </nav>
-      <div class="header__socials" aria-label="Social media links">
+      <div class="header__utility-right">
+        <nav class="header__utility-links" aria-label="Utility navigation">
+          <a href="#" class="header__utility-link">Market</a>
+          <span class="header__sep" aria-hidden="true">|</span>
+          <a routerLink="/career" class="header__utility-link">Careers</a>
+          <span class="header__sep" aria-hidden="true">|</span>
+          <a routerLink="/contact" class="header__utility-link">Contact Us</a>
+          <span class="header__sep" aria-hidden="true">|</span>
+          <a href="#" class="header__utility-link">NeoCare</a>
+        </nav>
+        <div class="header__socials" aria-label="Social media links">
         @for (social of socialLinks; track social.label) {
           <a [href]="social.url" target="_blank" rel="noopener noreferrer"
              [attr.aria-label]="social.label" class="header__social-link">
@@ -21,6 +22,7 @@
             </svg>
           </a>
         }
+        </div>
       </div>
     </div>
   </div>
