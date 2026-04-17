@@ -1,0 +1,25 @@
+<section class="updates section-pad">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">What's New</p>
+      <h2>Latest Updates</h2>
+      <p class="section-desc">Stay updated with the latest developments in renewable energy, industry insights, and Neonergy project milestones.</p>
+    </div>
+    <div class="updates__grid">
+      @for (item of updates; track item.title) {
+        <article class="update-card">
+          <div class="update-card__visual" aria-hidden="true">{{ item.emoji }}</div>
+          <div class="update-card__body">
+            <span class="update-card__tag">{{ item.tag }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.desc }}</p>
+            <a href="#" class="update-card__link">Know More →</a>
+          </div>
+        </article>
+      }
+    </div>
+    <div class="section-cta">
+      <a href="#" class="btn-outline-primary">View All Updates →</a>
+    </div>
+  </div>
+</section>

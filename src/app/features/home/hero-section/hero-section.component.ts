@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,13 +13,52 @@ import { MatIconModule } from '@angular/material/icon';
 export class HeroSectionComponent implements AfterViewInit {
   @ViewChild('heroVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
-  hasVideo = false;
   reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  videoEnded = false;
+  isPlaying = true;
+  isMuted = true;
 
   ngAfterViewInit(): void {
-    if (this.reducedMotion && this.videoRef?.nativeElement) {
-      this.videoRef.nativeElement.pause();
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+
+    if (this.reducedMotion) {
+      video.pause();
+      this.videoEnded = true;
+      return;
     }
+
+    video.addEventListener('ended', () => {
+      this.videoEnded = true;
+    });
+
+    // Stop at 10s as per original design
+    video.addEventListener('timeupdate', () => {
+      if (video.currentTime >= 10) {
+        video.pause();
+        video.dispatchEvent(new Event('ended'));
+      }
+    });
+  }
+
+  togglePlay(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      this.isPlaying = true;
+      this.videoEnded = false;
+    } else {
+      video.pause();
+      this.isPlaying = false;
+    }
+  }
+
+  toggleMute(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+    video.muted = !video.muted;
+    this.isMuted = video.muted;
   }
 
   scrollToNext(): void {

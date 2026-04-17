@@ -1,20 +1,58 @@
-<section class="hero" [class.hero--no-video]="!hasVideo">
-  @if (hasVideo && !reducedMotion) {
-    <video #heroVideo class="hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
+<section class="hero" [class.hero--static]="videoEnded">
+  <!-- Background video -->
+  @if (!reducedMotion) {
+    <video #heroVideo class="hero__video" autoplay muted playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
       <source src="assets/videos/hero.mp4" type="video/mp4">
     </video>
   }
   <div class="hero__scrim"></div>
-  <div class="hero__content container">
-    <p class="hero__eyebrow">One-stop energy partner</p>
-    <h1 class="hero__title">Engineering the transition to clean, reliable energy.</h1>
-    <p class="hero__lede">Integrated advisory, engineering, and EPC across solar, wind, hydro, storage, and urban infrastructure — from concept to commissioning.</p>
+
+  <!-- Video controls -->
+  @if (!reducedMotion && !videoEnded) {
+    <div class="hero__video-controls">
+      <button class="hero__ctrl-btn" (click)="togglePlay()" [attr.aria-label]="isPlaying ? 'Pause video' : 'Play video'">
+        @if (isPlaying) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+            <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        } @else {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        }
+      </button>
+      <button class="hero__ctrl-btn" (click)="toggleMute()" [attr.aria-label]="isMuted ? 'Unmute video' : 'Mute video'">
+        @if (isMuted) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+        } @else {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        }
+      </button>
+    </div>
+  }
+
+  <!-- Content — hidden during video, revealed after -->
+  <div class="hero__content container" [class.hero__content--visible]="videoEnded || reducedMotion">
+    <div class="hero__tag">Renewable · Reliable · Resilient</div>
+    <h1 class="hero__title">Your One Stop<br><span class="hero__title-accent">Energy Partner</span></h1>
+    <p class="hero__lede">Empowering sustainable, self-reliant energy ecosystems through engineering excellence and innovation.</p>
     <div class="hero__cta">
-      <a mat-flat-button color="primary" routerLink="/business-segments">Explore our work</a>
-      <a mat-stroked-button routerLink="/contact" class="hero__cta-outline">Talk to us</a>
+      <a mat-flat-button color="primary" routerLink="/services">Explore Services</a>
+      <a mat-stroked-button routerLink="/contact" class="hero__cta-outline">Contact Experts</a>
     </div>
   </div>
+
   <button class="hero__scroll-hint" (click)="scrollToNext()" aria-label="Scroll to next section">
-    <mat-icon>expand_more</mat-icon>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+    <span>Scroll</span>
   </button>
 </section>

@@ -3,9 +3,13 @@
   <div class="header__utility-row">
     <div class="container header__utility-inner">
       <nav class="header__utility-links" aria-label="Utility navigation">
-        @for (link of utilityLinks; track link.label) {
-          <a [routerLink]="link.path" class="header__utility-link">{{ link.label }}</a>
-        }
+        <a routerLink="/career" class="header__utility-link">Careers</a>
+        <span class="header__sep">|</span>
+        <a href="#" class="header__utility-link">News Hub</a>
+        <span class="header__sep">|</span>
+        <a routerLink="/contact" class="header__utility-link">Contact Us</a>
+        <span class="header__sep">|</span>
+        <a href="#" class="header__utility-link">NeoCare</a>
       </nav>
       <div class="header__socials" aria-label="Social media links">
         @for (social of socialLinks; track social.label) {
@@ -24,8 +28,11 @@
     <div class="container header__main-inner">
       <!-- Logo -->
       <a routerLink="/" class="header__logo" aria-label="Neonergy home">
-        <span class="header__logo-mark">⚡</span>
-        <span class="header__logo-text">neonergy</span>
+        <img src="assets/logo/logo.png" alt="Neonergy" class="header__logo-img" />
+        <div class="header__logo-wordmark">
+          <span class="header__logo-name">neonergy</span>
+          <span class="header__logo-sub">Engineering Pvt Ltd</span>
+        </div>
       </a>
 
       <!-- Desktop nav -->
@@ -33,8 +40,8 @@
         <nav class="header__nav" aria-label="Main navigation">
           @for (item of navItems; track item.label) {
             @if (item.children && item.children.length) {
-              <div class="header__nav-item header__nav-item--has-dropdown" [matMenuTriggerFor]="menu">
-                <button class="header__nav-btn" [routerLink]="item.path" routerLinkActive="header__nav-btn--active">
+              <div class="header__nav-item" [matMenuTriggerFor]="menu">
+                <button class="header__nav-btn" routerLinkActive="header__nav-btn--active" [routerLinkActiveOptions]="{exact: false}" [routerLink]="item.path">
                   {{ item.label }}
                   <mat-icon class="header__nav-chevron">expand_more</mat-icon>
                 </button>
@@ -84,9 +91,8 @@
         }
       </mat-accordion>
       <div class="header__mobile-utility">
-        @for (link of utilityLinks; track link.label) {
-          <a [routerLink]="link.path" class="header__mobile-utility-link" (click)="closeMobileMenu()">{{ link.label }}</a>
-        }
+        <a routerLink="/career" class="header__mobile-utility-link" (click)="closeMobileMenu()">Careers</a>
+        <a routerLink="/contact" class="header__mobile-utility-link" (click)="closeMobileMenu()">Contact Us</a>
       </div>
     </nav>
   }

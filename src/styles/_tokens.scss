@@ -1,9 +1,9 @@
 :root {
-  // Brand colors
-  --color-primary: #1FA94D;
-  --color-primary-dark: #0E6E33;
-  --color-primary-darker: #063E1D;
-  --color-secondary: #1E3A8A;
+  // Brand colors — from Neonergy design spec
+  --color-primary: #2ECC71;         // light green (logo green)
+  --color-primary-dark: #0B5D3B;    // dark green (main brand)
+  --color-primary-darker: #073D27;  // footer/deep dark green
+  --color-secondary: #1F3A8A;       // deep navy blue
   --color-secondary-light: #3B5BDB;
 
   // Neutrals
@@ -15,11 +15,11 @@
   --color-neutral-900: #0F1A1F;
 
   // Semantic
-  --color-success: #1FA94D;
+  --color-success: #2ECC71;
   --color-warning: #E8A33D;
   --color-error: #D64545;
 
-  // Typography
+  // Typography scale
   --fs-display: 3.5rem;
   --fs-h1: 2.5rem;
   --fs-h2: 2rem;
@@ -29,7 +29,7 @@
   --fs-body: 1rem;
   --fs-small: 0.875rem;
 
-  // Spacing (8-pt grid)
+  // Spacing
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -58,7 +58,6 @@
   --container-padding-x: clamp(16px, 4vw, 48px);
 }
 
-// SCSS breakpoints
 $bp-sm: 480px;
 $bp-md: 768px;
 $bp-lg: 1024px;

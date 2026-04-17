@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'HandelGothic';
+  src: url('/assets/fonts/HandelGothic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HandelGo';
+  src: url('/assets/fonts/HandelGo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 h1, h2, h3, h4, h5, h6 {
@@ -14,8 +30,8 @@ h4 { font-size: var(--fs-h4); font-weight: 600; line-height: 1.35; }
 
 p { font-size: var(--fs-body); line-height: 1.6; color: var(--color-neutral-900); margin: 0 0 var(--space-4); }
 
-a { color: var(--color-primary); text-decoration: none; }
-a:hover { color: var(--color-primary-dark); text-decoration: underline; }
+a { color: var(--color-primary-dark); text-decoration: none; }
+a:hover { color: var(--color-primary); text-decoration: underline; }
 
 small { font-size: var(--fs-small); line-height: 1.5; }
 

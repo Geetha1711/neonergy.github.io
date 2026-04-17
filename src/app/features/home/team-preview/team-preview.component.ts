@@ -8,6 +8,7 @@ interface TeamMember {
   role: string;
   bio: string;
   linkedIn: string;
+  photo: string;
 }
 
 @Component({
@@ -19,9 +20,9 @@ interface TeamMember {
 })
 export class TeamPreviewComponent {
   members: TeamMember[] = [
-    { name: 'Balakumaran J', role: 'Chief Business Officer', bio: 'Two decades of renewable energy leadership across advisory, EPC, and project financing in India.', linkedIn: '#' },
-    { name: 'Naveen M', role: 'RE Business Unit Head', bio: 'Led large-scale solar and wind projects from feasibility through commissioning across South India.', linkedIn: '#' },
-    { name: 'Sijith K', role: 'Head, Contracts', bio: 'Specialist in project contracting, risk allocation, and procurement for energy infrastructure.', linkedIn: '#' },
-    { name: 'Shreya Desai', role: 'Legal Counsel', bio: 'Energy sector legal expert focusing on project finance, regulatory compliance, and agreements.', linkedIn: '#' },
+    { name: 'Balakumaran J', role: 'Chief Business Officer', bio: 'Two decades of renewable energy leadership across advisory, EPC, and project financing in India.', linkedIn: '#', photo: 'assets/images/team/bala.jpg' },
+    { name: 'Naveen M', role: 'RE Business Unit Head', bio: 'Led large-scale solar and wind projects from feasibility through commissioning across South India.', linkedIn: '#', photo: 'assets/images/team/naveen.jpg' },
+    { name: 'Sijith K', role: 'Head, Contracts', bio: 'Specialist in project contracting, risk allocation, and procurement for energy infrastructure.', linkedIn: '#', photo: 'assets/images/team/sijith.jpg' },
+    { name: 'Shreya Desai', role: 'Legal Counsel', bio: 'Energy sector legal expert focusing on project finance, regulatory compliance, and agreements.', linkedIn: '#', photo: 'assets/images/team/reddy.jpg' },
   ];
 }
