@@ -41,7 +41,7 @@ import { MatIconModule } from '@angular/material/icon';
       text-decoration: none;
       &:focus { top: var(--space-2); }
     }
-    .site-main { min-height: 60vh; }
+    .site-main { min-height: 60vh; padding-top: 0; }
 
     .float-contact {
       position: fixed;

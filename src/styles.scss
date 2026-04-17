@@ -11,6 +11,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+// Use Lora for section/page headings
+h1, h2 {
+  font-family: 'Lora', Georgia, serif;
+}
+
 .container {
   @include container();
 }

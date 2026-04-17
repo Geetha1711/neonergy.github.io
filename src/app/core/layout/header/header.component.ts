@@ -29,6 +29,7 @@ interface NavItem {
 export class HeaderComponent implements OnInit {
   mobileMenuOpen = false;
   isMobile = false;
+  isScrolled = false;
 
   navItems: NavItem[] = [
     {
@@ -98,6 +99,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkMobile();
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.isScrolled = window.scrollY > 40;
   }
 
   @HostListener('window:resize')

@@ -1,20 +1,22 @@
-<header class="site-header" role="banner">
-  <!-- Utility row -->
+<header class="site-header" [class.site-header--scrolled]="isScrolled" role="banner">
+
+  <!-- Top utility strip -->
   <div class="header__utility-row">
     <div class="container header__utility-inner">
       <nav class="header__utility-links" aria-label="Utility navigation">
+        <a href="#" class="header__utility-link">Market</a>
+        <span class="header__sep" aria-hidden="true">|</span>
         <a routerLink="/career" class="header__utility-link">Careers</a>
-        <span class="header__sep">|</span>
-        <a href="#" class="header__utility-link">News Hub</a>
-        <span class="header__sep">|</span>
+        <span class="header__sep" aria-hidden="true">|</span>
         <a routerLink="/contact" class="header__utility-link">Contact Us</a>
-        <span class="header__sep">|</span>
+        <span class="header__sep" aria-hidden="true">|</span>
         <a href="#" class="header__utility-link">NeoCare</a>
       </nav>
       <div class="header__socials" aria-label="Social media links">
         @for (social of socialLinks; track social.label) {
-          <a [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.label" class="header__social-link">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <a [href]="social.url" target="_blank" rel="noopener noreferrer"
+             [attr.aria-label]="social.label" class="header__social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
               <path [attr.d]="social.svgPath" />
             </svg>
           </a>
@@ -23,15 +25,17 @@
     </div>
   </div>
 
-  <!-- Main header -->
+  <!-- Main nav bar -->
   <div class="header__main">
     <div class="container header__main-inner">
+
       <!-- Logo -->
-      <a routerLink="/" class="header__logo" aria-label="Neonergy home">
+      <a routerLink="/" class="header__logo" aria-label="Neonergy Engineering home">
         <img src="assets/logo/logo.png" alt="Neonergy" class="header__logo-img" />
-        <div class="header__logo-wordmark">
+        <div class="header__logo-text">
           <span class="header__logo-name">neonergy</span>
           <span class="header__logo-sub">Engineering Pvt Ltd</span>
+          <span class="header__logo-tagline">One Stop Energy Partner</span>
         </div>
       </a>
 
@@ -39,21 +43,31 @@
       @if (!isMobile) {
         <nav class="header__nav" aria-label="Main navigation">
           @for (item of navItems; track item.label) {
-            @if (item.children && item.children.length) {
+            @if (item.children && item.children.length && item.label !== 'SCADA LOGIN') {
               <div class="header__nav-item" [matMenuTriggerFor]="menu">
-                <button class="header__nav-btn" routerLinkActive="header__nav-btn--active" [routerLinkActiveOptions]="{exact: false}" [routerLink]="item.path">
+                <button class="header__nav-btn" routerLinkActive="header__nav-btn--active"
+                        [routerLink]="item.path">
                   {{ item.label }}
-                  <mat-icon class="header__nav-chevron">expand_more</mat-icon>
+                  <svg class="header__chevron" viewBox="0 0 16 16" width="14" height="14"
+                       fill="none" stroke="currentColor" stroke-width="2.5"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="4 6 8 10 12 6"/>
+                  </svg>
                 </button>
-                <mat-menu #menu="matMenu" class="header__dropdown">
+                <mat-menu #menu="matMenu" class="neo-dropdown">
                   @for (child of item.children; track child.label) {
                     <a mat-menu-item [routerLink]="child.path">{{ child.label }}</a>
                   }
                 </mat-menu>
               </div>
+            } @else if (item.label === 'SCADA LOGIN') {
+              <a class="header__nav-btn header__nav-btn--scada"
+                 [routerLink]="item.path">
+                {{ item.label }}
+              </a>
             } @else {
-              <a class="header__nav-btn" [routerLink]="item.path" routerLinkActive="header__nav-btn--active"
-                 [class.header__nav-btn--scada]="item.label === 'SCADA LOGIN'">
+              <a class="header__nav-btn" [routerLink]="item.path"
+                 routerLinkActive="header__nav-btn--active">
                 {{ item.label }}
               </a>
             }
@@ -63,10 +77,24 @@
 
       <!-- Mobile hamburger -->
       @if (isMobile) {
-        <button class="header__hamburger" (click)="toggleMobileMenu()" [attr.aria-expanded]="mobileMenuOpen" aria-label="Toggle menu">
-          <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        <button class="header__hamburger" (click)="toggleMobileMenu()"
+                [attr.aria-expanded]="mobileMenuOpen" aria-label="Toggle menu">
+          @if (mobileMenuOpen) {
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          } @else {
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          }
         </button>
       }
+
     </div>
   </div>
 
@@ -74,26 +102,40 @@
   @if (isMobile && mobileMenuOpen) {
     <div class="header__mobile-overlay" (click)="closeMobileMenu()" aria-hidden="true"></div>
     <nav class="header__mobile-nav" aria-label="Mobile navigation">
-      <mat-accordion>
+      <div class="header__mobile-logo">
+        <img src="assets/logo/logo.png" alt="Neonergy" height="36" />
+        <span class="header__logo-name" style="color: var(--color-primary-dark); font-size:1.1rem;">neonergy</span>
+      </div>
+      <mat-accordion [multi]="false">
         @for (item of navItems; track item.label) {
-          @if (item.children && item.children.length) {
+          @if (item.children && item.children.length && item.label !== 'SCADA LOGIN') {
             <mat-expansion-panel class="header__mobile-panel">
               <mat-expansion-panel-header>
                 <mat-panel-title>{{ item.label }}</mat-panel-title>
               </mat-expansion-panel-header>
               @for (child of item.children; track child.label) {
-                <a [routerLink]="child.path" class="header__mobile-child" (click)="closeMobileMenu()">{{ child.label }}</a>
+                <a [routerLink]="child.path" class="header__mobile-child"
+                   (click)="closeMobileMenu()">{{ child.label }}</a>
               }
             </mat-expansion-panel>
+          } @else if (item.label === 'SCADA LOGIN') {
+            <div class="header__mobile-scada">
+              <a [routerLink]="item.path" class="header__mobile-scada-btn"
+                 (click)="closeMobileMenu()">{{ item.label }}</a>
+            </div>
           } @else {
-            <a [routerLink]="item.path" class="header__mobile-link" (click)="closeMobileMenu()">{{ item.label }}</a>
+            <a [routerLink]="item.path" class="header__mobile-link"
+               (click)="closeMobileMenu()">{{ item.label }}</a>
           }
         }
       </mat-accordion>
       <div class="header__mobile-utility">
+        <a href="#" class="header__mobile-utility-link">Market</a>
         <a routerLink="/career" class="header__mobile-utility-link" (click)="closeMobileMenu()">Careers</a>
         <a routerLink="/contact" class="header__mobile-utility-link" (click)="closeMobileMenu()">Contact Us</a>
+        <a href="#" class="header__mobile-utility-link">NeoCare</a>
       </div>
     </nav>
   }
+
 </header>

@@ -1,15 +1,45 @@
+// ─── Site Header ──────────────────────────────────────────────────────────────
+
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  background: white;
-  box-shadow: 0 1px 0 var(--color-neutral-100);
+  background: transparent;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+
+  &--scrolled {
+    background: rgba(255, 255, 255, 0.93);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.07), 0 4px 20px rgba(0,0,0,0.07);
+
+    .header__utility-row { border-bottom-color: rgba(0,0,0,0.07); }
+    .header__utility-link { color: var(--color-neutral-600); &:hover { color: var(--color-primary-dark); } }
+    .header__sep { color: var(--color-neutral-300); }
+    .header__social-link { color: var(--color-neutral-500); border-color: var(--color-neutral-200); &:hover { color: var(--color-primary-dark); border-color: var(--color-primary-dark); background: transparent; } }
+
+    .header__nav-btn {
+      color: var(--color-neutral-800);
+      &:hover { color: var(--color-primary-dark); background: rgba(11,93,59,0.06); }
+      &--active { color: var(--color-primary-dark) !important; border-bottom-color: var(--color-primary-dark) !important; }
+    }
+
+    .header__main { height: 64px; }
+    .header__logo-name { color: var(--color-primary-dark); }
+    .header__logo-sub  { color: var(--color-neutral-600); }
+    .header__logo-tagline { color: var(--color-neutral-500); }
+    .header__hamburger { color: var(--color-neutral-900); &:hover { background: var(--color-neutral-50); } }
+  }
 }
 
+// ─── Utility strip ────────────────────────────────────────────────────────────
+
 .header__utility-row {
-  background: var(--color-neutral-50);
-  border-bottom: 1px solid var(--color-neutral-100);
-  padding: var(--space-2) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding: 5px 0;
+  transition: border-color 0.35s;
 }
 
 .header__utility-inner {
@@ -25,42 +55,57 @@
 }
 
 .header__sep {
-  color: var(--color-neutral-300);
+  color: rgba(255,255,255,0.3);
   font-size: var(--fs-small);
+  transition: color 0.35s;
 }
 
 .header__utility-link {
-  font-size: var(--fs-small);
-  color: var(--color-neutral-600);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.82);
   text-decoration: none;
-  &:hover { color: var(--color-primary-dark); }
+  font-family: 'Inter', sans-serif;
+  transition: color 0.2s;
+  &:hover { color: var(--color-primary); text-decoration: none; }
 }
 
 .header__socials {
   display: flex;
-  gap: var(--space-3);
+  gap: 6px;
   align-items: center;
 }
 
 .header__social-link {
-  color: var(--color-neutral-600);
+  color: rgba(255,255,255,0.78);
   display: flex;
   align-items: center;
-  &:hover { color: var(--color-primary-dark); }
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.22);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  &:hover { color: white; background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
 }
+
+// ─── Main bar ─────────────────────────────────────────────────────────────────
 
 .header__main {
   height: 72px;
   display: flex;
   align-items: center;
+  transition: height 0.25s ease;
 }
 
 .header__main-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  width: 100%;
 }
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
 
 .header__logo {
   display: flex;
@@ -68,15 +113,17 @@
   gap: var(--space-3);
   text-decoration: none;
   flex-shrink: 0;
+  &:hover { text-decoration: none; }
 }
 
 .header__logo-img {
-  height: 44px;
+  height: 40px;
   width: auto;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-.header__logo-wordmark {
+.header__logo-text {
   display: flex;
   flex-direction: column;
   line-height: 1;
@@ -84,75 +131,100 @@
 
 .header__logo-name {
   font-family: 'HandelGothic', 'HandelGo', 'Inter', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: normal;
-  color: var(--color-primary-dark);
-  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
   text-transform: lowercase;
+  transition: color 0.35s;
 }
 
 .header__logo-sub {
-  font-size: 0.6rem;
-  color: var(--color-neutral-600);
-  letter-spacing: 0.08em;
+  font-family: 'HandelGothic', 'HandelGo', 'Inter', sans-serif;
+  font-size: 0.52rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-top: 2px;
+  transition: color 0.35s;
 }
+
+.header__logo-tagline {
+  font-family: 'HandelGothic', 'HandelGo', 'Inter', sans-serif;
+  font-size: 0.48rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+  transition: color 0.35s;
+}
+
+// ─── Desktop nav ──────────────────────────────────────────────────────────────
 
 .header__nav {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 2px;
 }
 
-.header__nav-item {
-  position: relative;
-}
+.header__nav-item { position: relative; }
 
 .header__nav-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: var(--space-2) var(--space-3);
+  gap: 4px;
+  padding: 6px 11px;
   background: none;
   border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  font-size: var(--fs-small);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.84rem;
   font-weight: 500;
-  color: var(--color-neutral-900);
+  color: rgba(255,255,255,0.9);
   text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: color 0.15s, background 0.15s;
+  border-radius: 4px 4px 0 0;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
   white-space: nowrap;
 
   &:hover {
-    color: var(--color-primary-dark);
-    background: var(--color-neutral-50);
+    color: var(--color-primary);
+    background: rgba(255,255,255,0.1);
   }
 
   &--active {
-    color: var(--color-primary-dark);
+    color: var(--color-primary) !important;
+    border-bottom-color: var(--color-primary) !important;
     font-weight: 600;
-    border-bottom: 2px solid var(--color-primary-dark);
   }
 
   &--scada {
-    background: var(--color-primary-dark);
-    color: white;
-    border-radius: var(--radius-pill);
-    padding: var(--space-2) var(--space-4);
+    background: var(--color-primary-dark) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-pill) !important;
+    padding: 8px 18px !important;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    margin-left: var(--space-2);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s !important;
+
     &:hover {
-      background: var(--color-primary-darker);
-      color: white;
+      background: var(--color-primary-darker) !important;
+      box-shadow: 0 4px 14px rgba(11,93,59,0.45) !important;
+      transform: translateY(-1px);
+      color: white !important;
     }
   }
 }
 
-.header__nav-chevron {
-  font-size: 16px !important;
-  width: 16px !important;
-  height: 16px !important;
+.header__chevron {
+  opacity: 0.65;
+  flex-shrink: 0;
 }
+
+// ─── Hamburger ────────────────────────────────────────────────────────────────
 
 .header__hamburger {
   background: none;
@@ -160,58 +232,99 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: var(--color-neutral-900);
+  justify-content: center;
+  padding: var(--space-2);
+  color: rgba(255,255,255,0.9);
+  border-radius: var(--radius-md);
+  transition: background 0.2s, color 0.2s;
+  &:hover { background: rgba(255,255,255,0.1); }
 }
+
+// ─── Mobile drawer ────────────────────────────────────────────────────────────
 
 .header__mobile-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 26, 31, 0.4);
+  background: rgba(15,26,31,0.55);
   z-index: 999;
+  backdrop-filter: blur(2px);
 }
 
 .header__mobile-nav {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
-  width: min(320px, 85vw);
+  width: min(300px, 82vw);
   background: white;
   z-index: 1001;
   overflow-y: auto;
-  padding: var(--space-6) 0;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.header__mobile-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--color-neutral-100);
 }
 
 .header__mobile-panel {
   box-shadow: none !important;
   border-radius: 0 !important;
+  border-bottom: 1px solid var(--color-neutral-100) !important;
 }
 
 .header__mobile-child {
   display: block;
-  padding: var(--space-2) var(--space-6);
+  padding: var(--space-2) var(--space-7);
   color: var(--color-neutral-600);
   font-size: var(--fs-small);
+  font-family: 'Inter', sans-serif;
   text-decoration: none;
   &:hover { color: var(--color-primary-dark); background: var(--color-neutral-50); }
 }
 
 .header__mobile-link {
   display: block;
-  padding: var(--space-3) var(--space-5);
+  padding: var(--space-4) var(--space-5);
   color: var(--color-neutral-900);
   font-weight: 500;
+  font-size: var(--fs-body);
+  font-family: 'Inter', sans-serif;
   text-decoration: none;
   border-bottom: 1px solid var(--color-neutral-100);
   &:hover { color: var(--color-primary-dark); }
 }
 
+.header__mobile-scada {
+  padding: var(--space-4) var(--space-5);
+}
+
+.header__mobile-scada-btn {
+  display: block;
+  text-align: center;
+  background: var(--color-primary-dark);
+  color: white;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  &:hover { background: var(--color-primary-darker); color: white; text-decoration: none; }
+}
+
 .header__mobile-utility {
   padding: var(--space-5);
   display: flex;
-  gap: var(--space-4);
   flex-wrap: wrap;
+  gap: var(--space-3);
+  border-top: 1px solid var(--color-neutral-100);
+  margin-top: auto;
 }
 
 .header__mobile-utility-link {
@@ -219,8 +332,4 @@
   color: var(--color-neutral-600);
   text-decoration: none;
   &:hover { color: var(--color-primary-dark); }
-}
-
-@media (max-width: 1024px) {
-  .header__main { height: 64px; }
 }
