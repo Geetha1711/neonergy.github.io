@@ -1,0 +1,33 @@
+<section class="projects-band" #bandRef>
+  <div class="container projects-band__inner">
+    <div class="projects-band__stats">
+      <p class="section-eyebrow-light">Our impact</p>
+      <h2>Projects that define us</h2>
+      <div class="projects-band__counters">
+        @for (stat of stats; track stat.label) {
+          <div class="counter">
+            <span class="counter__value">{{ stat.prefix ?? '' }}{{ stat.current }}{{ stat.suffix }}</span>
+            <span class="counter__label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="projects-band__map">
+      <svg viewBox="0 0 300 360" class="india-map-placeholder" aria-label="India project locations">
+        <rect width="300" height="360" fill="rgba(255,255,255,0.05)" rx="8"/>
+        <text x="150" y="120" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="14">India Map</text>
+        <text x="150" y="145" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="11">(Interactive map — coming soon)</text>
+        <!-- Placeholder dots -->
+        <circle cx="160" cy="240" r="8" fill="#1FA94D" opacity="0.8"/>
+        <circle cx="145" cy="260" r="6" fill="#1FA94D" opacity="0.6"/>
+        <circle cx="175" cy="250" r="5" fill="#1FA94D" opacity="0.5"/>
+      </svg>
+      <div class="projects-band__map-cta">
+        <a mat-stroked-button routerLink="/projects" class="btn-outline-white">
+          Explore all projects <mat-icon>arrow_forward</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

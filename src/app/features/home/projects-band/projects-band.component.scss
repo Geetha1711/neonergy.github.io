@@ -1,0 +1,73 @@
+.projects-band {
+  background: var(--color-primary-darker);
+  color: white;
+  padding: var(--space-9) 0;
+}
+
+.projects-band__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.section-eyebrow-light {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: var(--fs-small);
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.projects-band__stats h2 {
+  color: white;
+  margin-bottom: var(--space-7);
+}
+
+.projects-band__counters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+.counter__value {
+  display: block;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.counter__label {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+.india-map-placeholder {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto var(--space-5);
+  display: block;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+}
+
+.projects-band__map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-outline-white {
+  color: white !important;
+  border-color: rgba(255,255,255,0.5) !important;
+  &:hover { border-color: white !important; background: rgba(255,255,255,0.1) !important; }
+}

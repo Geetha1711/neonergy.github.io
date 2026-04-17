@@ -1,0 +1,93 @@
+<header class="site-header" role="banner">
+  <!-- Utility row -->
+  <div class="header__utility-row">
+    <div class="container header__utility-inner">
+      <nav class="header__utility-links" aria-label="Utility navigation">
+        @for (link of utilityLinks; track link.label) {
+          <a [routerLink]="link.path" class="header__utility-link">{{ link.label }}</a>
+        }
+      </nav>
+      <div class="header__socials" aria-label="Social media links">
+        @for (social of socialLinks; track social.label) {
+          <a [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.label" class="header__social-link">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path [attr.d]="social.svgPath" />
+            </svg>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Main header -->
+  <div class="header__main">
+    <div class="container header__main-inner">
+      <!-- Logo -->
+      <a routerLink="/" class="header__logo" aria-label="Neonergy home">
+        <span class="header__logo-mark">⚡</span>
+        <span class="header__logo-text">neonergy</span>
+      </a>
+
+      <!-- Desktop nav -->
+      @if (!isMobile) {
+        <nav class="header__nav" aria-label="Main navigation">
+          @for (item of navItems; track item.label) {
+            @if (item.children && item.children.length) {
+              <div class="header__nav-item header__nav-item--has-dropdown" [matMenuTriggerFor]="menu">
+                <button class="header__nav-btn" [routerLink]="item.path" routerLinkActive="header__nav-btn--active">
+                  {{ item.label }}
+                  <mat-icon class="header__nav-chevron">expand_more</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="header__dropdown">
+                  @for (child of item.children; track child.label) {
+                    <a mat-menu-item [routerLink]="child.path">{{ child.label }}</a>
+                  }
+                </mat-menu>
+              </div>
+            } @else {
+              <a class="header__nav-btn" [routerLink]="item.path" routerLinkActive="header__nav-btn--active"
+                 [class.header__nav-btn--scada]="item.label === 'SCADA LOGIN'">
+                {{ item.label }}
+              </a>
+            }
+          }
+        </nav>
+      }
+
+      <!-- Mobile hamburger -->
+      @if (isMobile) {
+        <button class="header__hamburger" (click)="toggleMobileMenu()" [attr.aria-expanded]="mobileMenuOpen" aria-label="Toggle menu">
+          <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  @if (isMobile && mobileMenuOpen) {
+    <div class="header__mobile-overlay" (click)="closeMobileMenu()" aria-hidden="true"></div>
+    <nav class="header__mobile-nav" aria-label="Mobile navigation">
+      <mat-accordion>
+        @for (item of navItems; track item.label) {
+          @if (item.children && item.children.length) {
+            <mat-expansion-panel class="header__mobile-panel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>{{ item.label }}</mat-panel-title>
+              </mat-expansion-panel-header>
+              @for (child of item.children; track child.label) {
+                <a [routerLink]="child.path" class="header__mobile-child" (click)="closeMobileMenu()">{{ child.label }}</a>
+              }
+            </mat-expansion-panel>
+          } @else {
+            <a [routerLink]="item.path" class="header__mobile-link" (click)="closeMobileMenu()">{{ item.label }}</a>
+          }
+        }
+      </mat-accordion>
+      <div class="header__mobile-utility">
+        @for (link of utilityLinks; track link.label) {
+          <a [routerLink]="link.path" class="header__mobile-utility-link" (click)="closeMobileMenu()">{{ link.label }}</a>
+        }
+      </div>
+    </nav>
+  }
+</header>

@@ -1,0 +1,17 @@
+<section class="services section-pad">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">How we help</p>
+      <h2>Service Offerings</h2>
+    </div>
+    <div class="services__grid">
+      @for (svc of services; track svc.slug) {
+        <a [routerLink]="['/services', svc.slug]" class="service-cell">
+          <mat-icon class="service-cell__icon" aria-hidden="true">{{ svc.icon }}</mat-icon>
+          <h3 class="service-cell__title">{{ svc.title }}</h3>
+          <p class="service-cell__tagline">{{ svc.tagline }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<section class="hero" [class.hero--no-video]="!hasVideo">
+  @if (hasVideo && !reducedMotion) {
+    <video #heroVideo class="hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
+      <source src="assets/videos/hero.mp4" type="video/mp4">
+    </video>
+  }
+  <div class="hero__scrim"></div>
+  <div class="hero__content container">
+    <p class="hero__eyebrow">One-stop energy partner</p>
+    <h1 class="hero__title">Engineering the transition to clean, reliable energy.</h1>
+    <p class="hero__lede">Integrated advisory, engineering, and EPC across solar, wind, hydro, storage, and urban infrastructure — from concept to commissioning.</p>
+    <div class="hero__cta">
+      <a mat-flat-button color="primary" routerLink="/business-segments">Explore our work</a>
+      <a mat-stroked-button routerLink="/contact" class="hero__cta-outline">Talk to us</a>
+    </div>
+  </div>
+  <button class="hero__scroll-hint" (click)="scrollToNext()" aria-label="Scroll to next section">
+    <mat-icon>expand_more</mat-icon>
+  </button>
+</section>

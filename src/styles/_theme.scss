@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+
+$neonergy-primary: mat.define-palette((
+  50: #e8f7ee,
+  100: #c5ecda,
+  200: #9edfc3,
+  300: #76d2ab,
+  400: #58c99a,
+  500: #1FA94D,
+  600: #1a9644,
+  700: #14803a,
+  800: #0e6e30,
+  900: #063e1d,
+  contrast: (
+    50: #0f1a1f,
+    100: #0f1a1f,
+    200: #0f1a1f,
+    300: #0f1a1f,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+  )
+));
+
+$neonergy-accent: mat.define-palette((
+  50: #e8edf8,
+  100: #c5d2f0,
+  200: #9eb4e7,
+  300: #7696dd,
+  400: #5880d7,
+  500: #1E3A8A,
+  600: #1a337c,
+  700: #152a6b,
+  800: #10225a,
+  900: #091540,
+  contrast: (
+    50: #0f1a1f,
+    100: #0f1a1f,
+    200: #0f1a1f,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+  )
+));
+
+$neonergy-warn: mat.define-palette(mat.$red-palette);
+
+$neonergy-theme: mat.define-light-theme((
+  color: (
+    primary: $neonergy-primary,
+    accent: $neonergy-accent,
+    warn: $neonergy-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: "'Inter', system-ui, sans-serif",
+  ),
+  density: 0,
+));
+
+@include mat.core();
+@include mat.all-component-themes($neonergy-theme);

@@ -1,0 +1,109 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+
+  @media (max-width: 768px) {
+    height: min(85vh, 720px);
+  }
+}
+
+.hero--no-video {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(31, 169, 77, 0.35), transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(30, 58, 138, 0.4), transparent 60%),
+    #0F1A1F;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 62, 29, 0.55), rgba(15, 26, 31, 0.75));
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  padding-top: var(--space-8);
+}
+
+.hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: var(--fs-small);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+}
+
+.hero__title {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: var(--space-5);
+
+  @media (max-width: 768px) {
+    font-size: var(--fs-h1);
+  }
+}
+
+.hero__lede {
+  font-size: var(--fs-body-lg);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  max-width: 640px;
+  margin-bottom: var(--space-7);
+}
+
+.hero__cta {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.hero__cta-outline {
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  &:hover { border-color: white !important; background: rgba(255,255,255,0.1) !important; }
+}
+
+.hero__scroll-hint {
+  position: absolute;
+  bottom: var(--space-7);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  animation: bounce 2s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}

@@ -1,0 +1,117 @@
+.site-footer {
+  background: var(--color-primary-darker);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: auto;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-8);
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-8);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.footer__logo-mark { font-size: 24px; }
+
+.footer__logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.footer__tagline {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.footer__socials {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.footer__social {
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  &:hover { color: var(--color-primary); }
+}
+
+.footer__col-title {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: var(--space-4);
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-style: normal;
+}
+
+.footer__link {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+  display: block;
+  &:hover { color: var(--color-primary); }
+}
+
+.footer__contact p {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  padding: var(--space-1) 0;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-5) 0;
+}
+
+.footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+
+  p { font-size: var(--fs-small); color: rgba(255, 255, 255, 0.5); margin: 0; }
+}
+
+.footer__bottom-link {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  margin-left: var(--space-4);
+  &:hover { color: var(--color-primary); }
+}

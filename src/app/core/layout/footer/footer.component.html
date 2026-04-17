@@ -1,0 +1,65 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a routerLink="/" class="footer__logo" aria-label="Neonergy home">
+        <span class="footer__logo-mark">⚡</span>
+        <span class="footer__logo-text">neonergy</span>
+      </a>
+      <p class="footer__tagline">One stop energy partner</p>
+      <div class="footer__socials">
+        <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social">
+          <mat-icon>link</mat-icon>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social">
+          <mat-icon>play_circle</mat-icon>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="X / Twitter" class="footer__social">
+          <mat-icon>tag</mat-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <nav aria-label="Company links">
+        <a routerLink="/about" class="footer__link">About Us</a>
+        <a routerLink="/about/vision" class="footer__link">Vision &amp; Mission</a>
+        <a routerLink="/about/team" class="footer__link">Core Team</a>
+        <a routerLink="/career" class="footer__link">Career</a>
+        <a routerLink="/contact" class="footer__link">Contact</a>
+      </nav>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Solutions</h4>
+      <nav aria-label="Solutions links">
+        <a routerLink="/business-segments/renewable-energy" class="footer__link">Renewable Energy</a>
+        <a routerLink="/business-segments/solar" class="footer__link">Solar</a>
+        <a routerLink="/business-segments/wind" class="footer__link">Wind</a>
+        <a routerLink="/business-segments/hydro" class="footer__link">Hydro</a>
+        <a routerLink="/business-segments/ev-charging" class="footer__link">EV Infrastructure</a>
+        <a routerLink="/business-segments/urban-maritime" class="footer__link">Urban &amp; Maritime</a>
+      </nav>
+    </div>
+
+    <address class="footer__col footer__contact">
+      <h4 class="footer__col-title">Contact</h4>
+      <p>Neonergy Engineering Pvt. Ltd.</p>
+      <p><!-- TODO: confirm address -->[Address line 1]</p>
+      <p><!-- TODO: confirm city -->[City, State, PIN]</p>
+      <a href="mailto:info@neonergy.in" class="footer__link">info&#64;neonergy.in</a>
+      <a href="tel:+91XXXXXXXXXX" class="footer__link">+91 XXXXX XXXXX<!-- TODO: confirm --></a>
+    </address>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p>&copy; {{ currentYear }} Neonergy Engineering Pvt. Ltd. — All rights reserved.</p>
+      <nav aria-label="Legal links">
+        <a href="#" class="footer__bottom-link">Privacy</a>
+        <a href="#" class="footer__bottom-link">Terms</a>
+        <a routerLink="/sitemap" class="footer__bottom-link">Sitemap</a>
+      </nav>
+    </div>
+  </div>
+</footer>

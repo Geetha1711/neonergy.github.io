@@ -1,0 +1,19 @@
+<section class="segments section-pad">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">What we do</p>
+      <h2>Business Segments</h2>
+    </div>
+    <div class="segments__grid">
+      @for (seg of segments; track seg.slug) {
+        <a [routerLink]="['/business-segments', seg.slug]" class="segment-card">
+          <div class="segment-card__icon-wrap" aria-hidden="true">
+            <mat-icon>{{ seg.icon }}</mat-icon>
+          </div>
+          <h3 class="segment-card__title">{{ seg.title }}</h3>
+          <p class="segment-card__tagline">{{ seg.tagline }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
