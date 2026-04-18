@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <section class="container" style="padding: var(--space-9) var(--container-padding-x);">
+    <section class="page-content container" style="padding: var(--space-9) var(--container-padding-x);">
       <h1>Our Vision</h1>
       <p>Coming soon — content goes here.</p>
     </section>

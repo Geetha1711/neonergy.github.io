@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-business-segments',
   standalone: true,
-  imports: [],
-  template: `
-    <section class="container" style="padding: var(--space-9) var(--container-padding-x);">
-      <h1>Business Segments</h1>
-      <p>Coming soon — content goes here.</p>
-    </section>
-  `,
+  imports: [CommonModule],
+  templateUrl: './business-segments.component.html',
+  styleUrls: ['./business-segments.component.scss'],
 })
 export class BusinessSegmentsComponent {}

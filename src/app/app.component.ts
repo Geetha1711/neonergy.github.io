@@ -3,12 +3,11 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, HeaderComponent, FooterComponent, MatIconModule],
+  imports: [RouterOutlet, RouterLink, CommonModule, HeaderComponent, FooterComponent],
   template: `
     <a class="skip-link" href="#main">Skip to main content</a>
     <app-header></app-header>
@@ -17,13 +16,13 @@ import { MatIconModule } from '@angular/material/icon';
     </main>
     <app-footer></app-footer>
 
-    <!-- Floating contact ribbon -->
-    <a routerLink="/contact" class="float-contact" aria-label="Contact Experts">CONTACT EXPERTS</a>
-
     <!-- Scroll to top -->
     @if (showScrollTop) {
       <button class="scroll-top-btn" (click)="scrollToTop()" aria-label="Scroll to top">
-        <mat-icon>keyboard_arrow_up</mat-icon>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111"
+             stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="18 15 12 9 6 15"/>
+        </svg>
       </button>
     }
   `,
@@ -43,38 +42,13 @@ import { MatIconModule } from '@angular/material/icon';
     }
     .site-main { min-height: 60vh; padding-top: 0; }
 
-    .float-contact {
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      transform-origin: right center;
-      background: var(--color-primary-dark);
-      color: white;
-      padding: 8px 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      z-index: 900;
-      border-radius: 4px 4px 0 0;
-      white-space: nowrap;
-      transition: background 0.2s;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      right: -1px;
-      &:hover { background: var(--color-primary-darker); color: white; text-decoration: none; }
-    }
-
     .scroll-top-btn {
       position: fixed;
       bottom: var(--space-6);
       right: var(--space-6);
-      width: 44px;
-      height: 44px;
-      background: var(--color-primary-dark);
-      color: white;
+      width: 52px;
+      height: 52px;
+      background: #F5A623;
       border: none;
       border-radius: 50%;
       cursor: pointer;
@@ -82,9 +56,9 @@ import { MatIconModule } from '@angular/material/icon';
       align-items: center;
       justify-content: center;
       z-index: 900;
-      box-shadow: var(--shadow-md);
-      transition: background 0.2s, transform 0.2s;
-      &:hover { background: var(--color-primary-darker); transform: translateY(-2px); }
+      box-shadow: 0 4px 16px rgba(212,146,10,0.45);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      &:hover { background: #b87a08; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(212,146,10,0.55); }
     }
   `]
 })

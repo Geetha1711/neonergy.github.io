@@ -62,8 +62,9 @@ export class HeroSectionComponent implements AfterViewInit {
   }
 
   scrollToNext(): void {
-    const hero = document.querySelector('.hero');
-    const next = hero?.nextElementSibling as HTMLElement;
-    next?.scrollIntoView({ behavior: 'smooth' });
+    const hero = document.querySelector('.hero') as HTMLElement;
+    if (!hero) return;
+    const target = hero.offsetTop + hero.offsetHeight;
+    window.scrollTo({ top: target, behavior: 'smooth' });
   }
 }

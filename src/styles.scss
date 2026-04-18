@@ -11,10 +11,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-// Use Lora for section/page headings
-h1, h2 {
-  font-family: 'Lora', Georgia, serif;
-}
 
 .container {
   @include container();
@@ -23,3 +19,20 @@ h1, h2 {
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
+// Global heading colour — overrides component defaults
+// Exceptions (hero, dark sections) override locally with explicit color
+body h1, body h2, body h3, body h4 {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--color-primary-dark);
+  transition: color 0.2s ease;
+}
+body h1:hover, body h2:hover, body h3:hover, body h4:hover {
+  color: var(--color-primary-dark);
+}
+
+// Fixed header offset for all non-hero pages
+.page-content {
+  padding-top: 130px; // utility row (~32px) + main nav (~90px) + buffer
+}
+

@@ -1,0 +1,126 @@
+<main class="page-content proj-page">
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="container">
+      <span class="proj-hero-tag">Projects</span>
+      <h1 class="proj-hero__title">Ongoing <span>Projects</span></h1>
+      <p class="proj-hero__desc">Neonergy provides Consultancy Services for developing Solar projects across Karnataka &amp; Tamil Nadu, while also delivering O&amp;M Monitoring Solutions for 515 MW of operational capacity across India.</p>
+      <p class="proj-hero__desc">Currently developing <strong>~735 MW of Solar</strong> &amp; <strong>105 MWH of BESS</strong> — from site survey and DPR through to commissioning and O&amp;M.</p>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ── -->
+  <div class="proj-stats">
+    <div class="container proj-stats__inner">
+      <div class="proj-stat">
+        <div class="proj-stat__val">803+</div>
+        <div class="proj-stat__lbl">MWp Under Consultancy</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat__val">515 MW</div>
+        <div class="proj-stat__lbl">O&amp;M Monitoring</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat__val">105 MWH</div>
+        <div class="proj-stat__lbl">BESS in Development</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat__val">2</div>
+        <div class="proj-stat__lbl">States: KA &amp; TN</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── India Map & Project Locations ── -->
+  <section class="proj-map-section">
+    <div class="container">
+      <h2 class="proj-section__title">Project Locations</h2>
+      <p class="proj-section__sub">Solar and BESS projects across Karnataka and Tamil Nadu — consultancy, PMC, and O&amp;M spanning 803+ MWp.</p>
+      <div class="proj-map-layout">
+        <div class="proj-map-img-wrap">
+          <img src="assets/images/indiamap.png" alt="India Project Locations Map" class="proj-map-img" />
+        </div>
+        <div class="proj-map-info">
+          <div class="proj-ongoing-img-wrap">
+            <img src="assets/images/projects/ongoingprojects.png" alt="Ongoing Projects" class="proj-ongoing-img" />
+          </div>
+          <div class="proj-ongoing-img-wrap">
+            <img src="assets/images/projects/ongoingprojects-1.png" alt="Ongoing Projects" class="proj-ongoing-img" />
+          </div>
+          <div class="proj-map-bullets">
+            <div class="proj-map-bul">
+              <span class="proj-mbullet proj-mbullet--green"></span>
+              <span>7 Solar PV projects across Karnataka &amp; Tamil Nadu</span>
+            </div>
+            <div class="proj-map-bul">
+              <span class="proj-mbullet proj-mbullet--blue"></span>
+              <span>1 BESS project — 105 MWH, Tamil Nadu</span>
+            </div>
+            <div class="proj-map-bul">
+              <span class="proj-mbullet proj-mbullet--amber"></span>
+              <span>515 MW O&amp;M performance monitoring across India</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Active Project Portfolio ── -->
+  <section class="proj-portfolio">
+    <div class="container">
+      <h2 class="proj-section__title">Active Project Portfolio</h2>
+      <p class="proj-section__sub">Individual solar and BESS projects currently under development or advisory services in Karnataka and Tamil Nadu.</p>
+      <div class="proj-states">
+        <span class="proj-state-badge">Karnataka</span>
+        <span class="proj-state-badge">Tamil Nadu</span>
+      </div>
+      <div class="proj-cards">
+        @for (card of projectCards; track card.cap) {
+          <div class="proj-card" [class.proj-card--bess]="card.type === 'BESS'">
+            <div class="proj-card__cap">{{ card.cap }}</div>
+            <div class="proj-card__unit">{{ card.unit }}</div>
+            <div class="proj-card__type">{{ card.type }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services & Capacity Table ── -->
+  <section class="proj-table-section">
+    <div class="container">
+      <h2 class="proj-section__title">Services &amp; Capacity Summary</h2>
+      <p class="proj-section__sub">Breakdown of service types delivered across our ongoing project portfolio, by capacity in MWp.</p>
+      <div class="proj-table-wrap">
+        <table class="proj-table">
+          <thead>
+            <tr>
+              <th>Type of Service</th>
+              <th>Capacity in MWp</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of serviceTable; track row.service) {
+              <tr>
+                <td>{{ row.service }}</td>
+                <td>{{ row.mwp }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="proj-cta">
+    <div class="container">
+      <h2>Interested in Our Project Capabilities?</h2>
+      <p>Reach out to discuss how Neonergy can deliver consultancy, PMC, or O&amp;M services for your next renewable energy project.</p>
+      <a routerLink="/contact" class="proj-cta-btn">Get in Touch →</a>
+    </div>
+  </section>
+
+</main>

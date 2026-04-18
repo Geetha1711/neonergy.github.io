@@ -1,5 +1,5 @@
 .site-footer {
-  background: var(--color-primary-darker);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary) 100%);
   color: rgba(255, 255, 255, 0.85);
 }
 
@@ -31,8 +31,7 @@
   height: 40px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .footer__logo-name {
@@ -70,7 +69,7 @@
   padding: var(--space-2);
   border-radius: var(--radius-sm);
   transition: color 0.2s, background 0.2s;
-  &:hover { color: var(--color-primary); background: rgba(255,255,255,0.05); }
+  &:hover { color: #F5A623; background: rgba(255,255,255,0.05); }
 }
 
 .footer__col-title {
@@ -106,8 +105,9 @@
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-5) 0;
+  background: rgba(0,0,0,0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-4) 0;
 }
 
 .footer__bottom-inner {
@@ -117,7 +117,7 @@
   gap: var(--space-4);
   flex-wrap: wrap;
 
-  p { font-size: var(--fs-small); color: rgba(255, 255, 255, 0.4); margin: 0; }
+  p { font-size: var(--fs-small); color: rgba(255, 255, 255, 0.4); margin: 0; flex: 1; text-align: center; }
 }
 
 .footer__legal {
@@ -130,4 +130,12 @@
   color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
   &:hover { color: var(--color-primary); }
+}
+
+.footer__powered {
+  margin-left: auto;
+  color: rgba(255,255,255,0.45);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  &:hover { color: #F5A623; }
 }

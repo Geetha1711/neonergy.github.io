@@ -43,9 +43,9 @@ export class HomeComponent implements OnInit {
   constructor(private title: Title, private meta: Meta) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Neonergy — Your One Stop Energy Partner');
+    this.title.setTitle('Neonergy — One Stop Energy Partner');
     this.meta.updateTag({ name: 'description', content: 'Neonergy Engineering Pvt Ltd delivers sustainable, self-reliant energy ecosystems through engineering excellence — solar, SCADA, process automation, and more.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Neonergy — Your One Stop Energy Partner' });
+    this.meta.updateTag({ property: 'og:title', content: 'neonergy — one stop energy partner' });
     this.meta.updateTag({ property: 'og:description', content: 'Engineering the transition to clean, reliable, and self-sufficient energy systems.' });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });

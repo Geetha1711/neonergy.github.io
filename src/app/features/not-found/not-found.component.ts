@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <section class="container" style="padding: var(--space-9) var(--container-padding-x);">
+    <section class="page-content container" style="padding: var(--space-9) var(--container-padding-x);">
       <h1>404 — Page Not Found</h1>
       <p>Coming soon — content goes here.</p>
       <a routerLink="/">Back to home</a>

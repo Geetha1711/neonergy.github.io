@@ -15,21 +15,19 @@
     -webkit-backdrop-filter: blur(18px) saturate(180%);
     box-shadow: 0 1px 0 rgba(0,0,0,0.07), 0 4px 20px rgba(0,0,0,0.07);
 
-    .header__utility-row { border-bottom-color: rgba(0,0,0,0.07); }
+    .header__utility-row { border-bottom: none; }
     .header__utility-link { color: var(--color-neutral-600); &:hover { color: var(--color-primary-dark); } }
     .header__sep { color: #c8860a; }
-    .header__social-link { color: var(--color-neutral-500); border-color: var(--color-neutral-200); &:hover { color: var(--color-primary-dark); border-color: var(--color-primary-dark); background: transparent; } }
+    .header__social-link { color: var(--color-neutral-500); border-color: var(--color-neutral-200); &:hover { color: #F5A623; border-color: #F5A623; background: rgba(212,146,10,0.08); } }
 
     .header__nav-btn {
-      color: var(--color-neutral-800);
-      &:hover { color: var(--color-primary-dark); background: rgba(11,93,59,0.06); }
-      &--active { color: var(--color-primary-dark) !important; border-bottom-color: var(--color-primary-dark) !important; }
+      color: #111111;
+      &:hover { color: var(--color-primary-dark) !important; background: none; }
+      &--active { color: var(--color-primary-dark) !important; font-weight: 700; }
+      &--scada { color: #111111 !important; }
     }
 
-    .header__main { height: 64px; }
-    .header__logo-name { color: var(--color-primary-dark); }
-    .header__logo-sub  { color: var(--color-neutral-600); }
-    .header__logo-tagline { color: var(--color-neutral-500); }
+    .header__main { height: 72px; }
     .header__hamburger { color: var(--color-neutral-900); &:hover { background: var(--color-neutral-50); } }
   }
 }
@@ -37,15 +35,15 @@
 // ─── Utility strip ────────────────────────────────────────────────────────────
 
 .header__utility-row {
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: none;
   padding: 5px 0;
-  transition: border-color 0.35s;
 }
 
 .header__utility-inner {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-left: 390px;
 }
 
 .header__utility-links {
@@ -62,17 +60,18 @@
 }
 
 .header__sep {
-  color: #d4920a;
+  color: #F5A623;
   font-size: var(--fs-small);
   font-weight: 600;
   transition: color 0.35s;
 }
 
 .header__utility-link {
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   color: rgba(255,255,255,0.82);
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
   transition: color 0.2s;
   &:hover { color: var(--color-primary); text-decoration: none; }
 }
@@ -93,13 +92,13 @@
   border-radius: 4px;
   border: 1px solid rgba(255,255,255,0.22);
   transition: color 0.2s, background 0.2s, border-color 0.2s;
-  &:hover { color: white; background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
+  &:hover { color: #F5A623; background: rgba(212,146,10,0.12); border-color: #F5A623; }
 }
 
 // ─── Main bar ─────────────────────────────────────────────────────────────────
 
 .header__main {
-  height: 72px;
+  height: 110px;
   display: flex;
   align-items: center;
   transition: height 0.25s ease;
@@ -111,60 +110,30 @@
   justify-content: flex-end;
   gap: var(--space-5);
   width: 100%;
+  padding-left: 390px;
 }
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
 
 .header__logo {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: var(--space-3);
   text-decoration: none;
-  flex-shrink: 0;
-  &:hover { text-decoration: none; }
+  z-index: 2;
+  &:hover { text-decoration: none; opacity: 0.9; }
 }
 
 .header__logo-img {
-  height: 40px;
+  height: 115px;
   width: auto;
+  max-width: 380px;
   object-fit: contain;
-  flex-shrink: 0;
-}
-
-.header__logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-
-.header__logo-name {
-  font-family: 'HandelGothic', 'HandelGo', 'Inter', sans-serif;
-  font-size: 1.3rem;
-  font-weight: normal;
-  color: var(--color-primary);
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
-  transition: color 0.35s;
-}
-
-.header__logo-sub {
-  font-family: 'HandelGothic', 'HandelGo', 'Inter', sans-serif;
-  font-size: 0.52rem;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-top: 2px;
-  transition: color 0.35s;
-}
-
-.header__logo-tagline {
-  font-family: 'HandelGothic', 'HandelGo', 'Inter', sans-serif;
-  font-size: 0.48rem;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 2px;
-  transition: color 0.35s;
+  object-position: left center;
+  display: block;
 }
 
 // ─── Desktop nav ──────────────────────────────────────────────────────────────
@@ -184,52 +153,127 @@
   padding: 8px 16px;
   background: none;
   border: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: none;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: rgba(255,255,255,0.9);
-  text-decoration: none;
-  border-radius: 4px 4px 0 0;
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  text-decoration: none !important;
+  border-radius: 0;
+  transition: color 0.2s;
   white-space: nowrap;
 
   &:hover {
-    color: var(--color-primary);
-    background: rgba(255,255,255,0.1);
+    color: var(--color-primary-dark) !important;
+    background: none;
+    text-decoration: none;
+
+    .header__chevron { transform: rotate(180deg); }
   }
 
   &--active {
-    color: var(--color-primary) !important;
-    border-bottom-color: var(--color-primary) !important;
-    font-weight: 600;
+    color: var(--color-primary-dark) !important;
+    font-weight: 700;
   }
 
   &--scada {
-    background: var(--color-primary-dark) !important;
-    color: white !important;
+    background: none !important;
+    color: rgba(255,255,255,0.9) !important;
     border: none !important;
-    border-radius: var(--radius-pill) !important;
-    padding: 8px 18px !important;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    margin-left: var(--space-2);
-    transition: background 0.2s, box-shadow 0.2s, transform 0.15s !important;
+    border-radius: 0 !important;
+    padding: 8px 16px !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+    margin-left: 0;
+    transition: color 0.2s !important;
 
     &:hover {
-      background: var(--color-primary-darker) !important;
-      box-shadow: 0 4px 14px rgba(11,93,59,0.45) !important;
-      transform: translateY(-1px);
-      color: white !important;
+      color: var(--color-primary-dark) !important;
+      background: none !important;
+      box-shadow: none !important;
+      transform: none !important;
     }
   }
 }
 
 .header__chevron {
-  opacity: 0.65;
+  color: #F5A623 !important;
+  fill: #F5A623 !important;
   flex-shrink: 0;
+  opacity: 1 !important;
+  transition: transform 0.22s ease;
+}
+
+.header__nav-item--open .header__chevron {
+  transform: rotate(180deg);
+}
+
+// ─── MatMenu dropdown (CDK overlay — requires ViewEncapsulation.None) ─────────
+
+@keyframes neoDropdownIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mat-mdc-menu-panel {
+  background: #0b5d3b !important;
+  border-top: 4px solid #F5A623 !important;
+  border-radius: 0 0 4px 4px !important;
+  box-shadow: 0 10px 36px rgba(0,0,0,0.28) !important;
+  min-width: 240px !important;
+  max-width: 320px !important;
+  animation: neoDropdownIn 0.22s ease forwards;
+  overflow: hidden;
+}
+
+.mat-mdc-menu-content {
+  padding: 0 !important;
+  background: #0b5d3b !important;
+}
+
+.mat-mdc-menu-item {
+  min-height: 52px !important;
+  height: 52px !important;
+  padding: 0 24px !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+
+  &:last-child { border-bottom: none !important; }
+
+  .mdc-list-item__primary-text {
+    color: #ffffff !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+  }
+
+  &:hover {
+    background: #F5A623 !important;
+    .mdc-list-item__primary-text { color: #111111 !important; text-decoration: none !important; }
+  }
+
+  &.neo-menu-item--active {
+    background: #F5A623 !important;
+    .mdc-list-item__primary-text { color: #111111 !important; font-weight: 700 !important; }
+  }
+}
+
+.mat-mdc-menu-item a,
+.mat-mdc-menu-item a:visited {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+.mat-mdc-menu-item a:hover { color: #111111 !important; text-decoration: none !important; }
+
+a.mat-mdc-menu-item.neo-menu-item--active {
+  background: #F5A623 !important;
+  color: #111111 !important;
+  .mdc-list-item__primary-text { color: #111111 !important; font-weight: 700 !important; }
 }
 
 // ─── Hamburger ────────────────────────────────────────────────────────────────
@@ -275,9 +319,16 @@
 .header__mobile-logo {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-5);
+  padding: var(--space-4) var(--space-5);
   border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.header__mobile-logo-img {
+  height: 64px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .header__mobile-panel {

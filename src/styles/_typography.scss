@@ -19,8 +19,10 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.2;
-  color: var(--color-neutral-900);
+  color: var(--color-primary-dark);
   margin: 0 0 var(--space-4);
+  transition: color 0.2s;
+  &:hover { color: var(--color-primary-dark); }
 }
 
 h1 { font-size: var(--fs-h1); font-weight: 700; line-height: 1.15; }
@@ -28,10 +30,13 @@ h2 { font-size: var(--fs-h2); font-weight: 700; line-height: 1.2; }
 h3 { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; }
 h4 { font-size: var(--fs-h4); font-weight: 600; line-height: 1.35; }
 
-p { font-size: var(--fs-body); line-height: 1.6; color: var(--color-neutral-900); margin: 0 0 var(--space-4); }
+p { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-body); line-height: 1.6; color: var(--color-neutral-900); margin: 0 0 var(--space-4); }
 
 a { color: var(--color-primary-dark); text-decoration: none; }
 a:hover { color: var(--color-primary); text-decoration: underline; }
+
+.cdk-overlay-container a,
+.cdk-overlay-container a:hover { text-decoration: none !important; }
 
 small { font-size: var(--fs-small); line-height: 1.5; }
 

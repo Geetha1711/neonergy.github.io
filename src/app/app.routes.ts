@@ -5,7 +5,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./features/home/home.component').then(m => m.HomeComponent),
-    title: 'Neonergy — One-stop energy partner',
+    title: 'Neonergy — One Stop Energy Partner',
   },
   {
     path: 'about',
@@ -51,6 +51,10 @@ export const routes: Routes = [
     path: 'scada-login',
     loadComponent: () => import('./features/scada-login/scada-login.component').then(m => m.ScadaLoginComponent),
   },
+  { path: 'market', loadComponent: () => import('./features/market/market.component').then(m => m.MarketComponent), title: 'Market — Neonergy' },
+  { path: 'privacy-policy', loadComponent: () => import('./features/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent), title: 'Privacy Policy — Neonergy' },
+  { path: 'terms-of-use', loadComponent: () => import('./features/terms-of-use/terms-of-use.component').then(m => m.TermsOfUseComponent), title: 'Terms of Use — Neonergy' },
+  { path: 'sitemap', loadComponent: () => import('./features/sitemap/sitemap.component').then(m => m.SitemapComponent), title: 'Sitemap — Neonergy' },
   { path: '__styleguide', loadComponent: () => import('./features/styleguide/styleguide.component').then(m => m.StyleguideComponent) },
   { path: '**', loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent) },
 ];

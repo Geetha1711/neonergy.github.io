@@ -1,17 +1,15 @@
-<header class="site-header" [class.site-header--scrolled]="isScrolled" role="banner">
+<header class="site-header" [class.site-header--scrolled]="!isTransparent" role="banner">
 
   <!-- Top utility strip -->
   <div class="header__utility-row">
     <div class="container header__utility-inner">
       <div class="header__utility-right">
         <nav class="header__utility-links" aria-label="Utility navigation">
-          <a href="#" class="header__utility-link">Market</a>
+          <a routerLink="/market" class="header__utility-link">Market</a>
           <span class="header__sep" aria-hidden="true">|</span>
           <a routerLink="/career" class="header__utility-link">Careers</a>
           <span class="header__sep" aria-hidden="true">|</span>
           <a routerLink="/contact" class="header__utility-link">Contact Us</a>
-          <span class="header__sep" aria-hidden="true">|</span>
-          <a href="#" class="header__utility-link">NeoCare</a>
         </nav>
         <div class="header__socials" aria-label="Social media links">
         @for (social of socialLinks; track social.label) {
@@ -33,12 +31,7 @@
 
       <!-- Logo -->
       <a routerLink="/" class="header__logo" aria-label="Neonergy Engineering home">
-        <img src="assets/logo/logo.png" alt="Neonergy" class="header__logo-img" />
-        <div class="header__logo-text">
-          <span class="header__logo-name">neonergy</span>
-          <span class="header__logo-sub">Engineering Pvt Ltd</span>
-          <span class="header__logo-tagline">One Stop Energy Partner</span>
-        </div>
+        <img src="assets/logo/nepl_removebg.png" alt="Neonergy Engineering Pvt Ltd" class="header__logo-img" />
       </a>
 
       <!-- Desktop nav -->
@@ -46,19 +39,25 @@
         <nav class="header__nav" aria-label="Main navigation">
           @for (item of navItems; track item.label) {
             @if (item.children && item.children.length && item.label !== 'SCADA LOGIN') {
-              <div class="header__nav-item" [matMenuTriggerFor]="menu">
+              <div class="header__nav-item" [matMenuTriggerFor]="menu"
+                   #trigger="matMenuTrigger"
+                   [class.header__nav-item--open]="trigger.menuOpen">
                 <button class="header__nav-btn" routerLinkActive="header__nav-btn--active"
-                        [routerLink]="item.path">
+                        [routerLink]="item.path ?? item.children![0].path"
+                        [routerLinkActiveOptions]="{ exact: false }">
                   {{ item.label }}
-                  <svg class="header__chevron" viewBox="0 0 16 16" width="14" height="14"
-                       fill="none" stroke="currentColor" stroke-width="2.5"
-                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="4 6 8 10 12 6"/>
+                  <svg class="header__chevron" viewBox="0 0 16 16" width="12" height="12"
+                       fill="currentColor" aria-hidden="true">
+                    <path d="M3 5.5L8 11L13 5.5Z"/>
                   </svg>
                 </button>
-                <mat-menu #menu="matMenu" class="neo-dropdown">
+                <mat-menu #menu="matMenu" panelClass="neo-dropdown">
                   @for (child of item.children; track child.label) {
-                    <a mat-menu-item [routerLink]="child.path">{{ child.label }}</a>
+                    <a mat-menu-item
+                       [routerLink]="child.path"
+                       [fragment]="child.fragment ?? undefined"
+                       [routerLinkActive]="child.skipActive ? '' : 'neo-menu-item--active'"
+                       [routerLinkActiveOptions]="{ exact: true }">{{ child.label }}</a>
                   }
                 </mat-menu>
               </div>
@@ -71,6 +70,10 @@
               <a class="header__nav-btn" [routerLink]="item.path"
                  routerLinkActive="header__nav-btn--active">
                 {{ item.label }}
+                <svg class="header__chevron" viewBox="0 0 16 16" width="12" height="12"
+                     fill="currentColor" aria-hidden="true">
+                  <path d="M3 5.5L8 11L13 5.5Z"/>
+                </svg>
               </a>
             }
           }
@@ -105,8 +108,7 @@
     <div class="header__mobile-overlay" (click)="closeMobileMenu()" aria-hidden="true"></div>
     <nav class="header__mobile-nav" aria-label="Mobile navigation">
       <div class="header__mobile-logo">
-        <img src="assets/logo/logo.png" alt="Neonergy" height="36" />
-        <span class="header__logo-name" style="color: var(--color-primary-dark); font-size:1.1rem;">neonergy</span>
+        <img src="assets/logo/nepl_removebg.png" alt="Neonergy Engineering Pvt Ltd" class="header__mobile-logo-img" />
       </div>
       <mat-accordion [multi]="false">
         @for (item of navItems; track item.label) {
@@ -132,7 +134,7 @@
         }
       </mat-accordion>
       <div class="header__mobile-utility">
-        <a href="#" class="header__mobile-utility-link">Market</a>
+        <a routerLink="/market" class="header__mobile-utility-link" (click)="closeMobileMenu()">Market</a>
         <a routerLink="/career" class="header__mobile-utility-link" (click)="closeMobileMenu()">Careers</a>
         <a routerLink="/contact" class="header__mobile-utility-link" (click)="closeMobileMenu()">Contact Us</a>
         <a href="#" class="header__mobile-utility-link">NeoCare</a>
