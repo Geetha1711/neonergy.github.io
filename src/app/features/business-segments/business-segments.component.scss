@@ -5,34 +5,56 @@
   scroll-margin-top: 130px;
 }
 
-// ── Intro ─────────────────────────────────────────────────────────────────────
-.bs-intro {
-  padding: var(--space-9) 0 var(--space-7);
-
-  .section-label {
-    display: inline-block;
-    color: var(--color-primary-dark);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: var(--space-2);
-  }
+// ── Hero ──────────────────────────────────────────────────────────────────────
+.bs-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
-.bs-intro__title {
-  font-size: 2.2rem;
+.bs-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bs-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.bs-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(11,93,59,0.78) 0%, rgba(26,58,143,0.65) 100%);
+}
+
+.bs-hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 0;
+}
+
+.bs-hero__title {
+  font-size: 2.8rem;
   font-weight: 800;
-  color: var(--color-primary-dark);
+  color: #fff !important;
   margin-bottom: var(--space-4);
+  letter-spacing: 0.01em;
 }
 
-.bs-intro__lead {
-  font-size: 1rem;
-  color: var(--color-neutral-600);
+.bs-hero__lead {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.88);
   line-height: 1.8;
-  max-width: 820px;
-  margin: 0;
+  max-width: 780px;
+  margin: 0 auto;
 }
 
 // ── Segment Sections ──────────────────────────────────────────────────────────
@@ -76,43 +98,52 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: transparent;
+  position: relative;
 
   h2 {
-    color: #fff !important;
+    color: #1a3a8f !important;
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: var(--space-4);
+    text-align: center;
   }
 
   p {
-    color: rgba(255,255,255,0.85);
+    color: var(--color-neutral-700);
     font-size: 0.9rem;
     line-height: 1.8;
     margin-bottom: var(--space-3);
   }
-
-  // Accent colours per segment
-  &--solar  { background: var(--color-primary-dark); }
-  &--wind   { background: #0d4f6e; }
-  &--hydro  { background: #1a3a8f; }
-  &--plant  { background: #2d5016; }
-  &--ev     { background: #1a3a8f; }
-  &--urban  { background: var(--color-primary-dark); }
 }
 
-// ── Tag pill ──────────────────────────────────────────────────────────────────
+// ── Tag sticker — outer edge, alternates left/right per block ────────────────
 .bs-seg-tag {
-  display: inline-block;
-  background: rgba(255,255,255,0.15);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: #1a3a8f;
   color: #fff;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 40px;
-  margin-bottom: var(--space-4);
-  width: fit-content;
+  padding: 16px 7px;
+  border-radius: 6px 0 0 6px;
+  white-space: nowrap;
+  box-shadow: -2px 0 8px rgba(26,58,143,0.2);
+}
+
+// Flipped block — sticker on left outer edge
+.bs-seg-block--flip .bs-seg-tag {
+  right: auto;
+  left: 0;
+  writing-mode: vertical-lr;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 2px 0 8px rgba(26,58,143,0.2);
 }
 
 // ── Capability tags ───────────────────────────────────────────────────────────
@@ -123,13 +154,13 @@
   margin-top: var(--space-4);
 
   span {
-    font-size: 0.68rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    background: rgba(255,255,255,0.15);
-    color: #fff;
+    background: #e8f5ee;
+    color: var(--color-primary-dark);
     border-radius: 40px;
-    padding: 4px 12px;
-    letter-spacing: 0.04em;
+    padding: 7px 16px;
+    letter-spacing: 0.02em;
   }
 }
 

@@ -22,8 +22,8 @@
 
     .header__nav-btn {
       color: #111111;
-      &:hover { color: var(--color-primary-dark) !important; background: none; }
-      &--active { color: var(--color-primary-dark) !important; font-weight: 700; }
+      &:hover { color: #00B050 !important; background: none; }
+      &--active { color: #00B050 !important; font-weight: 700; }
       &--scada { color: #111111 !important; }
     }
 
@@ -165,7 +165,7 @@
   white-space: nowrap;
 
   &:hover {
-    color: var(--color-primary-dark) !important;
+    color: #00B050 !important;
     background: none;
     text-decoration: none;
 
@@ -173,7 +173,7 @@
   }
 
   &--active {
-    color: var(--color-primary-dark) !important;
+    color: #00B050 !important;
     font-weight: 700;
   }
 
@@ -190,7 +190,7 @@
     transition: color 0.2s !important;
 
     &:hover {
-      color: var(--color-primary-dark) !important;
+      color: #00B050 !important;
       background: none !important;
       box-shadow: none !important;
       transform: none !important;
@@ -202,7 +202,8 @@
   color: #F5A623 !important;
   fill: #F5A623 !important;
   flex-shrink: 0;
-  opacity: 1 !important;
+  width: 16px !important;
+  height: 16px !important;
   transition: transform 0.22s ease;
 }
 
@@ -253,13 +254,13 @@
   }
 
   &:hover {
-    background: #F5A623 !important;
-    .mdc-list-item__primary-text { color: #111111 !important; text-decoration: none !important; }
+    background: #00B050 !important;
+    .mdc-list-item__primary-text { color: #fff !important; text-decoration: none !important; }
   }
 
   &.neo-menu-item--active {
-    background: #F5A623 !important;
-    .mdc-list-item__primary-text { color: #111111 !important; font-weight: 700 !important; }
+    background: #00B050 !important;
+    .mdc-list-item__primary-text { color: #fff !important; font-weight: 700 !important; }
   }
 }
 
@@ -271,9 +272,9 @@
 .mat-mdc-menu-item a:hover { color: #111111 !important; text-decoration: none !important; }
 
 a.mat-mdc-menu-item.neo-menu-item--active {
-  background: #F5A623 !important;
-  color: #111111 !important;
-  .mdc-list-item__primary-text { color: #111111 !important; font-weight: 700 !important; }
+  background: #00B050 !important;
+  color: #fff !important;
+  .mdc-list-item__primary-text { color: #fff !important; font-weight: 700 !important; }
 }
 
 // ─── Hamburger ────────────────────────────────────────────────────────────────

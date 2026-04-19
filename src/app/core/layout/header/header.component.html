@@ -46,7 +46,7 @@
                         [routerLink]="item.path ?? item.children![0].path"
                         [routerLinkActiveOptions]="{ exact: false }">
                   {{ item.label }}
-                  <svg class="header__chevron" viewBox="0 0 16 16" width="12" height="12"
+                  <svg class="header__chevron" viewBox="0 0 16 16" width="16" height="16"
                        fill="currentColor" aria-hidden="true">
                     <path d="M3 5.5L8 11L13 5.5Z"/>
                   </svg>
@@ -70,7 +70,7 @@
               <a class="header__nav-btn" [routerLink]="item.path"
                  routerLinkActive="header__nav-btn--active">
                 {{ item.label }}
-                <svg class="header__chevron" viewBox="0 0 16 16" width="12" height="12"
+                <svg class="header__chevron" viewBox="0 0 16 16" width="16" height="16"
                      fill="currentColor" aria-hidden="true">
                   <path d="M3 5.5L8 11L13 5.5Z"/>
                 </svg>

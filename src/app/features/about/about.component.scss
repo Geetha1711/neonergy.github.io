@@ -1,7 +1,58 @@
 .about-page { background: #f8fdf9; }
 
+// ── Hero ──────────────────────────────────────────────────────────────────────
+.about-hero {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.about-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.about-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.about-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(11,93,59,0.75) 0%, rgba(26,58,143,0.60) 100%);
+}
+
+.about-hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.about-hero__title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #fff !important;
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.01em;
+}
+
+.about-hero__lead {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
 // ── Anchor scroll offset (fixed header = ~116px) ────────────────────────────
-#about, #vision, #mission, #team, #clients {
+#about, #vision-mission, #team, #clients {
   scroll-margin-top: 130px;
 }
 
@@ -125,6 +176,9 @@
 // ── Vision / Mission ────────────────────────────────────────────────────────
 .vm-section {
   padding: var(--space-9) 0 var(--space-5);
+
+  .section-head { padding-top: var(--space-5); }
+  .vm-block + .vm-block { margin-top: var(--space-6); }
 }
 
 .vm-block {
@@ -158,10 +212,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-left: 4px solid #dceee4;
 }
 
-.vm-text--vision { background: var(--color-primary-dark); }
-.vm-text--mission { background: var(--color-secondary); }
+.vm-block--flip .vm-text {
+  border-left: none;
+  border-right: 4px solid #dceee4;
+}
+
+.vm-text--vision, .vm-text--mission { background: transparent; }
 
 .vm-brand-line {
   display: flex;
@@ -194,17 +253,14 @@
 }
 
 .vm-tag {
-  display: inline-block;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  font-size: 0.7rem;
+  display: block;
+  text-align: center;
+  color: var(--color-primary-dark);
+  font-size: 1.3rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 40px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   margin-bottom: var(--space-4);
-  width: fit-content;
 }
 
 .vm-text h2 {
@@ -216,12 +272,13 @@
 
 .vm-statement {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.65;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-neutral-700);
+  line-height: 1.75;
   font-style: italic;
   margin: 0;
+  text-align: center;
 }
 
 // ── Core Team ───────────────────────────────────────────────────────────────

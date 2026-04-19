@@ -43,18 +43,17 @@ export class HeaderComponent implements OnInit {
 
   navItems: NavItem[] = [
     {
-      label: 'The Company',
+      label: 'THE COMPANY',
       path: '/about',
       children: [
-        { label: 'About Neonergy', path: '/about', fragment: 'about',   skipActive: true },
-        { label: 'Vision',         path: '/about', fragment: 'vision',  skipActive: true },
-        { label: 'Mission',        path: '/about', fragment: 'mission', skipActive: true },
-        { label: 'Core Team',      path: '/about', fragment: 'team',    skipActive: true },
-        { label: 'Clients',        path: '/about', fragment: 'clients', skipActive: true },
+        { label: 'About Us',   path: '/about', fragment: 'about',          skipActive: true },
+        { label: 'Vision & Mission', path: '/about', fragment: 'vision-mission', skipActive: true },
+        { label: 'Who We Are',      path: '/about', fragment: 'who-we-are',     skipActive: true },
+        { label: 'Core Team',        path: '/about', fragment: 'team',           skipActive: true },
       ],
     },
     {
-      label: 'Business Segment',
+      label: 'BUSINESS SEGMENT',
       path: '/business-segments',
       children: [
         { label: 'Solar PV',                              path: '/business-segments', fragment: 'solar',                skipActive: true },
@@ -66,7 +65,7 @@ export class HeaderComponent implements OnInit {
       ],
     },
     {
-      label: 'Service Offering',
+      label: 'SERVICES',
       path: '/services',
       children: [
         { label: 'Business Advisory',              path: '/services', fragment: 'business-advisory',   skipActive: true },
@@ -81,9 +80,9 @@ export class HeaderComponent implements OnInit {
         { label: 'Solar Performance Monitoring',   path: '/services', fragment: 'solar-monitoring',    skipActive: true },
       ],
     },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Media', path: '/media' },
-    { label: 'SCADA LOGIN', path: '/scada-login' },
+    { label: 'PROJECTS', path: '/projects' },
+    { label: 'MEDIA', path: '/media' },
+    { label: 'SCADA', path: '/scada' },
   ];
 
   utilityLinks = [
