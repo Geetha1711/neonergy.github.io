@@ -31,14 +31,6 @@ export class HeroSectionComponent implements AfterViewInit {
     video.addEventListener('ended', () => {
       this.videoEnded = true;
     });
-
-    // Stop at 10s as per original design
-    video.addEventListener('timeupdate', () => {
-      if (video.currentTime >= 10) {
-        video.pause();
-        video.dispatchEvent(new Event('ended'));
-      }
-    });
   }
 
   togglePlay(): void {

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -7,9 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 
-interface NavChild { label: string; path: string; fragment?: string; skipActive?: boolean; }
+interface NavChild { label: string; path: string; fragment?: string; skipActive?: boolean; indent?: boolean; }
 interface NavItem {
   label: string;
   path?: string;
@@ -30,15 +30,19 @@ interface NavItem {
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
+  @ViewChildren(MatMenuTrigger) menuTriggers!: QueryList<MatMenuTrigger>;
   mobileMenuOpen = false;
   isMobile = false;
   isScrolled = false;
   isHomePage = false;
+  currentPath = '/';
+
+  private heroPages = ['/', '/about', '/business-segments', '/services', '/projects', '/media'];
 
   constructor(private router: Router) {}
 
   get isTransparent(): boolean {
-    return this.isHomePage && !this.isScrolled;
+    return this.heroPages.some(p => this.currentPath === p || this.currentPath.startsWith(p + '#')) && !this.isScrolled;
   }
 
   navItems: NavItem[] = [
@@ -48,20 +52,22 @@ export class HeaderComponent implements OnInit {
       children: [
         { label: 'About Us',   path: '/about', fragment: 'about',          skipActive: true },
         { label: 'Vision & Mission', path: '/about', fragment: 'vision-mission', skipActive: true },
-        { label: 'Who We Are',      path: '/about', fragment: 'who-we-are',     skipActive: true },
         { label: 'Core Team',        path: '/about', fragment: 'team',           skipActive: true },
       ],
     },
     {
-      label: 'BUSINESS SEGMENT',
+      label: 'BUSINESS SEGMENTS',
       path: '/business-segments',
       children: [
-        { label: 'Solar PV',                              path: '/business-segments', fragment: 'solar',                skipActive: true },
-        { label: 'Wind Energy',                           path: '/business-segments', fragment: 'wind',                 skipActive: true },
-        { label: 'Hydro Power',                           path: '/business-segments', fragment: 'hydro',                skipActive: true },
-        { label: 'Plant Electrification & Automation',   path: '/business-segments', fragment: 'plant-electrification', skipActive: true },
-        { label: 'EV Charging Infra & Swap Solution',    path: '/business-segments', fragment: 'ev-charging',          skipActive: true },
-        { label: 'Urban Infra & Maritime',                path: '/business-segments', fragment: 'urban-maritime',       skipActive: true },
+        { label: 'Renewable Energy',                          path: '/business-segments', fragment: 'renewable-energy',      skipActive: true },
+        { label: 'Solar Energy',       path: '/business-segments', fragment: 'solar',          skipActive: true, indent: true },
+        { label: 'Wind Energy',        path: '/business-segments', fragment: 'wind',           skipActive: true, indent: true },
+        { label: 'Hydro Energy',       path: '/business-segments', fragment: 'hydro',          skipActive: true, indent: true },
+        { label: 'Green Hydrogen',     path: '/business-segments', fragment: 'green-hydrogen', skipActive: true, indent: true },
+        { label: 'Plant Electrification & Process Automation', path: '/business-segments', fragment: 'plant-electrification', skipActive: true },
+        { label: 'EV Charging & Battery Swap Solutions',      path: '/business-segments', fragment: 'ev-charging',           skipActive: true },
+        { label: 'Urban Infrastructure',                      path: '/business-segments', fragment: 'urban-infrastructure',   skipActive: true },
+        { label: 'Maritime & Transportation Infrastructure',  path: '/business-segments', fragment: 'maritime-transport',     skipActive: true },
       ],
     },
     {
@@ -99,15 +105,23 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkMobile();
-    this.isHomePage = this.router.url === '/';
+    this.currentPath = this.router.url.split('#')[0].split('?')[0];
+    this.isHomePage = this.currentPath === '/';
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(e => {
-      this.isHomePage = (e as NavigationEnd).urlAfterRedirects === '/';
+      this.currentPath = (e as NavigationEnd).urlAfterRedirects.split('#')[0].split('?')[0];
+      this.isHomePage = this.currentPath === '/';
     });
   }
 
   @HostListener('window:scroll')
   onScroll(): void {
     this.isScrolled = window.scrollY > 40;
+    this.menuTriggers?.forEach(t => {
+      if (t.menuOpen) {
+        t.closeMenu();
+        setTimeout(() => (document.activeElement as HTMLElement)?.blur(), 0);
+      }
+    });
   }
 
   @HostListener('window:resize')

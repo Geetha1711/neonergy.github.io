@@ -38,18 +38,7 @@
     </div>
   }
 
-  <!-- Content — hidden during video, revealed after -->
-  <div class="hero__content container" [class.hero__content--visible]="videoEnded || reducedMotion">
-    <div class="hero__tag">Renewable · Reliable · Resilient</div>
-    <h1 class="hero__title">Your One Stop<br><span class="hero__title-accent">Energy Partner</span></h1>
-    <p class="hero__lede">Empowering sustainable, self-reliant energy ecosystems through engineering excellence and innovation.</p>
-    <div class="hero__cta">
-      <a mat-flat-button color="primary" routerLink="/services">Explore Services</a>
-      <a mat-stroked-button routerLink="/contact" class="hero__cta-outline">Contact Experts</a>
-    </div>
-  </div>
-
-  <button class="hero__scroll-hint" (click)="scrollToNext()" aria-label="Scroll to next section">
+<button class="hero__scroll-hint" (click)="scrollToNext()" aria-label="Scroll to next section">
     <span class="hero__scroll-label">SCROLL</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
       <polyline points="6 9 12 15 18 9"/>

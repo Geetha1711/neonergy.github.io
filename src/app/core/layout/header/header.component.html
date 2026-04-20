@@ -31,7 +31,7 @@
 
       <!-- Logo -->
       <a routerLink="/" class="header__logo" aria-label="Neonergy Engineering home">
-        <img src="assets/logo/nepl_removebg.png" alt="Neonergy Engineering Pvt Ltd" class="header__logo-img" />
+        <img src="assets/logo/logo-one-transparent.png" alt="Neonergy Engineering Pvt Ltd" class="header__logo-img" />
       </a>
 
       <!-- Desktop nav -->
@@ -57,7 +57,8 @@
                        [routerLink]="child.path"
                        [fragment]="child.fragment ?? undefined"
                        [routerLinkActive]="child.skipActive ? '' : 'neo-menu-item--active'"
-                       [routerLinkActiveOptions]="{ exact: true }">{{ child.label }}</a>
+                       [routerLinkActiveOptions]="{ exact: true }"
+                       [class.neo-sub-item]="child.indent">{{ child.label }}</a>
                   }
                 </mat-menu>
               </div>
@@ -108,7 +109,7 @@
     <div class="header__mobile-overlay" (click)="closeMobileMenu()" aria-hidden="true"></div>
     <nav class="header__mobile-nav" aria-label="Mobile navigation">
       <div class="header__mobile-logo">
-        <img src="assets/logo/nepl_removebg.png" alt="Neonergy Engineering Pvt Ltd" class="header__mobile-logo-img" />
+        <img src="assets/logo/logo-one-transparent.png" alt="Neonergy Engineering Pvt Ltd" class="header__mobile-logo-img" />
       </div>
       <mat-accordion [multi]="false">
         @for (item of navItems; track item.label) {

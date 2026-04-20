@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ViewportScroller } from '@angular/common';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
 
@@ -15,6 +16,11 @@ import { FooterComponent } from './core/layout/footer/footer.component';
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
+
+    <!-- Contact Experts sidebar tab -->
+    <a routerLink="/contact" class="contact-sidebar" aria-label="Contact Experts">
+      CONTACT EXPERTS
+    </a>
 
     <!-- Scroll to top -->
     @if (showScrollTop) {
@@ -42,6 +48,31 @@ import { FooterComponent } from './core/layout/footer/footer.component';
     }
     .site-main { min-height: 60vh; padding-top: 0; }
 
+    .contact-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 800;
+      background: #F5A623;
+      color: #111;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: translateY(-50%) rotate(180deg);
+      padding: 20px 10px;
+      border-radius: 0 6px 6px 0;
+      box-shadow: 2px 0 12px rgba(245,166,35,0.35);
+      transition: background 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+      &:hover { background: #d4920a; box-shadow: 3px 0 16px rgba(212,146,10,0.5); color: #111; text-decoration: none; }
+    }
+
     .scroll-top-btn {
       position: fixed;
       bottom: var(--space-6);
@@ -64,6 +95,10 @@ import { FooterComponent } from './core/layout/footer/footer.component';
 })
 export class AppComponent implements OnInit {
   showScrollTop = false;
+
+  constructor(private scroller: ViewportScroller) {
+    this.scroller.setOffset([0, 160]);
+  }
 
   ngOnInit(): void {}
 

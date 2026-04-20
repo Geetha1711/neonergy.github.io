@@ -1,4 +1,4 @@
-.svc-page { background: #ebe5f5; }
+.svc-page { background: #EAF4FB; }
 
 // ── Scroll anchor offsets ─────────────────────────────────────────────────────
 #business-advisory, #technical-advisory, #transaction-advisory,
@@ -158,10 +158,13 @@
 @media (max-width: 900px) {
   .svc-block { grid-template-columns: 1fr; direction: ltr; }
   .svc-block--flip { direction: ltr; }
-  .svc-img { min-height: 240px; img { min-height: 240px; } }
-  .svc-text { padding: 32px 24px; }
+  .svc-img { min-height: 220px; img { min-height: 220px; } }
+  .svc-text { padding: 28px 20px; }
+  .svc-intro__title { font-size: 1.6rem; }
 }
 
 @media (max-width: 480px) {
   .svc-text h2 { font-size: 1.1rem; }
+  .svc-intro__title { font-size: 1.3rem; }
+  .svc-img { min-height: 180px; img { min-height: 180px; } }
 }

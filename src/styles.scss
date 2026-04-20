@@ -7,7 +7,7 @@ html, body { height: 100%; margin: 0; }
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--color-neutral-900);
-  background: var(--color-neutral-0);
+  background: #EAF4FB;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -22,17 +22,22 @@ body {
 
 // Global heading colour — overrides component defaults
 // Exceptions (hero, dark sections) override locally with explicit color
-body h1, body h2, body h3, body h4 {
+body h1 {
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--color-primary-dark);
   transition: color 0.2s ease;
 }
-body h1:hover, body h2:hover, body h3:hover, body h4:hover {
-  color: var(--color-primary-dark);
+body h2, body h3, body h4 {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0070C0;
+  transition: color 0.2s ease;
 }
 
 // Fixed header offset for all non-hero pages
 .page-content {
   padding-top: 130px; // utility row (~32px) + main nav (~90px) + buffer
+
+  @media (max-width: 768px) { padding-top: 72px; }
 }
+
 
