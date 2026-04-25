@@ -22,16 +22,15 @@ export class ProjectsComponent {
   ];
 
   serviceTable = [
-    { service: 'Investment Planning & Project Advisory Services',           mwp: '1,045.25' },
-    { service: 'Proposal Support & Tariff Estimation',                     mwp: '553.25'   },
-    { service: 'PPA & Transaction Advisory Services',                      mwp: '594.00'   },
-    { service: 'Detailed Project Report Preparation',                      mwp: '1,045.25' },
-    { service: 'Debt Syndication Services',                                mwp: '529.00'   },
-    { service: 'Bid Process Management (Identification of EPC Contractor)', mwp: '563.80'   },
-    { service: 'Engineering Services',                                      mwp: '1,045.25' },
-    { service: 'Battery Energy Storage System Development',                mwp: '240.00'   },
-    { service: 'Procurement Support Services',                             mwp: '968.45'   },
-    { service: 'Project Management Consultancy',                           mwp: '1,055.25' },
-    { service: 'O&M Services',                                             mwp: '516.25'   },
+    { service: 'Business Advisory Services',                mwp: '1,045.25', unit: 'MWp' },
+    { service: 'Proposal Support & Tariff Estimation',      mwp: '553.25',   unit: 'MWp' },
+    { service: 'PPA & Transaction Advisory Services',       mwp: '529.00',   unit: 'MWp' },
+    { service: 'Detailed Project Report Preparation',       mwp: '1,045.25', unit: 'MWp' },
+    { service: 'Debt Syndication Services',                 mwp: '529.00',   unit: 'MWp' },
+    { service: 'Bid Process Management',                    mwp: '113.80',   unit: 'MWp' },
+    { service: 'Engineering Services',                      mwp: '1,045.25', unit: 'MWp' },
+    { service: 'BESS Development',                          mwp: '240.00',   unit: 'MWH' },
+    { service: 'Procurement Support Services',              mwp: '968.45',   unit: 'MWp' },
+    { service: 'Asset Performance Monitoring (O&M)',        mwp: '516',      unit: 'MWp' },
   ];
 }

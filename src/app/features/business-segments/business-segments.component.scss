@@ -13,15 +13,145 @@
   padding-top: var(--space-4);
 }
 
-// ── Hero ──────────────────────────────────────────────────────────────────────
+// ── Poster Carousel (hero) ───────────────────────────────────────────────────
+.bs-poster {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: #000;
+  overflow: hidden;
+
+  &__viewport {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  &__slide {
+    flex: 0 0 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+    z-index: 2;
+
+    &:hover { background: rgba(255,255,255,0.32); transform: translateY(-50%) scale(1.08); }
+    &--prev { left: 24px; }
+    &--next { right: 24px; }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.45;
+    transition: opacity 0.25s, transform 0.25s;
+
+    &:nth-child(1) { background: #ff4d4d; }
+    &:nth-child(2) { background: #ff8c00; }
+    &:nth-child(3) { background: #44dd66; }
+
+    &--active {
+      opacity: 1;
+      transform: scale(1.35);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: none;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+// ── Page header strip (below carousel) ───────────────────────────────────────
+.bs-page-header {
+  background: linear-gradient(135deg, #0b5d3b 0%, #0070C0 100%);
+  padding: var(--space-5) 0;
+
+  .container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  &__title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #fff !important;
+    margin: 0;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    border-right: 2px solid rgba(255,255,255,0.3);
+    padding-right: var(--space-7);
+  }
+
+  &__lead {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; gap: var(--space-4); }
+    &__title { white-space: normal; border-right: none; border-bottom: 2px solid rgba(255,255,255,0.3); padding-right: 0; padding-bottom: var(--space-3); }
+  }
+}
+
+// ── Hero (unused — carousel replaces it) ─────────────────────────────────────
 .bs-hero {
   position: relative;
   width: 100%;
   height: 500px;
-  margin-top: -140px;
   display: flex;
   align-items: center;
-  padding-top: 140px;
   overflow: hidden;
 }
 
@@ -68,11 +198,11 @@
 
 // ── Segment Sections ──────────────────────────────────────────────────────────
 .bs-seg-section {
-  padding: var(--space-9) 0 var(--space-8);
+  padding: var(--space-6) 0 var(--space-8);
 
   &--alt { background: #ddeef8; }
 
-  .container { padding-top: var(--space-6); }
+  .container { padding-top: 0; }
 }
 
 // ── Section Header (number + icon + title) ────────────────────────────────────
@@ -82,7 +212,17 @@
   gap: var(--space-4);
   margin-bottom: var(--space-7);
   padding-bottom: var(--space-5);
-  border-bottom: 2px solid rgba(0,112,192,0.15);
+  border-bottom: none;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #ff4d4d, #ff8c00, #f0c000, #44dd66, #00bfff, #6a5acd, #ff4d4d);
+    border-radius: 2px;
+  }
 }
 
 .bs-seg-header__num {
@@ -125,6 +265,19 @@
 .bs-seg-header--re {
   flex-direction: column;
   align-items: stretch;
+  padding-bottom: var(--space-5);
+  margin-bottom: var(--space-7);
+  border-bottom: none;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #ff4d4d, #ff8c00, #f0c000, #44dd66, #00bfff, #6a5acd, #ff4d4d);
+    border-radius: 2px;
+  }
 
   .bs-seg-header__title-row {
     display: flex;
@@ -148,15 +301,275 @@
   text-align: left;
 }
 
-// ── Renewable Energy 2x2 sub-card grid ───────────────────────────────────────
-.bs-re-grid {
+// ── Renewable Energy alternating cards ───────────────────────────────────────
+.bs-re-alt-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.bs-re-alt-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-6);
+  background: transparent;
+  border-radius: 20px;
+  border: none;
+  box-shadow: none;
+  padding: var(--space-5);
+  transition: transform 0.25s ease;
+  scroll-margin-top: 160px;
 
-  // Each card is wrapped in a div for anchor positioning
-  > div { display: flex; flex-direction: column; }
-  .bs-re-card { flex: 1; }
+  &:hover { transform: translateY(-3px); }
+
+  &--reverse {
+    .bs-re-alt-card__img { order: 2; }
+    .bs-re-alt-card__content { order: 1; }
+  }
+
+  &__img {
+    overflow: hidden;
+    border-radius: 16px;
+    min-height: 300px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.28), 0 4px 12px rgba(0,0,0,0.14);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &:hover &__img img { transform: scale(1.04); }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: var(--space-4);
+    &--reverse .bs-re-alt-card__img { order: 0; }
+    &--reverse .bs-re-alt-card__content { order: 0; }
+    .bs-re-alt-card__img { min-height: 220px; }
+  }
+}
+
+// ── Per-card content border colours ──────────────────────────────────────────
+#wind       .bs-re-alt-card__content { border: none; }
+#hydro      .bs-re-alt-card__content { border: none; }
+#green-hydrogen .bs-re-alt-card__content { border: none; }
+
+// ── Solar card: joined like Wind/Green Hydrogen ───────────────────────────────
+#solar.bs-re-alt-card {
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #e67e22;
+}
+
+#solar .bs-re-alt-card__img {
+  min-height: 380px;
+  border-radius: 0;
+  box-shadow: 10px 0 28px rgba(0,0,0,0.28), 2px 0 8px rgba(0,0,0,0.14);
+}
+
+#solar .bs-re-alt-card__content {
+  border-radius: 0;
+  border: none;
+}
+
+// ── EV Charging card: joined like Wind/Green Hydrogen ────────────────────────
+#ev-card.bs-re-alt-card {
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #006064;
+}
+
+#ev-card .bs-re-alt-card__img {
+  min-height: 380px;
+  border-radius: 0;
+  box-shadow: 10px 0 28px rgba(0,0,0,0.28), 2px 0 8px rgba(0,0,0,0.14);
+}
+
+#ev-card .bs-re-alt-card__content {
+  border-radius: 0;
+  border: none;
+}
+
+// ── Maritime card: stacked like hydro ────────────────────────────────────────
+#maritime-card.bs-re-alt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #01579b;
+
+  .bs-re-alt-card__content { order: 1; border-radius: 0; }
+  .bs-re-alt-card__img     { order: 2; }
+}
+
+#maritime-card .bs-re-alt-card__content {
+  border-radius: 0;
+}
+
+#maritime-card .bs-re-alt-card__img {
+  width: 100%;
+  height: 600px;
+  min-height: unset;
+  border-radius: 0;
+  box-shadow: 0 -10px 28px rgba(0,0,0,0.28), 0 -2px 8px rgba(0,0,0,0.14);
+
+  img { object-position: center 40%; }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(1,87,155,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+}
+
+// ── Hydro card: stacked content-top, image-bottom ────────────────────────────
+#hydro.bs-re-alt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #1a3a8f;
+
+  .bs-re-alt-card__img { order: 2; }
+  .bs-re-alt-card__content { order: 1; }
+}
+
+#hydro .bs-re-alt-card__img {
+  width: 100%;
+  min-height: 300px;
+  border-radius: 0;
+
+  img {
+    object-position: center center;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26,58,143,0.15) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+}
+
+#hydro .bs-re-alt-card__content {
+  border-radius: 0;
+}
+
+// ── Joined card image emboss: shadow cast toward content ─────────────────────
+// Wind & Green Hydrogen: image right → shadow cast leftward into content
+#wind .bs-re-alt-card__img,
+#green-hydrogen .bs-re-alt-card__img {
+  box-shadow: -10px 0 28px rgba(0,0,0,0.28), -2px 0 8px rgba(0,0,0,0.14);
+}
+
+// Hydro: image below → shadow cast upward into content
+#hydro .bs-re-alt-card__img {
+  box-shadow: 0 -10px 28px rgba(0,0,0,0.28), 0 -2px 8px rgba(0,0,0,0.14);
+}
+
+// ── Green Hydrogen card: joined, sunset diagonal overlay ─────────────────────
+#green-hydrogen.bs-re-alt-card {
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #6c3483;
+}
+
+#green-hydrogen .bs-re-alt-card__img {
+  min-height: 380px;
+  border-radius: 0;
+
+  img {
+    object-position: center 20%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to left,
+      rgba(108,52,131,0.05) 0%,
+      rgba(180,100,40,0.12) 50%,
+      rgba(108,52,131,0.22) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+#green-hydrogen .bs-re-alt-card__content {
+  border-radius: 0;
+}
+
+// ── Wind card: joined image + content, no gap ────────────────────────────────
+#wind.bs-re-alt-card {
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #0b5d3b;
+}
+
+#wind .bs-re-alt-card__img {
+  min-height: 380px;
+  border-radius: 0 16px 16px 0;
+
+  img {
+    object-position: center 40%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(11,93,59,0.18) 0%,
+      rgba(26,138,90,0.06) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+}
+
+#wind .bs-re-alt-card__content {
+  border-radius: 16px 0 0 16px;
+}
+
+// ── Space between coloured header and paragraph ───────────────────────────────
+.bs-re-alt-card .bs-re-card__body {
+  padding-top: var(--space-5);
 }
 
 .bs-re-card {
@@ -193,6 +606,8 @@
 .bs-re-card__top--wind     { background: linear-gradient(135deg, #0b5d3b, #1a8a5a); }
 .bs-re-card__top--hydro    { background: linear-gradient(135deg, #1a3a8f, #2e6bc4); }
 .bs-re-card__top--hydrogen { background: linear-gradient(135deg, #6c3483, #9b59b6); }
+.bs-re-card__top--ev       { background: linear-gradient(135deg, #006064, #00acc1); }
+.bs-re-card__top--maritime { background: linear-gradient(135deg, #01579b, #0288d1); }
 
 .bs-re-card__icon-wrap {
   width: 44px;
@@ -234,12 +649,12 @@
   overflow: hidden;
 
   span {
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     font-weight: 600;
     border-radius: 40px;
-    padding: 4px 12px;
+    padding: 5px 14px;
     letter-spacing: 0.02em;
-    border: 1px solid;
+    border: 1.5px solid;
     opacity: 0;
     transform: translateX(300px);
     transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -247,21 +662,17 @@
     will-change: transform, opacity;
     cursor: default;
 
-    &:nth-child(odd) {
-      background: #eaf4fb;
-      color: #0070C0;
-      border-color: #b3d4ee;
-    }
-    &:nth-child(even) {
-      background: #e8f5ee;
-      color: #0b5d3b;
-      border-color: #c8e6d4;
-    }
+    &:nth-child(1)  { background: #fff0f0; color: #cc2200; border-color: #ff4d4d; &::selection { background: rgba(255,77,77,0.4); color: #fff; } }
+    &:nth-child(2)  { background: #fff5e6; color: #b85c00; border-color: #ff8c00; &::selection { background: rgba(255,140,0,0.4); color: #fff; } }
+    &:nth-child(3)  { background: #fffbe6; color: #8a6f00; border-color: #f0c000; &::selection { background: rgba(240,192,0,0.45); color: #222; } }
+    &:nth-child(4)  { background: #edfff3; color: #0a6e30; border-color: #44dd66; &::selection { background: rgba(68,221,102,0.4); color: #fff; } }
+    &:nth-child(5)  { background: #e6f9ff; color: #005f88; border-color: #00bfff; &::selection { background: rgba(0,191,255,0.4); color: #fff; } }
+    &:nth-child(6)  { background: #f0eeff; color: #3a2d8f; border-color: #6a5acd; &::selection { background: rgba(106,90,205,0.45); color: #fff; } }
+    &:nth-child(7)  { background: #fff0fa; color: #8b2d6e; border-color: #ee82ee; &::selection { background: rgba(238,130,238,0.4); color: #fff; } }
+    &:nth-child(8)  { background: #fff0f4; color: #99003d; border-color: #ff6699; &::selection { background: rgba(255,102,153,0.4); color: #fff; } }
 
     @for $i from 1 through 8 {
-      &:nth-child(#{$i}) {
-        transition-delay: #{($i - 1) * 0.1}s;
-      }
+      &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.1}s; }
     }
 
     &:hover {
@@ -352,16 +763,166 @@
 }
 
 
+// ── Urban card: same as PEPA but teal-green border ───────────────────────────
+.bs-urban-card {
+  border: 2px solid #2e7d32 !important;
+
+  .bs-pepa-card__img {
+    background: transparent;
+
+    img { object-fit: cover; }
+  }
+
+  .bs-pepa-card__img::after {
+    background: linear-gradient(to right, rgba(46,125,50,0.10) 0%, transparent 60%);
+  }
+}
+
+// ── PEPA card: joined content-left image-right, like green hydrogen ───────────
+.bs-pepa-card {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #0070C0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+  &__content {
+    background: #fff;
+    padding: var(--space-6) var(--space-7);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__img {
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+    background: #ddeef8;
+    z-index: 1;
+    box-shadow: 10px 0 28px rgba(0,0,0,0.28), 2px 0 8px rgba(0,0,0,0.14);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,112,192,0.12) 0%,
+        transparent 60%
+      );
+      pointer-events: none;
+    }
+  }
+
+  &:hover &__img img { transform: scale(1.03); }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    &__img { min-height: 280px; box-shadow: 0 10px 28px rgba(0,0,0,0.22); }
+  }
+}
+
+// ── Image-background section (Urban Infrastructure) ──────────────────────────
+.bs-seg-section--imgbg {
+  position: relative;
+  background: none;
+
+  .container { position: relative; z-index: 1; }
+}
+
+.bs-seg-imgbg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,30,70,0.68) 0%, rgba(0,60,110,0.58) 100%);
+  }
+}
+
+.bs-seg-section--imgbg {
+  .bs-seg-header {
+    border-bottom-color: rgba(255,255,255,0.2);
+  }
+
+  .bs-seg-header__icon {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+  }
+
+  .bs-seg-header__text h2 {
+    color: #fff !important;
+  }
+
+  .bs-detail-card {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+
+    .bs-detail-card__body p {
+      color: rgba(255,255,255,0.88);
+    }
+
+    .bs-detail-card__caps span {
+      &:nth-child(odd) {
+        background: rgba(255,255,255,0.12);
+        color: #fff;
+      }
+      &:nth-child(even) {
+        background: rgba(255,255,255,0.07);
+        color: rgba(255,255,255,0.85);
+      }
+      &:nth-child(1) { border-left-color: #ff4d4d; &::selection { background: rgba(255,77,77,0.45); color: #fff; } }
+      &:nth-child(2) { border-left-color: #ff8c00; &::selection { background: rgba(255,140,0,0.45); color: #fff; } }
+      &:nth-child(3) { border-left-color: #ffd700; &::selection { background: rgba(255,215,0,0.5); color: #222; } }
+      &:nth-child(4) { border-left-color: #44dd66; &::selection { background: rgba(68,221,102,0.45); color: #fff; } }
+      &:nth-child(5) { border-left-color: #00bfff; &::selection { background: rgba(0,191,255,0.45); color: #fff; } }
+      &:nth-child(6) { border-left-color: #6a5acd; &::selection { background: rgba(106,90,205,0.5); color: #fff; } }
+      &:nth-child(7) { border-left-color: #ee82ee; &::selection { background: rgba(238,130,238,0.45); color: #fff; } }
+      &:nth-child(8) { border-left-color: #ff6699; &::selection { background: rgba(255,102,153,0.45); color: #fff; } }
+      &:hover {
+        transform: translateX(-8px) !important;
+        background: rgba(255,255,255,0.28) !important;
+        box-shadow: 8px 6px 20px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+        color: #fff !important;
+      }
+    }
+  }
+}
+
 // ── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 900px) {
-  .bs-re-grid { grid-template-columns: 1fr; }
+  .bs-re-alt-card { grid-template-columns: 1fr; }
   .bs-detail-card { grid-template-columns: 1fr; gap: var(--space-5); padding: var(--space-5); }
   .bs-seg-header { flex-wrap: wrap; }
   .bs-seg-header__num { font-size: 2rem; min-width: 48px; }
 }
 
 @media (max-width: 768px) {
-  .bs-hero { height: 320px; margin-top: -72px; padding-top: 72px; }
+  .bs-hero { height: 320px; }
   .bs-hero__title { font-size: 1.8rem; }
   .bs-hero__lead { font-size: 0.88rem; }
   .bs-seg-header__text h2 { font-size: 1.3rem; }

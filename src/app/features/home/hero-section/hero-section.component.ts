@@ -16,7 +16,7 @@ export class HeroSectionComponent implements AfterViewInit {
   reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   videoEnded = false;
   isPlaying = true;
-  isMuted = true;
+  isMuted = false;
 
   ngAfterViewInit(): void {
     const video = this.videoRef?.nativeElement;
@@ -27,6 +27,9 @@ export class HeroSectionComponent implements AfterViewInit {
       this.videoEnded = true;
       return;
     }
+
+    video.volume = 0.5;
+    video.muted = false;
 
     video.addEventListener('ended', () => {
       this.videoEnded = true;

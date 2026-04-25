@@ -77,7 +77,6 @@ export class HeaderComponent implements OnInit {
         { label: 'Business Advisory',              path: '/services', fragment: 'business-advisory',   skipActive: true },
         { label: 'Technical Advisory',             path: '/services', fragment: 'technical-advisory',  skipActive: true },
         { label: 'Transaction Advisory',           path: '/services', fragment: 'transaction-advisory',skipActive: true },
-        { label: 'Investment Advisory',            path: '/services', fragment: 'investment-advisory', skipActive: true },
         { label: 'Investment Banking',             path: '/services', fragment: 'investment-banking',  skipActive: true },
         { label: 'PMC / PMU / OE',                path: '/services', fragment: 'pmc-pmu-oe',          skipActive: true },
         { label: 'Detailed Project Report (DPR)',  path: '/services', fragment: 'dpr',                 skipActive: true },

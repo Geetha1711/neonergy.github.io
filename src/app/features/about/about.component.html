@@ -1,37 +1,62 @@
 <main class="page-content about-page">
 
-  <!-- ── Hero ── -->
-  <section class="about-hero">
-    <div class="about-hero__bg">
-      <img src="assets/images/hero-poster.jpg" alt="About Neonergy" class="about-hero__img" />
-      <div class="about-hero__overlay"></div>
+  <!-- ── Hero Carousel ── -->
+  <section class="about-poster">
+    <div class="about-poster__viewport">
+      <div class="about-poster__track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+        <div class="about-poster__slide" *ngFor="let slide of slides">
+          <img [src]="slide.src" [alt]="slide.alt" />
+        </div>
+      </div>
     </div>
-    <div class="container about-hero__content"></div>
+    <button class="about-poster__arrow about-poster__arrow--prev" (click)="prevSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="about-poster__arrow about-poster__arrow--next" (click)="nextSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+    <div class="about-poster__dots">
+      <button *ngFor="let slide of slides; let i = index"
+              class="about-poster__dot"
+              [class.about-poster__dot--active]="i === currentSlide"
+              (click)="goToSlide(i)">
+      </button>
+    </div>
   </section>
+
+  <!-- ── Who We Are strip ── -->
+  <div class="about-page-header">
+    <div class="container">
+      <h1 class="about-page-header__title">Who We Are</h1>
+      <p class="about-page-header__lead">At NEONERGY, we are committed to accelerating the shift toward <strong>energy efficiency and sustainability</strong>, aligned with global decarbonization goals. Our solutions are designed to be <strong>innovative, scalable, and commercially viable</strong>, enabling clients to achieve both environmental and economic benefits.</p>
+    </div>
+  </div>
 
   <!-- ── About Neonergy ── -->
   <section id="about" class="about-section">
     <div class="container">
-      <div class="section-head">
-        <h2>About Us</h2>
-      </div>
       <div class="about-split">
-      <div class="about-img-card">
-        <img src="assets/images/about-neonergy.jpg" alt="Neonergy team at work" />
-      </div>
-      <div class="about-text">
-        <h2 class="about-main-heading">NEONERGY is an integrated renewable energy company.</h2>
-        <p>NEONERGY is committed to delivering sustainable, reliable, and cost-effective clean energy solutions. Positioned as a one-stop energy partner, we support clients across the entire renewable energy value chain — from concept and engineering to execution, commissioning, and long-term operations.</p>
-        <p>With deep domain expertise and a lifecycle-driven approach, we enable businesses, utilities, and institutions to transition seamlessly towards clean, efficient, and future-ready energy systems.</p>
-        <div class="about-stats">
-          @for (stat of stats; track stat.label) {
-            <div class="about-stat">
-              <div class="about-stat__num">{{ stat.num }}</div>
-              <div class="about-stat__label">{{ stat.label }}</div>
-            </div>
-          }
+        <div class="about-img-card">
+          <img src="assets/images/thecompany-3.jpeg" alt="Neonergy team at work" />
         </div>
-      </div>
+        <div class="about-text">
+          <h3 class="about-section-label">About Us</h3>
+          <h2 class="about-main-heading">NEONERGY is an integrated<br>renewable energy company.</h2>
+          <p>NEONERGY is committed to delivering sustainable, reliable, and cost-effective clean energy solutions. Positioned as a one-stop energy partner, we support clients across the entire renewable energy value chain — from concept and engineering to execution, commissioning, and long-term operations.</p>
+          <p>With deep domain expertise and a lifecycle-driven approach, we enable businesses, utilities, and institutions to transition seamlessly towards clean, efficient, and future-ready energy systems.</p>
+          <div class="about-stats">
+            @for (stat of stats; track stat.label) {
+              <div class="about-stat">
+                <div class="about-stat__num">{{ stat.num }}</div>
+                <div class="about-stat__label">{{ stat.label }}</div>
+              </div>
+            }
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -44,37 +69,49 @@
 
         <!-- Vision Card -->
         <div class="vm-card vm-card--vision">
-          <div class="vm-card__header">
-            <div class="vm-card__icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24" aria-hidden="true">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
+          <div class="vm-card__body-split">
+            <div class="vm-card__body-img-wrap">
+              <div class="vm-card__body-img">
+                <img src="assets/images/vision.png" alt="Vision" />
+              </div>
             </div>
-            <h3 class="vm-card__heading">Our Vision</h3>
-          </div>
-          <p class="vm-card__text">To be the most trusted one-stop partner for renewable energy solutions, driving the transition towards a cleaner, greener, and sustainable future.</p>
-          <div class="vm-card__img">
-            <img src="assets/images/about-neonergy.jpg" alt="Vision" />
+            <div class="vm-card__body-content">
+              <div class="vm-card__header">
+                <div class="vm-card__icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24" aria-hidden="true">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <h3 class="vm-card__heading">Vision</h3>
+              </div>
+              <p class="vm-card__text">To be the <span class="vm-highlight">most trusted one-stop partner</span> for renewable energy solutions, driving the transition towards a <span class="vm-highlight">cleaner, greener, and sustainable future</span>.</p>
+            </div>
           </div>
         </div>
 
         <!-- Mission Card -->
         <div class="vm-card vm-card--mission">
-          <div class="vm-card__header">
-            <div class="vm-card__icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24" aria-hidden="true">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-              </svg>
+          <div class="vm-card__body-split">
+            <div class="vm-card__body-img-wrap vm-card__body-img-wrap--mission">
+              <div class="vm-card__body-img vm-card__body-img--mission">
+                <img src="assets/images/mission.png" alt="Mission" />
+              </div>
             </div>
-            <h3 class="vm-card__heading">Our Mission</h3>
-          </div>
-          <p class="vm-card__text">To deliver integrated, reliable, and sustainable renewable energy solutions across the entire project lifecycle, combining technical excellence with practical execution.</p>
-          <div class="vm-card__img">
-            <img src="assets/images/hero-poster.jpg" alt="Mission" />
+            <div class="vm-card__body-content">
+              <div class="vm-card__header">
+                <div class="vm-card__icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24" aria-hidden="true">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                  </svg>
+                </div>
+                <h3 class="vm-card__heading">Mission</h3>
+              </div>
+              <p class="vm-card__text">To deliver <span class="vm-highlight-blue">integrated, reliable, and sustainable</span> renewable energy solutions across the <span class="vm-highlight-blue">entire project lifecycle</span>, combining technical excellence with practical execution.</p>
+            </div>
           </div>
         </div>
 

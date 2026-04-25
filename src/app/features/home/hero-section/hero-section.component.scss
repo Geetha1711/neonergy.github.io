@@ -32,7 +32,7 @@
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 61, 39, 0.55), rgba(15, 26, 31, 0.78));
+  background: none;
   z-index: 1;
 }
 
@@ -155,7 +155,7 @@
 }
 
 .hero__scroll-label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.18em;

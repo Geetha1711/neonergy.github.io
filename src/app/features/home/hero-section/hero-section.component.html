@@ -1,7 +1,7 @@
 <section class="hero" [class.hero--static]="videoEnded">
   <!-- Background video -->
   @if (!reducedMotion) {
-    <video #heroVideo class="hero__video" autoplay muted playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
+    <video #heroVideo class="hero__video" autoplay playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
       <source src="assets/videos/hero.mp4" type="video/mp4">
     </video>
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -25,12 +25,69 @@ interface Client {
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
 })
-export class AboutComponent {
+export class AboutComponent implements AfterViewInit, OnDestroy {
+  currentSlide = 0;
+
+  slides = [
+    { src: 'assets/images/thecompany-1.png', alt: 'Neonergy Company' },
+    { src: 'assets/images/thecompany-2.jpg', alt: 'The Company' },
+    { src: 'assets/images/thecompany-3.jpeg', alt: 'The Company' },
+  ];
+
+  private timers: ReturnType<typeof setTimeout>[] = [];
+  private autoSlideInterval: ReturnType<typeof setInterval> | null = null;
+
+  ngAfterViewInit(): void {
+    this.autoSlideInterval = setInterval(() => {
+      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+    }, 4000);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('team-card--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.team-card')
+      .forEach(el => observer.observe(el));
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('about-stat--visible');
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.about-stat')
+      .forEach(el => statObserver.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.timers.forEach(t => clearTimeout(t));
+    if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
+  }
+
+  nextSlide(): void {
+    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+  }
+
+  prevSlide(): void {
+    this.currentSlide = (this.currentSlide + this.slides.length - 1) % this.slides.length;
+  }
+
+  goToSlide(i: number): void {
+    this.currentSlide = i;
+  }
+
   stats = [
-    { num: 'xx GW+', label: 'Projects Delivered' },
-    { num: 'xx+', label: 'Years Experience' },
-    { num: 'xx GW+', label: 'Solar Projects' },
-    { num: 'xx GW+', label: 'Wind Projects' },
+    { num: '1045 MWp', label: 'Total Projects under Development' },
+    { num: '240 MWH',  label: 'BESS under Development' },
+    { num: '516 MWp',  label: 'Asset Performance Monitoring (O&M)' },
   ];
 
   team: TeamMember[] = [

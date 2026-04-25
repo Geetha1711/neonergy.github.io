@@ -1,259 +1,295 @@
 <main class="page-content svc-page">
 
-  <!-- ── Page Intro ── -->
-  <section class="svc-intro">
-    <div class="container">
-      <span class="svc-label">What We Do</span>
-      <h1 class="svc-intro__title">Service Offerings</h1>
-      <p class="svc-intro__lead">Neonergy Engineering Pvt. Ltd. provides a comprehensive suite of advisory, engineering, and execution services — enabling clients to successfully develop, finance, and operate energy and infrastructure assets. Our integrated approach combines technical expertise, financial insight, and project delivery capabilities to ensure bankable, efficient, and future-ready solutions.</p>
-    </div>
-  </section>
-
-  <!-- ── 3.1 Business Advisory ── -->
-  <section id="business-advisory" class="svc-section">
-    <div class="container">
-      <div class="svc-block">
-        <div class="svc-img">
-          <img src="assets/images/about-neonergy.jpg" alt="Business Advisory" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.1</span>
-          <span class="svc-tag">Advisory</span>
-          <h2>Business Advisory Services</h2>
-          <p>We support organizations in shaping strategic direction and unlocking value through market intelligence, business planning, and operational optimisation. Our services include feasibility analysis, market entry strategies, business model development, and performance improvement initiatives tailored to the renewable energy and infrastructure sectors.</p>
-          <div class="svc-caps">
-            <span>Feasibility Analysis</span>
-            <span>Market Entry Strategy</span>
-            <span>Business Model Development</span>
-            <span>Performance Improvement</span>
-            <span>Operational Optimisation</span>
-          </div>
+  <!-- ── Hero Carousel ── -->
+  <section class="svc-poster">
+    <div class="svc-poster__viewport">
+      <div class="svc-poster__track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+        <div class="svc-poster__slide" *ngFor="let slide of slides">
+          <img [src]="slide.src" [alt]="slide.alt" />
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ── 3.2 Technical Advisory ── -->
-  <section id="technical-advisory" class="svc-section svc-section--alt">
-    <div class="container">
-      <div class="svc-block svc-block--flip">
-        <div class="svc-img">
-          <img src="assets/images/hero-poster.jpg" alt="Technical Advisory" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.2</span>
-          <span class="svc-tag">Technical</span>
-          <h2>Technical Advisory</h2>
-          <p>Our technical advisory services for solar, wind, and hydro projects span the complete lifecycle of renewable energy developments, ensuring robust design, optimal performance, and effective risk mitigation. We provide resource assessment, site evaluation, technology selection, detailed engineering reviews, energy yield analysis, and comprehensive technical due diligence.</p>
-          <div class="svc-caps">
-            <span>Resource Assessment</span>
-            <span>Site Evaluation</span>
-            <span>Technology Selection</span>
-            <span>Engineering Reviews</span>
-            <span>Energy Yield Analysis</span>
-            <span>Technical Due Diligence</span>
-          </div>
-        </div>
-      </div>
+    <button class="svc-poster__arrow svc-poster__arrow--prev" (click)="prevSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="svc-poster__arrow svc-poster__arrow--next" (click)="nextSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+    <div class="svc-poster__dots">
+      <button *ngFor="let slide of slides; let i = index"
+              class="svc-poster__dot"
+              [class.svc-poster__dot--active]="i === currentSlide"
+              (click)="goToSlide(i)">
+      </button>
     </div>
   </section>
 
-  <!-- ── 3.3 Transaction Advisory ── -->
-  <section id="transaction-advisory" class="svc-section">
+  <!-- ── Page Header Strip ── -->
+  <div class="svc-page-header">
     <div class="container">
-      <div class="svc-block">
-        <div class="svc-img">
-          <img src="assets/images/about-neonergy.jpg" alt="Transaction Advisory" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.3</span>
-          <span class="svc-tag">Transaction</span>
-          <h2>Transaction Advisory</h2>
-          <p>Neonergy offers end-to-end transaction support, enabling seamless project development and execution across solar, wind, and hydro sectors. Our services include bid advisory, tender structuring, contract evaluation, risk allocation, lender/investor coordination, as well as support for acquisitions, mergers, and demergers — ensuring commercially viable and bankable project structures.</p>
-          <div class="svc-caps">
-            <span>Bid Advisory</span>
-            <span>Tender Structuring</span>
-            <span>Contract Evaluation</span>
-            <span>Risk Allocation</span>
-            <span>M&A Support</span>
-            <span>Lender Coordination</span>
+      <h1 class="svc-page-header__title">Service Offerings</h1>
+      <p class="svc-page-header__lead">Neonergy provides a comprehensive suite of advisory, engineering, and execution services, enabling clients to successfully develop, finance, and operate energy and infrastructure assets. Our integrated approach combines technical expertise, financial insight, and project delivery capabilities to ensure bankable, efficient, and future-ready solutions.</p>
+    </div>
+  </div>
+
+  <!-- ── Services Directory ── -->
+  <section class="svc-directory">
+    <div class="container">
+
+      <!-- ── Advisory Hexagon Layout ── -->
+      <div class="svc-adv-layout">
+
+        <!-- Top: Business Advisory -->
+        <div id="business-advisory" class="svc-adv-top">
+          <div class="svc-adv-top__header">
+            <div class="svc-adv-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="16"/>
+                <line x1="10" y1="14" x2="14" y2="14"/>
+              </svg>
+            </div>
+            <h2 class="svc-adv-top__title">Business Advisory</h2>
           </div>
+          <div class="svc-adv-top__body">
+            <p>We support organisations, investors, and developers in shaping strategic direction and unlocking value across the renewable energy and infrastructure sectors. Our integrated advisory approach combines deep market intelligence with robust financial and operational expertise to drive informed decision-making.</p>
+          </div>
+        </div>
+
+        <!-- Centre: Large Circle with orbit chips -->
+        <div class="svc-adv-circle-wrap">
+          <div class="svc-adv-orbit">
+            <span class="oc oc-1">Feasibility Analysis</span>
+            <span class="oc oc-2">Market Entry Strategy</span>
+            <span class="oc oc-3">Business Model</span>
+            <span class="oc oc-4">Portfolio Strategy</span>
+            <span class="oc oc-5">Risk Assessment</span>
+            <span class="oc oc-6">Energy Yield Analysis</span>
+            <span class="oc oc-7">Technical Due Diligence</span>
+            <span class="oc oc-8">Site Evaluation</span>
+            <span class="oc oc-9">Technology Selection</span>
+            <span class="oc oc-10">Resource Assessment</span>
+            <span class="oc oc-11">Bid Advisory</span>
+            <span class="oc oc-12">M&amp;A Support</span>
+          </div>
+          <div class="svc-adv-circle">
+            <img src="assets/images/advisory.png" alt="Advisory" />
+          </div>
+        </div>
+
+        <!-- Bottom row: Technical | gap | Transaction -->
+        <div class="svc-adv-row">
+
+          <div id="technical-advisory" class="svc-adv-left">
+            <div class="svc-adv-card__header svc-adv-card__header--ta">
+              <div class="svc-adv-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+              </div>
+              <h3>Technical Advisory</h3>
+            </div>
+            <div class="svc-adv-card__body">
+              <p>Our technical advisory services for <strong>solar, wind, and hydro projects</strong> span the complete lifecycle of renewable energy developments, ensuring <strong>robust design, optimal performance, and effective risk mitigation</strong>. We provide <strong>resource assessment, site evaluation, technology selection, detailed engineering reviews, energy yield analysis, and comprehensive technical due diligence</strong>.</p>
+            </div>
+          </div>
+
+          <div id="transaction-advisory" class="svc-adv-right">
+            <div class="svc-adv-card__header svc-adv-card__header--tr">
+              <div class="svc-adv-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+                  <polyline points="17 1 21 5 17 9"/>
+                  <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                  <polyline points="7 23 3 19 7 15"/>
+                  <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                </svg>
+              </div>
+              <h3>Transaction Advisory</h3>
+            </div>
+            <div class="svc-adv-card__body">
+              <p>Neonergy offers end-to-end transaction support, enabling seamless project development and execution across <strong>solar, wind, and hydro sectors</strong>. Our services include <strong>bid advisory, tender structuring, contract evaluation, risk allocation, lender/investor coordination</strong>, as well as support for <strong>acquisitions, mergers, and demergers</strong>, ensuring commercially viable and bankable project structures.</p>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── 3.4 Investment Advisory ── -->
-  <section id="investment-advisory" class="svc-section svc-section--alt">
-    <div class="container">
-      <div class="svc-block svc-block--flip">
-        <div class="svc-img">
-          <img src="assets/images/hero-poster.jpg" alt="Investment Advisory" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.4</span>
-          <span class="svc-tag">Investment</span>
-          <h2>Investment Advisory</h2>
-          <p>We assist investors and developers in identifying and evaluating high-potential opportunities across solar, wind, and hydro sectors. Our expertise includes investment analysis, portfolio strategy, valuation, and risk assessment — supporting informed decision-making and long-term value creation.</p>
-          <div class="svc-caps">
-            <span>Investment Analysis</span>
-            <span>Portfolio Strategy</span>
-            <span>Asset Valuation</span>
-            <span>Risk Assessment</span>
-            <span>Opportunity Identification</span>
-            <span>Long-Term Value Creation</span>
+      <div class="svc-grid">
+
+        <!-- Investment Banking -->
+        <div class="svc-ib-pmu" id="investment-banking">
+          <div class="svc-ib-pmu__circle-img">
+            <img src="assets/images/invbank.png" alt="Investment Banking" />
+          </div>
+          <div class="svc-ib-pmu__contents">
+            <div class="svc-ib-pmu__header svc-ib-pmu__header--ib">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" style="flex-shrink:0">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <h3>Investment Banking</h3>
+            </div>
+            <div class="svc-ib-pmu__body">
+              <p>Neonergy provides specialized support in renewable energy capital raising, financial structuring, and deal execution. We facilitate equity and debt financing, support mergers &amp; acquisitions, and structure innovative funding solutions.</p>
+              <div class="svc-caps">
+                <span>Capital Raising</span>
+                <span>Equity &amp; Debt Financing</span>
+                <span>Mergers &amp; Acquisitions</span>
+                <span>Financial Structuring</span>
+                <span>Deal Execution</span>
+                <span>Innovative Funding</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── 3.5 Investment Banking ── -->
-  <section id="investment-banking" class="svc-section">
-    <div class="container">
-      <div class="svc-block">
-        <div class="svc-img">
-          <img src="assets/images/evcharging.jpg" alt="Investment Banking" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.5</span>
-          <span class="svc-tag">Banking</span>
-          <h2>Investment Banking</h2>
-          <p>Neonergy provides specialized support in renewable energy capital raising, financial structuring, and deal execution. We facilitate equity and debt financing, support mergers &amp; acquisitions, and structure innovative funding solutions aligned with project and investor requirements.</p>
-          <div class="svc-caps">
-            <span>Capital Raising</span>
-            <span>Equity & Debt Financing</span>
-            <span>Mergers & Acquisitions</span>
-            <span>Financial Structuring</span>
-            <span>Deal Execution</span>
-            <span>Innovative Funding</span>
+        <!-- PMC / PMU / Owner's Engineer -->
+        <div class="svc-ib-pmu svc-ib-pmu--pmc" id="pmc-pmu-oe">
+          <div class="svc-ib-pmu__circle-img">
+            <img src="assets/images/pmc.png" alt="PMC PMU OE" />
+          </div>
+          <div class="svc-ib-pmu__contents">
+            <div class="svc-ib-pmu__header svc-ib-pmu__header--pmc">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" style="flex-shrink:0">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <h3>PMC / PMU / Owner's Engineer (OE)</h3>
+            </div>
+            <div class="svc-ib-pmu__body">
+              <p>We deliver comprehensive project management services as <strong>Project Management Consultant (PMC)</strong>, <strong>Project Management Unit (PMU)</strong>, and <strong>Owner's Engineer (OE)</strong>. Our role ensures effective coordination across stakeholders, adherence to timelines, cost control, quality assurance, and successful project delivery from concept to commissioning.</p>
+              <div class="svc-caps">
+                <span>PMC Services</span>
+                <span>PMU Services</span>
+                <span>Owner's Engineer</span>
+                <span>Stakeholder Coordination</span>
+                <span>Cost Control</span>
+                <span>Quality Assurance</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── 3.6 PMC/PMU/OE ── -->
-  <section id="pmc-pmu-oe" class="svc-section svc-section--alt">
-    <div class="container">
-      <div class="svc-block svc-block--flip">
-        <div class="svc-img">
-          <img src="assets/images/about-neonergy.jpg" alt="PMC PMU OE" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.6</span>
-          <span class="svc-tag">Project Management</span>
-          <h2>PMC / PMU / Owner's Engineer (OE)</h2>
-          <p>We deliver comprehensive project management services as Project Management Consultant (PMC), Project Management Unit (PMU), and Owner's Engineer (OE). Our role ensures effective coordination across stakeholders, adherence to timelines, cost control, quality assurance, and successful project delivery from concept to commissioning.</p>
-          <div class="svc-caps">
-            <span>PMC Services</span>
-            <span>PMU Services</span>
-            <span>Owner's Engineer</span>
-            <span>Stakeholder Coordination</span>
-            <span>Cost Control</span>
-            <span>Quality Assurance</span>
+        <!-- 3.6 DPR -->
+        <div id="dpr" class="svc-card">
+          <div class="svc-card__header-bar svc-card__header-bar--dpr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" style="flex-shrink:0">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <h3>Detailed Project Report (DPR)</h3>
+          </div>
+          <div class="svc-card__img">
+            <img src="assets/images/DPR.png" alt="Detailed Project Report" />
+          </div>
+          <div class="svc-card__body">
+            <p>Neonergy prepares bankable DPRs that integrate technical, financial, and regulatory aspects — including feasibility analysis, design parameters, cost estimates, financial modelling, and implementation strategies for approvals and financing.</p>
+            <div class="svc-caps">
+              <span>Feasibility Analysis</span>
+              <span>Design Parameters</span>
+              <span>Cost Estimation</span>
+              <span>Financial Modelling</span>
+              <span>Risk Assessment</span>
+              <span>Regulatory Compliance</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── 3.7 DPR ── -->
-  <section id="dpr" class="svc-section">
-    <div class="container">
-      <div class="svc-block">
-        <div class="svc-img">
-          <img src="assets/images/hero-poster.jpg" alt="Detailed Project Report" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.7</span>
-          <span class="svc-tag">DPR</span>
-          <h2>Detailed Project Report (DPR)</h2>
-          <p>Neonergy prepares bankable Detailed Project Reports (DPRs) that integrate technical, financial, and regulatory aspects. Our DPRs include feasibility analysis, design parameters, cost estimates, financial modeling, risk assessment, and implementation strategies to support approvals and financing.</p>
-          <div class="svc-caps">
-            <span>Feasibility Analysis</span>
-            <span>Design Parameters</span>
-            <span>Cost Estimation</span>
-            <span>Financial Modelling</span>
-            <span>Risk Assessment</span>
-            <span>Regulatory Compliance</span>
+        <!-- 3.7 EPC -->
+        <div id="epc" class="svc-card">
+          <div class="svc-card__header-bar svc-card__header-bar--epc">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" style="flex-shrink:0">
+              <polygon points="2 20 22 20 12 4"/>
+              <line x1="12" y1="9" x2="12" y2="14"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <h3>EPC Services</h3>
+          </div>
+          <div class="svc-card__img">
+            <img src="assets/images/epc.png" alt="EPC Services" />
+          </div>
+          <div class="svc-card__body">
+            <p>We provide end-to-end Engineering, Procurement, and Construction services for energy and infrastructure projects — covering detailed engineering, procurement management, construction execution, quality control, and commissioning.</p>
+            <div class="svc-caps">
+              <span>Detailed Engineering</span>
+              <span>Procurement Management</span>
+              <span>Construction Execution</span>
+              <span>Quality Control</span>
+              <span>Commissioning</span>
+              <span>Performance Reliability</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── 3.8 EPC ── -->
-  <section id="epc" class="svc-section svc-section--alt">
-    <div class="container">
-      <div class="svc-block svc-block--flip">
-        <div class="svc-img">
-          <img src="assets/images/evcharging.jpg" alt="EPC Services" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.8</span>
-          <span class="svc-tag">EPC</span>
-          <h2>EPC Services</h2>
-          <p>We provide end-to-end Engineering, Procurement, and Construction (EPC) services for energy and infrastructure projects. Our capabilities include detailed engineering, procurement management, construction execution, quality control, and commissioning — ensuring timely delivery, cost efficiency, and performance reliability.</p>
-          <div class="svc-caps">
-            <span>Detailed Engineering</span>
-            <span>Procurement Management</span>
-            <span>Construction Execution</span>
-            <span>Quality Control</span>
-            <span>Commissioning</span>
-            <span>Performance Reliability</span>
+        <!-- 3.8 SCADA -->
+        <div id="scada" class="svc-card svc-card--content-top">
+          <div class="svc-card__header-bar svc-card__header-bar--scada">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" style="flex-shrink:0">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <h3>SCADA &amp; Digital Solutions</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>We provide advanced SCADA and automation solutions for real-time monitoring, control, and optimization of energy and industrial assets — including system design, integration, remote monitoring platforms, and cybersecurity-enabled controls.</p>
+            <div class="svc-caps">
+              <span>System Design &amp; Integration</span>
+              <span>Remote Monitoring</span>
+              <span>Data Acquisition</span>
+              <span>Cybersecurity Controls</span>
+              <span>Automation Solutions</span>
+              <span>Scalable Platforms</span>
+            </div>
+          </div>
+          <div class="svc-card__img">
+            <img src="assets/images/scada.png" alt="SCADA & Digital Solutions" />
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── 3.9 SCADA ── -->
-  <section id="scada" class="svc-section">
-    <div class="container">
-      <div class="svc-block">
-        <div class="svc-img">
-          <img src="assets/images/about-neonergy.jpg" alt="SCADA & Digital Solutions" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.9</span>
-          <span class="svc-tag">SCADA &amp; Digital</span>
-          <h2>SCADA Services &amp; Digital Solutions</h2>
-          <p>We provide advanced SCADA and automation solutions for real-time monitoring, control, and optimization of energy and industrial assets. Our capabilities include system design, integration, remote monitoring platforms, data acquisition, and cybersecurity-enabled control systems — delivering secure, intelligent, and scalable digital operations.</p>
-          <div class="svc-caps">
-            <span>System Design & Integration</span>
-            <span>Remote Monitoring</span>
-            <span>Data Acquisition</span>
-            <span>Cybersecurity Controls</span>
-            <span>Automation Solutions</span>
-            <span>Scalable Platforms</span>
+        <!-- 3.9 Solar Monitoring -->
+        <div id="solar-monitoring" class="svc-card svc-card--content-top">
+          <div class="svc-card__header-bar svc-card__header-bar--solar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" style="flex-shrink:0">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <h3>Solar Plant Performance Monitoring</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>Neonergy delivers <strong>end-to-end performance monitoring solutions</strong> for solar assets, leveraging SCADA, IoT, and advanced analytics to maximize energy yield and operational efficiency. Our services include <strong>real-time performance tracking, fault detection, predictive maintenance, KPI dashboards, and performance benchmarking</strong>, ensuring optimal plant output and lifecycle value enhancement.</p>
+            <div class="svc-caps">
+              <span>Real-Time Tracking</span>
+              <span>Fault Detection</span>
+              <span>Predictive Maintenance</span>
+              <span>KPI Dashboards</span>
+              <span>Performance Benchmarking</span>
+              <span>IoT &amp; Analytics</span>
+            </div>
+          </div>
+          <div class="svc-card__img">
+            <img src="assets/images/spm.png" alt="Solar Performance Monitoring" />
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── 3.10 Solar Monitoring ── -->
-  <section id="solar-monitoring" class="svc-section svc-section--alt">
-    <div class="container">
-      <div class="svc-block svc-block--flip">
-        <div class="svc-img">
-          <img src="assets/images/hero-poster.jpg" alt="Solar Performance Monitoring" />
-        </div>
-        <div class="svc-text" >
-          <span class="svc-num">3.10</span>
-          <span class="svc-tag">Solar Monitoring</span>
-          <h2>Solar Plant Performance Monitoring &amp; Analytics</h2>
-          <p>Neonergy delivers end-to-end performance monitoring solutions for solar assets, leveraging SCADA, IoT, and advanced analytics to maximize energy yield and operational efficiency. Our services include real-time performance tracking, fault detection, predictive maintenance, KPI dashboards, and performance benchmarking — ensuring optimal plant output and lifecycle value enhancement.</p>
-          <div class="svc-caps">
-            <span>Real-Time Tracking</span>
-            <span>Fault Detection</span>
-            <span>Predictive Maintenance</span>
-            <span>KPI Dashboards</span>
-            <span>Performance Benchmarking</span>
-            <span>IoT & Analytics</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
