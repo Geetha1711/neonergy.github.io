@@ -1,0 +1,171 @@
+<!-- src/app/features/footprint-map/footprint-map.component.html -->
+
+<section
+  class="nfp"
+  role="img"
+  attr.aria-label="Neonergy footprint map of {{ totals.count }} renewable energy projects across South India totaling {{ totals.solarMWp.toFixed(0) }} MWp solar and {{ totals.bessMWh }} MWh battery storage"
+>
+  <!-- Background layer fades in early so the parent surface doesn't show through -->
+  <div class="nfp__bg" [style.opacity]="bgOpacity()"></div>
+
+  <!-- Decorative dotted graticule -->
+  <svg class="nfp__grid" [attr.viewBox]="viewBox" aria-hidden="true">
+    <defs>
+      <pattern id="nfp-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="0.8" fill="#0070C0" opacity="0.18" />
+      </pattern>
+    </defs>
+    <rect [attr.width]="stageW" [attr.height]="stageH" fill="url(#nfp-dots)" />
+  </svg>
+
+  <div class="nfp__content" [style.opacity]="contentOpacity()">
+    <!-- Map -->
+    <svg
+      class="nfp__map"
+      [attr.viewBox]="viewBox"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="nfp-state-north" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#5A98C4" />
+          <stop offset="100%" stop-color="#3B7BAD" />
+        </linearGradient>
+        <linearGradient id="nfp-state-south" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#0E8DD3" />
+          <stop offset="100%" stop-color="#0563A1" />
+        </linearGradient>
+        <linearGradient id="nfp-state-dim" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#A5BCCD" />
+          <stop offset="100%" stop-color="#88A2B6" />
+        </linearGradient>
+      </defs>
+
+      <!-- States -->
+      <g>
+        @for (s of states(); track s.d) {
+          <path
+            [attr.d]="s.d"
+            [attr.fill]="s.fill"
+            stroke="rgba(255,255,255,0.55)"
+            stroke-width="0.6"
+          />
+          @if (!s.isSouth && s.dimOpacity > 0) {
+            <path
+              [attr.d]="s.d"
+              fill="url(#nfp-state-dim)"
+              [attr.opacity]="s.dimOpacity"
+              stroke="rgba(255,255,255,0.4)"
+              stroke-width="0.6"
+            />
+          }
+        }
+      </g>
+
+      <!-- Re-stroke south boundaries on top -->
+      @if (southlight() > 0) {
+        <g [attr.opacity]="southlight()">
+          @for (d of southStrokes(); track d) {
+            <path
+              [attr.d]="d"
+              fill="none"
+              stroke="rgba(255,255,255,0.85)"
+              stroke-width="0.9"
+            />
+          }
+        </g>
+      }
+
+      <!-- State labels -->
+      @if (southlight() > 0.1) {
+        <g>
+          @for (l of stateLabels(); track l.name) {
+            <text
+              [attr.x]="l.cx" [attr.y]="l.cy"
+              text-anchor="middle"
+              class="nfp__state-label"
+              [attr.opacity]="l.opacity"
+            >{{ l.name }}</text>
+          }
+        </g>
+      }
+
+      <!-- Markers -->
+      <g>
+        @for (m of markers(); track m.p.id) {
+          <g [attr.transform]="'translate(' + m.x + ',' + m.y + ')'">
+            <circle [attr.r]="18 * m.scale" [attr.fill]="m.glow" [attr.opacity]="0.55 * m.scale" />
+            <circle [attr.r]="m.pulseR" fill="none" [attr.stroke]="m.fill" stroke-width="1.2" [attr.opacity]="m.pulseO" />
+            @if (m.ringR > 0) {
+              <circle [attr.r]="m.ringR" fill="none" [attr.stroke]="m.fill" stroke-width="1.5" [attr.opacity]="m.ringO" />
+            }
+            <circle [attr.r]="7 * m.scale" fill="#fff" />
+            <circle [attr.r]="4.5 * m.scale" [attr.fill]="m.fill" />
+            <circle [attr.r]="1.6 * m.scale" cx="-1.2" cy="-1.2" fill="rgba(255,255,255,0.85)" />
+          </g>
+        }
+      </g>
+
+      <!-- Connector lines for labels -->
+      <g>
+        @for (l of labels(); track l.p.id) {
+          <line
+            [attr.x1]="l.x" [attr.y1]="l.y"
+            [attr.x2]="l.anchorX" [attr.y2]="l.anchorY"
+            [attr.stroke]="l.fill"
+            stroke-width="1.8"
+            stroke-dasharray="6 4"
+            [attr.opacity]="l.opacity"
+          />
+          <circle
+            [attr.cx]="l.anchorX" [attr.cy]="l.anchorY" r="4"
+            [attr.fill]="l.fill"
+            [attr.opacity]="l.opacity"
+          />
+        }
+      </g>
+    </svg>
+
+    <!-- Label cards (HTML so they get sub-pixel font rendering) -->
+    <div class="nfp__labels">
+      @for (l of labels(); track l.p.id) {
+        <div
+          class="nfp__label"
+          [class.nfp__label--right]="l.side === 'right'"
+          [class.nfp__label--left]="l.side === 'left'"
+          [style.left.%]="l.side === 'right' ? (l.labelX / stageW) * 100 : null"
+          [style.right.%]="l.side === 'left' ? ((stageW - l.labelX) / stageW) * 100 : null"
+          [style.top.%]="((l.labelY - 65) / stageH) * 100"
+          [style.opacity]="l.opacity"
+          [style.transform]="'translate(' + l.tx + 'px, 0)'"
+          [style.borderLeftColor]="l.fill"
+        >
+          <div class="nfp__label-eyebrow" [style.color]="l.fill">
+            {{ l.p.location }}{{ l.p.phase ? ' · ' + l.p.phase : '' }}
+          </div>
+          <div class="nfp__label-capacity">{{ l.p.capacity }}</div>
+          <div class="nfp__label-state">{{ l.p.state }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- Legend -->
+    @if (legendVisible()) {
+      <div class="nfp__legend" [style.opacity]="legendOpacity()">
+        <div class="nfp__legend-title">Legend</div>
+        @for (k of [
+          'Solar Project Development',
+          'Plant Performance Monitoring',
+          'Solar &amp; BESS Project'
+        ]; track k) {
+          <div class="nfp__legend-row">
+            <span class="nfp__legend-dot"
+                  [style.background]="typeStyles[k].fill"
+                  [style.boxShadow]="'0 0 8px ' + typeStyles[k].glow"></span>
+            <span class="nfp__legend-label">{{ typeStyles[k].label }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

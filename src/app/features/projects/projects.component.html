@@ -1,9 +1,76 @@
 <main class="page-content proj-page">
 
-  <!-- ── Hero with India Map ── -->
-  <section class="proj-hero">
-    <div class="proj-hero__map">
-      <img src="assets/images/indiamap.png" alt="India Project Locations Map" />
+  <!-- ── Hero: Poster Carousel ── -->
+  <section class="proj-poster">
+    <div class="proj-poster__viewport">
+      <div class="proj-poster__track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+        @for (slide of slides; track slide.src) {
+          <div class="proj-poster__slide">
+
+            @if (slide.type === 'map') {
+              <!-- Slide 1: full India map with info panels -->
+              <div class="proj-map-slide">
+                <div class="proj-map-side proj-map-side--dev">
+                  <span class="proj-map-side__eyebrow">Projects Under Development</span>
+                  <div class="proj-map-side__val">1,045 <span class="proj-map-side__unit">MWp</span></div>
+                  <div class="proj-map-side__breakdown">
+                    <div class="proj-map-side__row">
+                      <span class="proj-map-side__label">Utility</span>
+                      <strong class="proj-map-side__num">516 MWp</strong>
+                    </div>
+                    <div class="proj-map-side__divider"></div>
+                    <div class="proj-map-side__row">
+                      <span class="proj-map-side__label">C&amp;I</span>
+                      <strong class="proj-map-side__num">529 MWp</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="proj-map-center">
+                  <img [src]="slide.src" [alt]="slide.alt" />
+                </div>
+
+                <div class="proj-map-side proj-map-side--comm">
+                  <span class="proj-map-side__eyebrow">Commissioned</span>
+                  <div class="proj-map-side__val proj-map-side__val--comm">62 <span class="proj-map-side__unit">MWp</span></div>
+                  <div class="proj-map-side__badge">Operational</div>
+                </div>
+              </div>
+            }
+
+            @if (slide.type === 'image') {
+              <img [src]="slide.src" [alt]="slide.alt" />
+            }
+
+            @if (slide.type === 'footprint') {
+              <div class="proj-fp-wrap">
+                <app-footprint-map [autoplay]="true" [loop]="false" />
+              </div>
+            }
+
+          </div>
+        }
+      </div>
+    </div>
+    <div class="proj-poster__overlay"></div>
+    <button class="proj-poster__arrow proj-poster__arrow--prev" (click)="prevSlide()" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="proj-poster__arrow proj-poster__arrow--next" (click)="nextSlide()" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+    <div class="proj-poster__dots">
+      @for (slide of slides; track slide.src; let i = $index) {
+        <button class="proj-poster__dot"
+                [class.proj-poster__dot--active]="i === currentSlide"
+                (click)="goToSlide(i)"
+                [attr.aria-label]="'Go to slide ' + (i + 1)">
+        </button>
+      }
     </div>
   </section>
 
@@ -11,7 +78,6 @@
   <div class="proj-summary">
     <div class="container proj-summary__inner">
 
-      <!-- Card 1: Projects Under Development -->
       <div class="proj-sum-card proj-sum-card--dev">
         <div class="proj-sum-card__header">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
@@ -37,7 +103,6 @@
         </div>
       </div>
 
-      <!-- Card 2: Commissioned -->
       <div class="proj-sum-card proj-sum-card--comm">
         <div class="proj-sum-card__header">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
@@ -52,9 +117,7 @@
     </div>
   </div>
 
-
-
-  <!-- ── Services & Capacity Cards ── -->
+  <!-- ── Services & Capacity ── -->
   <div class="proj-svc-header">
     <div class="container">
       <h2 class="proj-svc-header__title">Services &amp; Capacity Summary</h2>
@@ -77,6 +140,5 @@
       </div>
     </div>
   </section>
-
 
 </main>

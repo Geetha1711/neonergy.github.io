@@ -7,7 +7,7 @@ html, body { height: 100%; margin: 0; }
 body {
   font-family: 'Manrope', sans-serif;
   color: var(--color-neutral-900);
-  background: #EAF4FB;
+  background: #EAF4FB;   // base colour — global bubble spans sit on top via position:fixed
   -webkit-font-smoothing: antialiased;
 }
 

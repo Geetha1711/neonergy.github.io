@@ -1,0 +1,82 @@
+[
+  {
+    "state": "Karnataka",
+    "location": "Gulberga",
+    "lat": 17.3297,
+    "lng": 76.8343,
+    "capacity": "37 MWp",
+    "type": "Solar Project Development"
+  },
+  {
+    "state": "Karnataka",
+    "location": "Chintamani",
+    "lat": 13.4000,
+    "lng": 78.0500,
+    "capacity": "42 MWp",
+    "type": "Solar Project Development"
+  },
+  {
+    "state": "Karnataka",
+    "location": "Kolar",
+    "lat": 13.1360,
+    "lng": 78.1290,
+    "capacity": "68 MWp",
+    "type": "Solar Project Development"
+  },
+  {
+    "state": "Karnataka",
+    "location": "Davangere",
+    "lat": 14.4644,
+    "lng": 75.9218,
+    "capacity": "76.8 MWp",
+    "type": "Solar Project Development"
+  },
+  {
+    "state": "Karnataka",
+    "location": "Mysore",
+    "lat": 12.2958,
+    "lng": 76.6394,
+    "capacity": "160 MWp",
+    "type": "Solar Project Development"
+  },
+  {
+    "state": "Karnataka",
+    "location": "Mysore",
+    "lat": 12.2958,
+    "lng": 76.6394,
+    "capacity": "210 MWp",
+    "type": "Solar Project Development"
+  },
+  {
+    "state": "Karnataka",
+    "location": "Bengaluru",
+    "lat": 12.9716,
+    "lng": 77.5946,
+    "capacity": "515 MWp",
+    "type": "Plant Performance Monitoring"
+  },
+  {
+    "state": "Tamil Nadu",
+    "location": "Thoothukudi",
+    "lat": 8.7642,
+    "lng": 78.1348,
+    "capacity": "225 MWp + 120 MWh (P-1)",
+    "type": "Solar & BESS Project"
+  },
+  {
+    "state": "Tamil Nadu",
+    "location": "Thoothukudi",
+    "lat": 8.7642,
+    "lng": 78.1348,
+    "capacity": "150 MWp + 80 MWh (P-2)",
+    "type": "Solar & BESS Project"
+  },
+  {
+    "state": "Tamil Nadu",
+    "location": "Thoothukudi",
+    "lat": 8.7642,
+    "lng": 78.1348,
+    "capacity": "75 MWp + 40 MWh (P-3)",
+    "type": "Solar & BESS Project"
+  }
+]

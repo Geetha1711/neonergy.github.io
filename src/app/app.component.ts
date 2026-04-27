@@ -10,6 +10,11 @@ import { FooterComponent } from './core/layout/footer/footer.component';
   standalone: true,
   imports: [RouterOutlet, RouterLink, CommonModule, HeaderComponent, FooterComponent],
   template: `
+    <!-- Global decorative background bubbles — fixed so they persist across all pages -->
+    <span class="g-bubble g-bubble--1"></span>
+    <span class="g-bubble g-bubble--2"></span>
+    <span class="g-bubble g-bubble--3"></span>
+
     <a class="skip-link" href="#main">Skip to main content</a>
     <app-header></app-header>
     <main id="main" class="site-main" role="main">
@@ -33,6 +38,18 @@ import { FooterComponent } from './core/layout/footer/footer.component';
     }
   `,
   styles: [`
+    /* ── Global background bubbles ─────────────────────────────────── */
+    .g-bubble {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.07;
+    }
+    .g-bubble--1 { width: 300px; height: 300px; background: #0070C0; top: -80px; right: -80px; }
+    .g-bubble--2 { width: 250px; height: 250px; background: #00B050; bottom: -70px; left: -70px; }
+    .g-bubble--3 { width: 150px; height: 150px; background: #F5A623; top: 38%; left: 7%;  }
+
     .skip-link {
       position: absolute;
       top: -100%;

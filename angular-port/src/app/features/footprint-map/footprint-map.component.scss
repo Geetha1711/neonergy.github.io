@@ -1,0 +1,185 @@
+// src/app/features/footprint-map/footprint-map.component.scss
+//
+// Hook into your existing design tokens — these vars match Neonergy's
+// brand palette. Swap them for your global CSS custom properties if you have them.
+
+:host {
+  --nfp-blue:        #0070C0;
+  --nfp-blue-deep:   #05518B;
+  --nfp-green:       #00B050;
+  --nfp-green-deep:  #0b5d3b;
+  --nfp-amber:       #F5A623;
+  --nfp-ink:         #0E1A14;
+  --nfp-ink-2:       #3B4B42;
+  --nfp-muted:       #6B7A71;
+  --nfp-paper:       #FBFBF7;
+  --nfp-rule:        #DCEEE4;
+  --nfp-font:        'Manrope', system-ui, -apple-system, sans-serif;
+  --nfp-font-mono:   'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  display: block;
+  position: relative;
+  width: 100%;
+  // 16:9 aspect — the SVG inside scales via preserveAspectRatio.
+  aspect-ratio: 16 / 9;
+  font-family: var(--nfp-font);
+  color: var(--nfp-ink);
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.nfp {
+  position: absolute;
+  inset: 0;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 35%, #F4F8FB 0%, #E5EEF4 60%, #D8E5EE 100%);
+    will-change: opacity;
+  }
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  &__content {
+    position: absolute;
+    inset: 0;
+    will-change: opacity;
+  }
+
+  &__map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  &__state-label {
+    font-family: var(--nfp-font);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    fill: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  // ── Marker labels (HTML — overlaid on SVG for crisp text) ────────────────
+
+  &__labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__label {
+    position: absolute;
+    white-space: nowrap;
+    padding: 9px 13px;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(0, 112, 192, 0.25);
+    border-left: 3px solid var(--nfp-blue);
+    border-radius: 5px;
+    box-shadow: 0 4px 14px rgba(5, 81, 139, 0.16);
+    font-family: var(--nfp-font);
+    color: var(--nfp-ink);
+    will-change: transform, opacity;
+
+    &--right { /* anchored from left */ }
+    &--left  { /* anchored from right */ }
+  }
+
+  &__label-eyebrow {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  &__label-capacity {
+    font-family: var(--nfp-font-mono);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__label-state {
+    font-size: 9.5px;
+    color: var(--nfp-muted);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  // (Removed: brand wordmark, live-portfolio meta, and "South India portfolio"
+  // headline blocks per design update — keeping markers, labels and legend.)
+
+  // ── Legend ────────────────────────────────────────────────────────────────
+
+  &__legend {
+    position: absolute;
+    bottom: 36px;
+    right: 48px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--nfp-rule);
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 22px rgba(5, 81, 139, 0.10);
+    pointer-events: none;
+    min-width: 280px;
+    will-change: opacity;
+  }
+
+  &__legend-title {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--nfp-muted);
+    margin-bottom: 10px;
+  }
+
+  &__legend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    white-space: nowrap;
+  }
+
+  &__legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+
+  &__legend-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--nfp-ink);
+    letter-spacing: -0.005em;
+  }
+
+  // (Final headline + stats removed per design update.)
+}
+
+// ── Responsive — drop label cards on small screens ─────────────────────────
+
+@media (max-width: 720px) {
+  :host {
+    aspect-ratio: 4 / 5; // taller frame for portrait
+  }
+
+  .nfp__labels { display: none; } // markers + legend tell the story
+  .nfp__legend { right: 16px; bottom: 16px; padding: 12px 14px; min-width: 0; }
+  .nfp__legend-label { font-size: 11px; }
+}
