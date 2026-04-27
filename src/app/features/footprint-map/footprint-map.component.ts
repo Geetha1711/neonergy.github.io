@@ -1,6 +1,7 @@
 // src/app/features/footprint-map/footprint-map.component.ts
 
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
@@ -99,7 +100,7 @@ interface StateLabelView {
   templateUrl: './footprint-map.component.html',
   styleUrls: ['./footprint-map.component.scss'],
 })
-export class FootprintMapComponent implements OnInit {
+export class FootprintMapComponent implements OnInit, AfterViewInit {
   // ── Inputs ────────────────────────────────────────────────────────────────
   @Input() autoplay = true;
   @Input() loop = false;
@@ -121,6 +122,19 @@ export class FootprintMapComponent implements OnInit {
   readonly time = signal(0);
   readonly playing = signal(false);
   readonly geo = signal<StatesGeo | null>(null);
+
+  /** Host element pixel dimensions — updated on resize. */
+  readonly hostDims = signal({ w: 0, h: 0 });
+
+  /** SVG-to-host coordinate transform (xMidYMid meet letterbox geometry). */
+  readonly svgTransform = computed(() => {
+    const { w, h } = this.hostDims();
+    if (w === 0 || h === 0) return { scale: 1, offX: 0, offY: 0, w: STAGE_W };
+    const scale = Math.min(w / STAGE_W, h / STAGE_H);
+    const offX  = (w - STAGE_W * scale) / 2;
+    const offY  = (h - STAGE_H * scale) / 2;
+    return { scale, offX, offY, w };
+  });
 
   /** Reduced-motion: jump straight to final state and skip animation. */
   private reducedMotion = false;
@@ -278,6 +292,20 @@ export class FootprintMapComponent implements OnInit {
   readonly typeStyles: Record<string, TypeStyle> = TYPE_STYLES;
 
   // ── Lifecycle ─────────────────────────────────────────────────────────────
+
+  ngAfterViewInit(): void {
+    this.measureHost();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.measureHost();
+  }
+
+  private measureHost(): void {
+    const el = this.host.nativeElement as HTMLElement;
+    this.hostDims.set({ w: el.clientWidth, h: el.clientHeight });
+  }
 
   ngOnInit(): void {
     this.reducedMotion =
