@@ -44,15 +44,15 @@ export const TYPE_STYLES: Record<ProjectType, TypeStyle> = {
  */
 export const LABEL_LAYOUTS: Record<string, LabelLayout> = {
   'k-gul':    { side: 'left',  offX:  -40, offY:    0 },
-  'k-chi':    { side: 'right', offX:  110, offY:  -70 },
-  'k-kol':    { side: 'right', offX:  110, offY:   70 },
+  'k-chi':    { side: 'right', offX:  110, offY: -110 },
+  'k-kol':    { side: 'right', offX:  100, offY:   40 },
   'k-dav':    { side: 'left',  offX: -110, offY:    0 },
-  'k-mys-1':  { side: 'left',  offX: -110, offY: -100 },
-  'k-mys-2':  { side: 'left',  offX: -110, offY:   80 },
-  'k-ben':    { side: 'right', offX:  130, offY:   90 },
-  'tn-thu-1': { side: 'right', offX:  120, offY: -160 },
-  'tn-thu-2': { side: 'right', offX:  120, offY:    0 },
-  'tn-thu-3': { side: 'right', offX:  120, offY:  160 },
+  'k-mys-1':  { side: 'left',  offX: -110, offY:  -20 },
+  'k-mys-2':  { side: 'left',  offX: -110, offY:  120 },
+  'k-ben':    { side: 'right', offX:  130, offY:  160 },
+  'tn-thu-1': { side: 'right', offX:  175, offY:   -15 },
+  'tn-thu-2': { side: 'right', offX:  160, offY:  100 },
+  'tn-thu-3': { side: 'right', offX:  140, offY:  190 },
 };
 
 /** Aggregate totals shown in the bottom-left stats strip. */
