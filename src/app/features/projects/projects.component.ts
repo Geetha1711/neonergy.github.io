@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FootprintMapComponent } from '../footprint-map/footprint-map.component';
+import { HeroIntroComponent } from '../hero-intro/hero-intro.component';
 
 // Star colours matching the reference JPEG
 const COLORS = {
@@ -53,7 +54,7 @@ export const STAR_PATH =
   'L0,5 L-5.88,8.09 L-4.75,1.55 L-9.51,-3.09 L-2.94,-4.05 Z';
 
 interface PosterSlide {
-  type: 'map' | 'image' | 'footprint';
+  type: 'hero-intro' | 'image' | 'footprint';
   src:  string;
   alt:  string;
 }
@@ -61,7 +62,7 @@ interface PosterSlide {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, RouterLink, FootprintMapComponent],
+  imports: [CommonModule, RouterLink, FootprintMapComponent, HeroIntroComponent],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
@@ -70,9 +71,9 @@ export class ProjectsComponent {
   currentSlide = 0;
 
   slides: PosterSlide[] = [
-    { type: 'map',      src: 'assets/images/indiamap.jpeg',                alt: 'India project footprint map' },
-    { type: 'image',    src: 'assets/images/projects/ongoingprojects.png', alt: 'Ongoing solar projects' },
-    { type: 'footprint', src: '',                                           alt: 'Animated India footprint map' },
+    { type: 'hero-intro', src: '', alt: 'Neonergy hero intro animation' },
+    { type: 'image',      src: 'assets/images/projects/ongoingprojects.png', alt: 'Ongoing solar projects' },
+    { type: 'footprint',  src: '', alt: 'Animated India footprint map' },
   ];
 
   nextSlide(): void { this.currentSlide = (this.currentSlide + 1) % this.slides.length; }

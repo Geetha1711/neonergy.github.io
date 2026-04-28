@@ -1,0 +1,241 @@
+// src/app/features/hero-intro/hero-intro.component.scss
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #050a14;
+}
+
+// ── Stage wrapper ─────────────────────────────────────────────────────────────
+.hi-stage {
+  position: absolute;
+  inset: 0;
+}
+
+// ── Globe scene ───────────────────────────────────────────────────────────────
+.hi-globe-scene {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, #0a1828 0%, #050a14 55%, #02050a 100%);
+  will-change: opacity;
+}
+
+.hi-globe-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ── Brand intro overlay ───────────────────────────────────────────────────────
+.hi-intro-overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
+  color: #ECF4FF;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-align: center;
+}
+
+.hi-intro-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: clamp(8px, 0.55vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: #7BD7A0;
+  margin-bottom: clamp(8px, 0.9vw, 18px);
+  will-change: opacity;
+}
+
+.hi-intro-dash {
+  display: inline-block;
+  width: 28px;
+  height: 1.5px;
+  background: #F5A623;
+  flex-shrink: 0;
+}
+
+.hi-intro-title {
+  font-size: clamp(20px, 3.3vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin-bottom: clamp(6px, 0.9vw, 18px);
+  will-change: transform, opacity;
+}
+
+.hi-intro-sub {
+  font-size: clamp(9px, 0.93vw, 18px);
+  font-weight: 400;
+  color: rgba(236, 244, 255, 0.65);
+  letter-spacing: 0.01em;
+  max-width: min(560px, 29vw);
+  will-change: opacity;
+}
+
+// ── India lock label ──────────────────────────────────────────────────────────
+.hi-lock-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  color: #ECF4FF;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+.hi-lock-eyebrow {
+  font-size: clamp(7px, 0.57vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #7BD7A0;
+  margin-bottom: clamp(4px, 0.4vw, 8px);
+}
+
+.hi-lock-title {
+  font-size: clamp(14px, 1.87vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+// ── Map background ────────────────────────────────────────────────────────────
+.hi-map-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, #F4F8FB 0%, #E5EEF4 60%, #D8E5EE 100%);
+  will-change: opacity;
+}
+
+.hi-map-content {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.hi-map-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.hi-map-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ── State labels ──────────────────────────────────────────────────────────────
+.hi-state-label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  fill: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+// ── HTML label cards ──────────────────────────────────────────────────────────
+.hi-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hi-label {
+  position: absolute;
+  padding: 9px 13px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 3px solid transparent; // color set inline
+  border-radius: 5px;
+  box-shadow: 0 4px 14px rgba(5, 81, 139, 0.16);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0E1A14;
+  white-space: nowrap;
+  will-change: transform, opacity;
+
+  &__eyebrow {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  &__capacity {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  &__state {
+    font-size: 9.5px;
+    color: #6B7A71;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+}
+
+// ── Legend ────────────────────────────────────────────────────────────────────
+.hi-legend {
+  position: absolute;
+  bottom: clamp(10px, 1.8vw, 36px);
+  right: clamp(10px, 2.5vw, 48px);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #DCEEE4;
+  border-radius: 8px;
+  padding: clamp(8px, 0.83vw, 16px) clamp(10px, 1.04vw, 20px);
+  box-shadow: 0 6px 22px rgba(5, 81, 139, 0.10);
+  font-family: 'Inter', system-ui, sans-serif;
+  pointer-events: none;
+  min-width: clamp(160px, 14.58vw, 280px);
+  will-change: opacity;
+
+  &__title {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6B7A71;
+    margin-bottom: 10px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    white-space: nowrap;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0E1A14;
+    letter-spacing: -0.005em;
+  }
+}

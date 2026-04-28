@@ -102,6 +102,19 @@
   @media (max-width: 768px) { height: 340px; }
 }
 
+// ── Hero intro slide wrapper ──────────────────────────────────────────────────
+.proj-hero-intro-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050a14;
+
+  ::ng-deep app-hero-intro {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
 // ── Footprint-map slide wrapper ───────────────────────────────────────────────
 .proj-fp-wrap {
   width: 100%;

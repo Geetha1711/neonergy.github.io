@@ -4,37 +4,13 @@
   <section class="proj-poster">
     <div class="proj-poster__viewport">
       <div class="proj-poster__track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
-        @for (slide of slides; track slide.src) {
+        @for (slide of slides; track slide.type) {
           <div class="proj-poster__slide">
 
-            @if (slide.type === 'map') {
-              <!-- Slide 1: full India map with info panels -->
-              <div class="proj-map-slide">
-                <div class="proj-map-side proj-map-side--dev">
-                  <span class="proj-map-side__eyebrow">Projects Under Development</span>
-                  <div class="proj-map-side__val">1,045 <span class="proj-map-side__unit">MWp</span></div>
-                  <div class="proj-map-side__breakdown">
-                    <div class="proj-map-side__row">
-                      <span class="proj-map-side__label">Utility</span>
-                      <strong class="proj-map-side__num">516 MWp</strong>
-                    </div>
-                    <div class="proj-map-side__divider"></div>
-                    <div class="proj-map-side__row">
-                      <span class="proj-map-side__label">C&amp;I</span>
-                      <strong class="proj-map-side__num">529 MWp</strong>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="proj-map-center">
-                  <img [src]="slide.src" [alt]="slide.alt" />
-                </div>
-
-                <div class="proj-map-side proj-map-side--comm">
-                  <span class="proj-map-side__eyebrow">Commissioned</span>
-                  <div class="proj-map-side__val proj-map-side__val--comm">62 <span class="proj-map-side__unit">MWp</span></div>
-                  <div class="proj-map-side__badge">Operational</div>
-                </div>
+            @if (slide.type === 'hero-intro') {
+              <!-- Slide 1: animated hero intro (globe → India map) -->
+              <div class="proj-hero-intro-wrap">
+                <app-hero-intro />
               </div>
             }
 
@@ -64,7 +40,7 @@
       </svg>
     </button>
     <div class="proj-poster__dots">
-      @for (slide of slides; track slide.src; let i = $index) {
+      @for (slide of slides; track slide.type; let i = $index) {
         <button class="proj-poster__dot"
                 [class.proj-poster__dot--active]="i === currentSlide"
                 (click)="goToSlide(i)"

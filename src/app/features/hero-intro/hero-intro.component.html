@@ -1,0 +1,264 @@
+<!-- src/app/features/hero-intro/hero-intro.component.html -->
+<div class="hi-stage" aria-label="Neonergy hero intro animation">
+
+  <!-- ═══════════════ SCENE 1–2: GLOBE ═══════════════ -->
+  <div class="hi-globe-scene" [style.opacity]="globeSceneOpacity()">
+
+    <!-- Dark space background + star field + camera group -->
+    <svg class="hi-globe-svg" [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <radialGradient id="hi-atmo" cx="50%" cy="50%" r="50%">
+          <stop offset="60%"  stop-color="rgba(70,140,220,0)" />
+          <stop offset="78%"  stop-color="rgba(70,140,220,0.35)" />
+          <stop offset="92%"  stop-color="rgba(50,110,200,0.18)" />
+          <stop offset="100%" stop-color="rgba(50,110,200,0)" />
+        </radialGradient>
+        <radialGradient id="hi-ocean" cx="38%" cy="34%" r="78%">
+          <stop offset="0%"   stop-color="#1a3a5c" />
+          <stop offset="55%"  stop-color="#0c2240" />
+          <stop offset="100%" stop-color="#040d1c" />
+        </radialGradient>
+        <radialGradient id="hi-terminator" cx="35%" cy="32%" r="70%">
+          <stop offset="0%"   stop-color="rgba(120,180,255,0.18)" />
+          <stop offset="55%"  stop-color="rgba(120,180,255,0)" />
+          <stop offset="100%" stop-color="rgba(0,0,0,0.55)" />
+        </radialGradient>
+        <radialGradient id="hi-india-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="rgba(0,176,80,0.55)" />
+          <stop offset="100%" stop-color="rgba(0,176,80,0)" />
+        </radialGradient>
+      </defs>
+
+      <!-- Stars -->
+      <g>
+        @for (s of stars; track s.i; let idx = $index) {
+          <circle
+            [attr.cx]="s.x" [attr.cy]="s.y" [attr.r]="s.r"
+            fill="#fff"
+            [attr.opacity]="starFlickers()[idx]"
+          />
+        }
+      </g>
+
+      <!-- Camera group -->
+      <g [attr.transform]="globeCamTransform()">
+        <!-- Atmospheric halo -->
+        <circle [attr.cx]="stageW / 2" [attr.cy]="stageH / 2"
+                [attr.r]="baseR * 1.55" fill="url(#hi-atmo)" />
+        <!-- Rim ring -->
+        <circle [attr.cx]="stageW / 2" [attr.cy]="stageH / 2"
+                [attr.r]="baseR + 6" fill="none"
+                stroke="rgba(120,180,255,0.25)" stroke-width="1.5" />
+        <!-- Globe ocean disk -->
+        <circle [attr.cx]="stageW / 2" [attr.cy]="stageH / 2"
+                [attr.r]="baseR" fill="url(#hi-ocean)" />
+        <!-- Graticule -->
+        <path [attr.d]="globeGraticulePath()"
+              fill="none" stroke="rgba(120,180,255,0.10)" stroke-width="0.7" />
+        <!-- Countries -->
+        @for (p of globePaths(); track $index) {
+          <path [attr.d]="p.d" [attr.fill]="p.fill"
+                [attr.stroke]="p.stroke" [attr.stroke-width]="p.strokeWidth" />
+        }
+        <!-- India halo glow (when highlighted) -->
+        @if (indiaHalo(); as halo) {
+          <g>
+            <circle [attr.cx]="halo.cx" [attr.cy]="halo.cy"
+                    [attr.r]="halo.r" fill="url(#hi-india-glow)"
+                    [attr.opacity]="halo.highlightOn" />
+            <circle [attr.cx]="halo.cx" [attr.cy]="halo.cy"
+                    r="4" fill="#7af3a8" [attr.opacity]="halo.highlightOn" />
+            <circle [attr.cx]="halo.cx" [attr.cy]="halo.cy"
+                    r="9" fill="none" stroke="#7af3a8" stroke-width="1"
+                    [attr.stroke-opacity]="halo.highlightOn * 0.6" />
+          </g>
+        }
+        <!-- Day/night terminator -->
+        <circle [attr.cx]="stageW / 2" [attr.cy]="stageH / 2"
+                [attr.r]="baseR" fill="url(#hi-terminator)" />
+        <!-- Specular highlight -->
+        <ellipse
+          [attr.cx]="stageW / 2 - baseR * 0.4"
+          [attr.cy]="stageH / 2 - baseR * 0.45"
+          [attr.rx]="baseR * 0.45" [attr.ry]="baseR * 0.22"
+          fill="rgba(255,255,255,0.06)" />
+      </g>
+    </svg>
+
+    <!-- Brand intro overlay (0–6s) -->
+    <div class="hi-intro-overlay"
+         [style.top.px]="introTopPx()"
+         [style.left.px]="svgTransform().offX"
+         [style.right.px]="svgTransform().offX">
+      <div class="hi-intro-eyebrow" [style.opacity]="introEyebrowOp()">
+        <span class="hi-intro-dash"></span>
+        Our footprint
+        <span class="hi-intro-dash"></span>
+      </div>
+      <div class="hi-intro-title"
+           [style.opacity]="introTitleOp()"
+           [style.transform]="'translateY(' + introTitleY() + 'px)'">
+        Powering the energy transition
+      </div>
+      <div class="hi-intro-sub" [style.opacity]="introSubOp()">
+        From the orbit of a renewable future down to ten projects on the ground in South India
+      </div>
+    </div>
+
+    <!-- India lock label (4.2–7.4s) -->
+    <div class="hi-lock-label"
+         [style.top.px]="lockTopPx()"
+         [style.left.px]="svgTransform().offX"
+         [style.right.px]="svgTransform().offX"
+         [style.opacity]="lockOp()"
+         [style.transform]="'translateY(' + lockTy() + 'px)'">
+      <div class="hi-lock-eyebrow">Locating · 22°N 82°E</div>
+      <div class="hi-lock-title">India</div>
+    </div>
+
+  </div>
+  <!-- /globe scene -->
+
+  <!-- ═══════════════ SCENE 3–6: INDIA MAP ═══════════════ -->
+
+  <!-- Background fades in from t=6.7 to cover globe handoff -->
+  <div class="hi-map-bg" [style.opacity]="mapBgOpacity()"></div>
+
+  <!-- Map content -->
+  <div class="hi-map-content" [style.opacity]="mapContentOpacity()">
+
+    <!-- Dotted graticule -->
+    <svg class="hi-map-grid" [attr.viewBox]="viewBox" aria-hidden="true">
+      <defs>
+        <pattern id="hi-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.8" fill="#0070C0" opacity="0.18" />
+        </pattern>
+      </defs>
+      <rect [attr.width]="stageW" [attr.height]="stageH" fill="url(#hi-dots)" />
+    </svg>
+
+    <!-- Main map SVG -->
+    <svg class="hi-map-svg" [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="hi-state-north" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#5A98C4" />
+          <stop offset="100%" stop-color="#3B7BAD" />
+        </linearGradient>
+        <linearGradient id="hi-state-south" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#0E8DD3" />
+          <stop offset="100%" stop-color="#0563A1" />
+        </linearGradient>
+        <linearGradient id="hi-state-dim" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#A5BCCD" />
+          <stop offset="100%" stop-color="#88A2B6" />
+        </linearGradient>
+      </defs>
+
+      <!-- States -->
+      <g>
+        @for (s of mapStates(); track s.d) {
+          <path [attr.d]="s.d" [attr.fill]="s.fill"
+                stroke="rgba(255,255,255,0.55)" stroke-width="0.6" />
+          @if (!s.isSouth && s.dimOpacity > 0) {
+            <path [attr.d]="s.d" fill="url(#hi-state-dim)"
+                  [attr.opacity]="s.dimOpacity"
+                  stroke="rgba(255,255,255,0.4)" stroke-width="0.6" />
+          }
+        }
+      </g>
+
+      <!-- Re-stroke south borders on top -->
+      @if (mapSouthlight() > 0) {
+        <g [attr.opacity]="mapSouthlight()">
+          @for (d of mapSouthStrokes(); track d) {
+            <path [attr.d]="d" fill="none"
+                  stroke="rgba(255,255,255,0.85)" stroke-width="0.9" />
+          }
+        </g>
+      }
+
+      <!-- State labels -->
+      @if (mapSouthlight() > 0.1) {
+        <g>
+          @for (l of mapStateLabels(); track l.name) {
+            <text [attr.x]="l.cx" [attr.y]="l.cy" text-anchor="middle"
+                  class="hi-state-label" [attr.opacity]="l.opacity">
+              {{ l.name }}
+            </text>
+          }
+        </g>
+      }
+
+      <!-- Markers -->
+      <g>
+        @for (m of mapMarkers(); track m.p.id) {
+          <g [attr.transform]="'translate(' + m.x + ',' + m.y + ')'">
+            <circle [attr.r]="18 * m.scale" [attr.fill]="m.glow" [attr.opacity]="0.55 * m.scale" />
+            <circle [attr.r]="m.pulseR" fill="none" [attr.stroke]="m.fill"
+                    stroke-width="1.2" [attr.opacity]="m.pulseO" />
+            @if (m.ringR > 0) {
+              <circle [attr.r]="m.ringR" fill="none" [attr.stroke]="m.fill"
+                      stroke-width="1.5" [attr.opacity]="m.ringO" />
+            }
+            <circle [attr.r]="7 * m.scale" fill="#fff" />
+            <circle [attr.r]="4.5 * m.scale" [attr.fill]="m.fill" />
+            <circle [attr.r]="1.6 * m.scale" cx="-1.2" cy="-1.2" fill="rgba(255,255,255,0.85)" />
+          </g>
+        }
+      </g>
+
+      <!-- Connector lines for labels -->
+      <g>
+        @for (l of mapLabels(); track l.p.id) {
+          <line [attr.x1]="l.x" [attr.y1]="l.y"
+                [attr.x2]="l.anchorX" [attr.y2]="l.anchorY"
+                [attr.stroke]="l.fill" stroke-width="2.5"
+                stroke-dasharray="8 5" [attr.opacity]="l.opacity" />
+          <circle [attr.cx]="l.anchorX" [attr.cy]="l.anchorY" r="7"
+                  [attr.fill]="l.fill" [attr.opacity]="l.opacity" />
+        }
+      </g>
+    </svg>
+
+    <!-- HTML label cards -->
+    <div class="hi-labels">
+      @for (l of mapLabels(); track l.p.id) {
+        <div
+          class="hi-label"
+          [class.hi-label--right]="l.side === 'right'"
+          [class.hi-label--left]="l.side === 'left'"
+          [style.left.px]="l.side === 'right' ? l.labelX * svgTransform().scale + svgTransform().offX : null"
+          [style.right.px]="l.side === 'left' ? svgTransform().w - (l.labelX * svgTransform().scale + svgTransform().offX) : null"
+          [style.top.px]="l.labelY * svgTransform().scale + svgTransform().offY - 30"
+          [style.opacity]="l.opacity"
+          [style.transform]="'translate(' + l.tx + 'px, 0)'"
+          [style.borderLeftColor]="l.fill"
+        >
+          <div class="hi-label__eyebrow" [style.color]="l.fill">
+            {{ l.p.location }}{{ l.p.phase ? ' · ' + l.p.phase : '' }}
+          </div>
+          <div class="hi-label__capacity">{{ l.p.capacity }}</div>
+          <div class="hi-label__state">{{ l.p.state }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- Legend -->
+    @if (legendVisible()) {
+      <div class="hi-legend" [style.opacity]="legendOpacity()">
+        <div class="hi-legend__title">Legend</div>
+        @for (k of ['Solar Project Development', 'Plant Performance Monitoring', 'Solar & BESS Project']; track k) {
+          <div class="hi-legend__row">
+            <span class="hi-legend__dot"
+                  [style.background]="typeStyles[k].fill"
+                  [style.box-shadow]="'0 0 8px ' + typeStyles[k].glow"></span>
+            <span class="hi-legend__label">{{ typeStyles[k].label }}</span>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+  <!-- /map content -->
+
+</div>
