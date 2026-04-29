@@ -59,13 +59,12 @@ import { MatDividerModule } from '@angular/material/divider';
   `,
   styles: [`
     .policy-hero {
-      background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary) 100%);
-      padding: var(--space-8) 0 var(--space-7);
-      h1 { color: white; margin-bottom: var(--space-2); }
-      p  { color: rgba(255,255,255,0.8); font-size: var(--fs-body-lg); margin: 0; }
+      background: linear-gradient(135deg, #0b5d3b 0%, #0070C0 100%);
+      padding: var(--space-5) 0 var(--space-4);
+      h1 { color: white; margin-bottom: var(--space-2); font-size: 2.4rem; font-weight: 800; letter-spacing: 0.01em; }
+      p  { color: rgba(255,255,255,0.85); font-size: var(--fs-body-lg); margin: 0; }
     }
     .policy-body {
-      max-width: 800px;
       padding-top: var(--space-7);
       padding-bottom: var(--space-9);
     }
@@ -77,9 +76,9 @@ import { MatDividerModule } from '@angular/material/divider';
     }
     .policy-section {
       margin-bottom: var(--space-7);
-      h2 { color: var(--color-primary-dark); margin-bottom: var(--space-3); font-size: var(--fs-h4); }
+      h2 { color: var(--color-primary-dark); margin-bottom: var(--space-3); font-size: var(--fs-h3); font-weight: 700; }
       mat-divider { margin-bottom: var(--space-4); }
-      p { color: var(--color-neutral-600); line-height: 1.8; margin: 0; }
+      p { color: var(--color-neutral-600); line-height: 1.8; margin: 0; font-size: var(--fs-body); }
       a { color: var(--color-primary-dark); text-decoration: underline; &:hover { color: #F5A623; } }
     }
   `]

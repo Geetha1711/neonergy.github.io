@@ -73,7 +73,7 @@ import { FooterComponent } from './core/layout/footer/footer.component';
       z-index: 800;
       background: #F5A623;
       color: #111;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.18em;

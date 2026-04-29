@@ -15,7 +15,7 @@
         @for (social of socialLinks; track social.label) {
           <a [href]="social.url" target="_blank" rel="noopener noreferrer"
              [attr.aria-label]="social.label" class="header__social-link">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" [attr.fill]="social.color" aria-hidden="true">
               <path [attr.d]="social.svgPath" />
             </svg>
           </a>

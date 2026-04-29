@@ -1,0 +1,236 @@
+<!-- src/app/features/careers/careers.component.html -->
+<main class="page-content careers-page">
+
+  <!-- ── Hero Carousel ── -->
+  <section class="cr-poster">
+    <div class="cr-poster__viewport">
+      <div class="cr-poster__track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+        @for (slide of carouselSlides; track slide.src) {
+          <div class="cr-poster__slide">
+            <img [src]="slide.src" [alt]="slide.alt" />
+          </div>
+        }
+      </div>
+    </div>
+    <button class="cr-poster__arrow cr-poster__arrow--prev" (click)="prevSlide()" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="cr-poster__arrow cr-poster__arrow--next" (click)="nextSlide()" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+    <div class="cr-poster__dots">
+      @for (slide of carouselSlides; track slide.src; let i = $index) {
+        <button class="cr-poster__dot"
+                [class.cr-poster__dot--active]="i === currentSlide"
+                (click)="goToSlide(i)"
+                [attr.aria-label]="'Go to slide ' + (i + 1)">
+        </button>
+      }
+    </div>
+  </section>
+
+  <!-- ── Page Header Strip ── -->
+  <div class="cr-page-header">
+    <div class="container cr-page-header__inner">
+      <h1 class="cr-page-header__title">Careers at Neonergy</h1>
+      <p class="cr-page-header__lead">Join Neonergy's advisory and operations team — where finance, engineering, and renewable energy converge.</p>
+    </div>
+  </div>
+
+
+  <!-- ── Open Positions ── -->
+  <section class="cr-jobs" id="open-positions">
+    <div class="container">
+      <div class="cr-section-header">
+        <div class="cr-section-header__title-row">
+          <div class="cr-section-header__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              <line x1="12" y1="12" x2="12" y2="16"/>
+              <line x1="10" y1="14" x2="14" y2="14"/>
+            </svg>
+          </div>
+          <h2 class="cr-section-header__title">Current Openings</h2>
+        </div>
+        <p class="cr-section-header__desc">{{ jobs.length }} open positions · All roles based in Bengaluru</p>
+      </div>
+
+      <div class="cr-jobs__list">
+        @for (job of jobs; track job.id) {
+          <div class="cr-job-card" [class.cr-job-card--open]="expanded() === job.id"
+               [style.--accent]="job.accentColor">
+
+            <!-- Card header (always visible) -->
+            <div class="cr-job-card__header" (click)="toggle(job.id)">
+              <div class="cr-job-card__accent-bar"></div>
+
+              <div class="cr-job-card__meta-left">
+<div class="cr-job-card__title-row">
+                  <span class="cr-job-card__icon" [innerHTML]="safe(job.iconPath)"></span>
+                  <h3 class="cr-job-card__title">{{ job.title }}</h3>
+                  <span class="cr-job-card__subtitle">{{ job.subtitle }}</span>
+                </div>
+                <div class="cr-job-card__chips">
+                  @for (tag of job.tags; track tag) {
+                    <span class="cr-chip">{{ tag }}</span>
+                  }
+                </div>
+              </div>
+
+              <div class="cr-job-card__meta-right">
+                <div class="cr-job-card__pill-row">
+                  <span class="cr-pill cr-pill--loc">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {{ job.location }}
+                  </span>
+                  <span class="cr-pill cr-pill--type">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                    {{ job.employmentType }}
+                  </span>
+                  <span class="cr-pill cr-pill--vac">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    {{ job.vacancies }} {{ job.vacancies === 1 ? 'Vacancy' : 'Vacancies' }}
+                  </span>
+                </div>
+                @if (job.shiftNote) {
+                  <span class="cr-shift-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    {{ job.shiftNote }}
+                  </span>
+                }
+              </div>
+
+              <button class="cr-job-card__toggle" [attr.aria-expanded]="expanded() === job.id"
+                      [attr.aria-label]="(expanded() === job.id ? 'Hide' : 'Show') + ' responsibilities for ' + job.title">
+                <svg class="cr-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Always-visible body -->
+            <div class="cr-job-card__body">
+
+              <!-- Summary -->
+              <div class="cr-jd-summary">
+                <h4 class="cr-jd-section-title">Role Overview</h4>
+                <p>{{ job.summary }}</p>
+              </div>
+
+              <!-- Eligibility -->
+              <div class="cr-jd-eligibility">
+                <h4 class="cr-jd-section-title">Eligibility</h4>
+                <ul class="cr-jd-list cr-jd-list--elig">
+                  @for (e of job.eligibility; track e) {
+                    <li>{{ e }}</li>
+                  }
+                </ul>
+              </div>
+
+              <!-- Responsibilities — collapsible -->
+              @if (expanded() === job.id) {
+                <div class="cr-jd-responsibilities">
+                  <h4 class="cr-jd-section-title">Responsibilities</h4>
+                  <div class="cr-jd-resp-grid">
+                    @for (group of job.responsibilities; track group.section) {
+                      <div class="cr-jd-resp-group">
+                        <h5 class="cr-jd-resp-section">{{ group.section }}</h5>
+                        <ul class="cr-jd-list">
+                          @for (item of group.items; track item) {
+                            <li>{{ item }}</li>
+                          }
+                        </ul>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              <!-- Apply CTA -->
+              <div class="cr-jd-apply">
+                <a [href]="'mailto:info@neonergy.co?subject=Application%20for%20' + job.jobCode + '%20—%20' + job.title"
+                   class="cr-btn cr-btn--apply"
+                   [style.background]="job.accentColor">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Apply for {{ job.title }}
+                </a>
+                <span class="cr-jd-apply__note">Email CV to info&#64;neonergy.co · Subject: {{ job.jobCode }}</span>
+              </div>
+
+            </div>
+
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hiring Process ── -->
+  <section class="cr-process" #processSection>
+    <div class="container">
+      <div class="cr-section-header">
+        <div class="cr-section-header__title-row">
+          <div class="cr-section-header__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h2 class="cr-section-header__title">How We Hire</h2>
+        </div>
+        <p class="cr-section-header__desc">A simple, transparent process — all interviews are conducted in person at our Bengaluru office.</p>
+      </div>
+      <div class="cr-process__steps">
+        @for (step of hiringSteps; track step.num) {
+          <div class="cr-step">
+            <div class="cr-step__top">
+              <div class="cr-step__num-label">
+                <span class="cr-step__num">{{ step.num }}</span>
+                <h4 class="cr-step__label">{{ step.label }}</h4>
+              </div>
+              <div class="cr-step__icon" [innerHTML]="safe(step.icon)"></div>
+            </div>
+            <p class="cr-step__desc">{{ step.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ── -->
+  <section class="cr-cta">
+    <div class="container cr-cta__inner">
+      <div class="cr-cta__text">
+        <h2 class="cr-cta__title">Don't see a role that fits?</h2>
+        <p class="cr-cta__sub">
+          We're always looking for driven people passionate about clean energy.
+          Send us your CV — use the subject format below so we can route your application faster.
+        </p>
+        <p class="cr-cta__subject-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Subject format: <strong>Job Application — [Designation] - [Exp] - [Education]</strong>
+        </p>
+        <p class="cr-cta__subject-example">e.g. Job Application — Solar Engineer - 3yrs - B.Tech</p>
+      </div>
+      <div class="cr-cta__action">
+        <a href="mailto:info@neonergy.co?subject=Job%20Application%20—%20[Designation]_[Exp]_[Education]"
+           class="cr-btn cr-btn--cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send Open Application
+        </a>
+        <div class="cr-cta__email-tip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          info&#64;neonergy.co
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

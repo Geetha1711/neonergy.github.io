@@ -75,7 +75,7 @@ import { MatIconModule } from '@angular/material/icon';
       display: inline-block;
       background: #87ceeb;
       color: #0b5d3b;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-weight: 700;
       font-size: 0.88rem;
       letter-spacing: 0.12em;

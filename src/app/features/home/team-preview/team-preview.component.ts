@@ -20,9 +20,9 @@ interface TeamMember {
 })
 export class TeamPreviewComponent {
   members: TeamMember[] = [
-    { name: 'Balakumaran J', role: 'Chief Business Officer', bio: 'Two decades of renewable energy leadership across advisory, EPC, and project financing in India.', linkedIn: '#', photo: 'assets/images/team/bala.jpg' },
-    { name: 'Naveen M', role: 'RE Business Unit Head', bio: 'Led large-scale solar and wind projects from feasibility through commissioning across South India.', linkedIn: '#', photo: 'assets/images/team/naveen.jpg' },
-    { name: 'Sijith K', role: 'Head, Contracts', bio: 'Specialist in project contracting, risk allocation, and procurement for energy infrastructure.', linkedIn: '#', photo: 'assets/images/team/sijith.jpg' },
-    { name: 'Shreya Desai', role: 'Legal Counsel', bio: 'Energy sector legal expert focusing on project finance, regulatory compliance, and agreements.', linkedIn: '#', photo: 'assets/images/team/reddy.jpg' },
+    { name: 'Balakumaran J',     role: 'Chief Business Officer',  bio: '20+ years across EPC, Consulting & Investment Banking in Renewable and Conventional Power.', linkedIn: 'https://www.linkedin.com/in/balakumaran-jayaprakasam/', photo: 'assets/images/team/bala.jpg' },
+    { name: 'Naveen M',          role: 'RE – Business Unit Head', bio: '17+ years in solar EPC and project development, delivering over 3 GW of solar projects across India.', linkedIn: 'https://www.linkedin.com/in/naveen-m-b2514220/', photo: 'assets/images/team/naveen.jpg' },
+    { name: 'Sijith K',          role: 'Head – Contracts',        bio: '24+ years across solar and wind sectors, contributing to 3 GW+ solar and 1.5 GW wind projects.', linkedIn: 'https://www.linkedin.com/company/neonergy-engineering-private-limited/', photo: 'assets/images/team/sijith.jpg' },
+    { name: 'Shreya Desai',      role: 'Legal Counsel',           bio: 'Nearly two decades advising on M&A, private equity, foreign investments & capital markets.', linkedIn: 'https://www.linkedin.com/in/shreya-desai-68baa9b6/', photo: 'assets/images/team/shreya.jpg' },
   ];
 }

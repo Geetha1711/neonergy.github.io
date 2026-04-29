@@ -634,21 +634,22 @@ $rainbow: #00b4d8, #ff8c00, #f0c000, #44dd66, #00bfff, #6a5acd;
 // ── Services Header ───────────────────────────────────────────────────────────
 .proj-svc-header {
   background: linear-gradient(135deg, #0b5d3b 0%, #0070C0 100%);
-  padding: var(--space-6) 0;
+  padding: var(--space-4) 0;
 
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-2);
     text-align: center;
   }
 
   &__title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 800;
     color: #fff;
     margin: 0;
+    letter-spacing: 0.01em;
     display: flex;
     align-items: center;
     gap: var(--space-5);
@@ -672,9 +673,9 @@ $rainbow: #00b4d8, #ff8c00, #f0c000, #44dd66, #00bfff, #6a5acd;
     font-size: 1.05rem;
     font-weight: 700;
     color: rgba(255,255,255,0.9);
-    line-height: 1.8;
+    line-height: 1.4;
     margin: 0;
-    max-width: 680px;
+    white-space: nowrap;
   }
 }
 

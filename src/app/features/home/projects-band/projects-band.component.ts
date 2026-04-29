@@ -23,10 +23,10 @@ export class ProjectsBandComponent implements AfterViewInit, OnDestroy {
   @ViewChild('bandRef') bandRef!: ElementRef;
 
   stats: Stat[] = [
-    { value: 3, suffix: '+ GW', label: 'Renewable capacity delivered', current: 0 },
-    { value: 1000, suffix: '+ MWp', label: 'Advisory & engineering portfolio', current: 0 },
-    { value: 20, suffix: '+ years', label: 'Of leadership experience', current: 0 },
-    { value: 4, prefix: 'Pan-', suffix: '-India', label: 'Project footprint', current: 0 },
+    { value: 4,    suffix: '+ GW',   label: 'Renewable energy project experience',    current: 0 },
+    { value: 1045, suffix: ' MWp',   label: 'Current advisory & engineering portfolio', current: 0 },
+    { value: 62,   suffix: ' MWp',   label: 'Capacity commissioned',                  current: 0 },
+    { value: 20,   suffix: '+ years',label: 'Of combined leadership experience',       current: 0 },
   ];
 
   private observer?: IntersectionObserver;

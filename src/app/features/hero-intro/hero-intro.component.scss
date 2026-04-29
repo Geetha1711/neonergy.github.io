@@ -39,7 +39,7 @@
   gap: 0;
   pointer-events: none;
   color: #ECF4FF;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   text-align: center;
 }
 
@@ -90,7 +90,7 @@
   align-items: center;
   pointer-events: none;
   color: #ECF4FF;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   text-align: center;
   will-change: transform, opacity;
 }
@@ -141,7 +141,7 @@
 
 // ── State labels ──────────────────────────────────────────────────────────────
 .hi-state-label {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -165,7 +165,7 @@
   border-left: 3px solid transparent; // color set inline
   border-radius: 5px;
   box-shadow: 0 4px 14px rgba(5, 81, 139, 0.16);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: #0E1A14;
   white-space: nowrap;
   will-change: transform, opacity;
@@ -203,7 +203,7 @@
   border-radius: 8px;
   padding: clamp(8px, 0.83vw, 16px) clamp(10px, 1.04vw, 20px);
   box-shadow: 0 6px 22px rgba(5, 81, 139, 0.10);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   pointer-events: none;
   min-width: clamp(160px, 14.58vw, 280px);
   will-change: opacity;

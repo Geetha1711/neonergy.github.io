@@ -17,8 +17,8 @@ interface Update {
 })
 export class LatestUpdatesComponent {
   updates: Update[] = [
-    { tag: 'Neonergy Updates', emoji: '☀️', title: 'Solar Project Commissioned in Karnataka', desc: 'Neonergy successfully commissioned a utility-scale solar project enhancing clean energy adoption across the region.' },
-    { tag: 'Industry News', emoji: '📋', title: 'Renewable Energy Policy Updates – India 2026', desc: 'Key regulatory changes shaping the future of renewable investments and infrastructure development in India.' },
-    { tag: 'Neonergy Updates', emoji: '🔋', title: 'BESS Integration for Industrial Client', desc: 'Advanced battery storage solutions deployed to improve energy efficiency and reliability for a major industrial client.' },
+    { tag: 'Portfolio Update', emoji: '☀️', title: '1,045 MWp Advisory Portfolio — Karnataka & Tamil Nadu', desc: 'Neonergy\'s advisory and engineering portfolio spans 1,045 MWp across solar project development, DPR, debt syndication, and performance monitoring.' },
+    { tag: 'Project Update', emoji: '🔋', title: 'Solar + BESS Projects Underway in Thoothukudi', desc: '450 MWp of solar paired with 240 MWH of battery storage across three projects — advancing grid-scale energy independence in Tamil Nadu.' },
+    { tag: 'Careers', emoji: '💼', title: 'We\'re Hiring — Associate Manager & SCADA Engineer', desc: 'Neonergy is looking for transaction advisory and solar SCADA monitoring professionals to join our Bengaluru team. Apply via the Careers page.' },
   ];
 }
