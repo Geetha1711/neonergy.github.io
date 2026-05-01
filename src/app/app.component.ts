@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ViewportScroller } from '@angular/common';
@@ -110,14 +110,12 @@ import { FooterComponent } from './core/layout/footer/footer.component';
     }
   `]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   showScrollTop = false;
 
   constructor(private scroller: ViewportScroller) {
     this.scroller.setOffset([0, 160]);
   }
-
-  ngOnInit(): void {}
 
   @HostListener('window:scroll')
   onScroll(): void {

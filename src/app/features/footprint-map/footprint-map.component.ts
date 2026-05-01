@@ -9,6 +9,7 @@ import {
   HostListener,
   Input,
   OnInit,
+  ViewChild,
   computed,
   inject,
   signal,
@@ -105,8 +106,10 @@ export class FootprintMapComponent implements OnInit, AfterViewInit {
   @Input() autoplay = true;
   @Input() loop = false;
   @Input() duration = 14;
-  /** Override the geojson URL if you bundle it elsewhere. */
   @Input() geoJsonUrl: string = 'assets/footprint-map/india-states.geojson';
+  @Input() musicUrl: string = 'assets/footprint-map/music.mp3';
+
+  @ViewChild('audioEl') private audioEl?: ElementRef<HTMLAudioElement>;
 
   // ── DI ────────────────────────────────────────────────────────────────────
   private readonly http = inject(HttpClient);
@@ -122,6 +125,7 @@ export class FootprintMapComponent implements OnInit, AfterViewInit {
   readonly time = signal(0);
   readonly playing = signal(false);
   readonly geo = signal<StatesGeo | null>(null);
+  readonly muted = signal(true);
 
   /** Host element pixel dimensions — updated on resize. */
   readonly hostDims = signal({ w: 0, h: 0 });
@@ -286,6 +290,10 @@ export class FootprintMapComponent implements OnInit, AfterViewInit {
     interpolate([3.6, 4.4], [0, 1], easeOutCubic)(this.time()),
   );
 
+  readonly finished = computed(() =>
+    !this.playing() && this.time() >= this.duration && !this.loop,
+  );
+
   /** Used only for the aria-label. */
   readonly totals: ProjectTotals = computeTotals(PROJECTS);
 
@@ -331,6 +339,8 @@ export class FootprintMapComponent implements OnInit, AfterViewInit {
   play(): void {
     if (this.playing()) return;
     this.playing.set(true);
+    const audio = this.audioEl?.nativeElement;
+    if (audio && audio.paused) audio.play().catch(() => {});
     let last = performance.now();
     interval(0, animationFrameScheduler)
       .pipe(
@@ -348,17 +358,32 @@ export class FootprintMapComponent implements OnInit, AfterViewInit {
           } else {
             next = this.duration;
             this.playing.set(false);
+            this.audioEl?.nativeElement?.pause();
           }
         }
         this.time.set(next);
       });
   }
 
-  pause(): void { this.playing.set(false); }
+  pause(): void {
+    this.playing.set(false);
+    this.audioEl?.nativeElement?.pause();
+  }
 
   reset(): void {
     this.time.set(0);
+    const audio = this.audioEl?.nativeElement;
+    if (audio) { audio.currentTime = 0; }
     if (this.autoplay) this.play();
+  }
+
+  toggleMute(): void {
+    const audio = this.audioEl?.nativeElement;
+    if (!audio) return;
+    const next = !this.muted();
+    this.muted.set(next);
+    audio.muted = next;
+    if (!next && audio.paused) audio.play().catch(() => {});
   }
 
   // ── Template helpers ──────────────────────────────────────────────────────

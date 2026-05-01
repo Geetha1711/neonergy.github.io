@@ -47,10 +47,7 @@ export const routes: Routes = [
     path: 'contact',
     loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent),
   },
-  {
-    path: 'scada-login',
-    loadComponent: () => import('./features/scada-login/scada-login.component').then(m => m.ScadaLoginComponent),
-  },
+  { path: 'scada-login', redirectTo: 'scada', pathMatch: 'full' },
   {
     path: 'scada',
     loadComponent: () => import('./features/scada-login/scada-login.component').then(m => m.ScadaLoginComponent),

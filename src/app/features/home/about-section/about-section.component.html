@@ -1,0 +1,35 @@
+<section class="home-about-section">
+  <div class="container">
+
+    <div class="home-about-header" slideIn>
+      <div class="home-about-header__title-row">
+        <div class="home-about-header__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="28" height="28">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <h2>About Us</h2>
+      </div>
+      <p class="home-about-header__desc">NEONERGY is an integrated renewable energy company.</p>
+    </div>
+
+    <div class="home-about-split">
+      <div class="home-about-text">
+        <p>NEONERGY is committed to delivering sustainable, reliable, and cost-effective clean energy solutions. Positioned as a one-stop energy partner, we support clients across the entire renewable energy value chain — from concept and engineering to execution, commissioning, and long-term operations.</p>
+        <div class="home-about-stats">
+          @for (stat of stats; track stat.label; let i = $index) {
+            <div class="home-about-stat" slideIn [slideInDelay]="0.1 + i * 0.12">
+              <div class="home-about-stat__num">{{ stat.num }}</div>
+              <div class="home-about-stat__label">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+        <div class="home-about-link-wrap">
+          <a routerLink="/about" fragment="about" class="home-about-link">About Us →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

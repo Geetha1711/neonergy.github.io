@@ -3,16 +3,16 @@ import { RouterLink } from '@angular/router';
 import { SlideInDirective } from '../../../shared/slide-in.directive';
 
 @Component({
-  selector: 'app-about-snippet',
+  selector: 'app-about-section',
   standalone: true,
   imports: [RouterLink, SlideInDirective],
-  templateUrl: './about-snippet.component.html',
-  styleUrls: ['./about-snippet.component.scss'],
+  templateUrl: './about-section.component.html',
+  styleUrls: ['./about-section.component.scss'],
 })
-export class AboutSnippetComponent {
+export class AboutSectionComponent {
   stats = [
-    { num: '1045 MWp', label: 'Projects under Development' },
+    { num: '1045 MWp', label: 'Total Projects under Development' },
     { num: '240 MWH',  label: 'BESS under Development' },
-    { num: '516 MWp',  label: 'Asset Perf. Monitoring' },
+    { num: '516 MWp',  label: 'Asset Performance Monitoring (O&M)' },
   ];
 }

@@ -1,0 +1,13 @@
+<section class="clients-strip">
+  <div class="container">
+    <p class="clients-strip__label">Trusted by India's leading energy players</p>
+    <div class="clients-strip__track">
+      @for (client of clients; track client.initials) {
+        <div class="client-badge" [attr.title]="client.name">
+          <span class="client-badge__initials">{{ client.initials }}</span>
+          <span class="client-badge__sector">{{ client.sector }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

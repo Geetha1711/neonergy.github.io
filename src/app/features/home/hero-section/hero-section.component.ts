@@ -16,7 +16,7 @@ export class HeroSectionComponent implements AfterViewInit {
   reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   videoEnded = false;
   isPlaying = true;
-  isMuted = false;
+  isMuted = true; // starts muted to satisfy browser autoplay policy
 
   ngAfterViewInit(): void {
     const video = this.videoRef?.nativeElement;
@@ -29,7 +29,12 @@ export class HeroSectionComponent implements AfterViewInit {
     }
 
     video.volume = 0.5;
-    video.muted = false;
+    video.muted = true; // enforce muted — some browsers reset it after volume is set
+
+    video.play().catch(() => {
+      // Autoplay still blocked (e.g. data-saver mode) — show paused state
+      this.isPlaying = false;
+    });
 
     video.addEventListener('ended', () => {
       this.videoEnded = true;
@@ -52,8 +57,8 @@ export class HeroSectionComponent implements AfterViewInit {
   toggleMute(): void {
     const video = this.videoRef?.nativeElement;
     if (!video) return;
-    video.muted = !video.muted;
-    this.isMuted = video.muted;
+    this.isMuted = !this.isMuted;
+    video.muted = this.isMuted;
   }
 
   scrollToNext(): void {

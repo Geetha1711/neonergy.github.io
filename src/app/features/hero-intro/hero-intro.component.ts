@@ -253,8 +253,8 @@ export class HeroIntroComponent implements OnInit, AfterViewInit {
       if (isIndia) {
         return {
           d: pathFn(f) ?? '',
-          fill: `rgba(0, ${Math.round(120 + 56 * highlightOn)}, ${Math.round(80 - 30 * highlightOn)}, ${0.7 + 0.3 * highlightOn})`,
-          stroke: 'rgba(140,240,180,0.9)',
+          fill: `rgba(${Math.round(58 - 58 * highlightOn)}, ${Math.round(123 - 11 * highlightOn)}, ${Math.round(173 + 19 * highlightOn)}, ${0.8 + 0.2 * highlightOn})`,
+          stroke: 'rgba(160,210,255,0.9)',
           strokeWidth: 1.1,
         };
       }

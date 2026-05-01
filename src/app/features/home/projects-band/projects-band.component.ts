@@ -3,6 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { FootprintMapComponent } from '../../footprint-map/footprint-map.component';
+import { SlideInDirective } from '../../../shared/slide-in.directive';
 
 interface Stat {
   value: number;
@@ -15,7 +17,7 @@ interface Stat {
 @Component({
   selector: 'app-projects-band',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatButtonModule, MatIconModule, FootprintMapComponent, SlideInDirective],
   templateUrl: './projects-band.component.html',
   styleUrls: ['./projects-band.component.scss'],
 })

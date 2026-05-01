@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { SlideInDirective } from '../../../shared/slide-in.directive';
 
 interface Segment {
   title: string;
   icon: string;
   tagline: string;
   slug: string;
+  image?: string;
 }
 
 @Component({
   selector: 'app-segments-grid',
   standalone: true,
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, SlideInDirective],
   templateUrl: './segments-grid.component.html',
   styleUrls: ['./segments-grid.component.scss'],
 })

@@ -9,7 +9,7 @@ import { BBox } from './footprint-map.types';
 
 // ── Camera bounds ───────────────────────────────────────────────────────────
 
-export const INDIA_BBOX: BBox = { lng: [68, 97], lat: [6.5, 36] };
+export const INDIA_BBOX: BBox = { lng: [68, 97], lat: [6.5, 37.5] };
 export const SOUTH_BBOX: BBox = { lng: [68, 84], lat: [6.5, 19] };
 
 // ── Easing ──────────────────────────────────────────────────────────────────

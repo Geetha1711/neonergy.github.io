@@ -42,17 +42,25 @@ export const TYPE_STYLES: Record<ProjectType, TypeStyle> = {
  * Manual layout slots so labels never overlap markers or each other.
  * Tweak in tandem with marker positions if you change the project list.
  */
+/**
+ * Offsets are in SVG units (1920×1080 space) and are scaled at render time.
+ * Co-located projects need ≥200 SVG units apart on the same side
+ * (at the home-page scale of ~0.29 that yields ≈58 px — just above the
+ * label card height of ~55 px). Alternate sides further reduce conflicts.
+ */
 export const LABEL_LAYOUTS: Record<string, LabelLayout> = {
-  'k-gul':    { side: 'left',  offX:  -40, offY:    0 },
+  'k-gul':    { side: 'left',  offX:  -90, offY:   30 },
   'k-chi':    { side: 'right', offX:  110, offY: -110 },
   'k-kol':    { side: 'right', offX:  100, offY:   40 },
-  'k-dav':    { side: 'left',  offX: -110, offY:    0 },
-  'k-mys-1':  { side: 'left',  offX: -110, offY:  -20 },
-  'k-mys-2':  { side: 'left',  offX: -110, offY:  120 },
+  'k-dav':    { side: 'left',  offX: -120, offY:    0 },
+  // Mysore: two projects at identical coords — push one far above, one below
+  'k-mys-1':  { side: 'left',  offX: -120, offY: -200 },
+  'k-mys-2':  { side: 'left',  offX: -120, offY:   30 },
   'k-ben':    { side: 'right', offX:  130, offY:  160 },
-  'tn-thu-1': { side: 'right', offX:  175, offY:   -15 },
-  'tn-thu-2': { side: 'right', offX:  160, offY:  100 },
-  'tn-thu-3': { side: 'right', offX:  140, offY:  190 },
+  // Thoothukudi: three projects at identical coords — alternate sides
+  'tn-thu-1': { side: 'right', offX:  180, offY: -260 },
+  'tn-thu-2': { side: 'right', offX:  180, offY:   10 },
+  'tn-thu-3': { side: 'left',  offX: -150, offY:  -80 },
 };
 
 /** Aggregate totals shown in the bottom-left stats strip. */
@@ -69,11 +77,11 @@ export function computeTotals(projects: Project[]): ProjectTotals {
 }
 
 /** South Indian states whose names should be highlighted on the map.
- *  Names match GADM 4.1 NAME_1 property (no spaces, camelCase). */
+ *  Names match india-states-2019 NAME_1 property. */
 export const SOUTH_STATE_NAMES = new Set<string>([
-  'TamilNadu',
+  'Tamil Nadu',
   'Karnataka',
-  'AndhraPradesh',
+  'Andhra Pradesh',
   'Telangana',
   'Kerala',
   'Puducherry',
@@ -81,14 +89,14 @@ export const SOUTH_STATE_NAMES = new Set<string>([
 ]);
 
 export const STATE_LABEL_NAMES = new Set<string>([
-  'TamilNadu',
+  'Tamil Nadu',
   'Karnataka',
-  'AndhraPradesh',
+  'Andhra Pradesh',
   'Telangana',
   'Kerala',
 ]);
 
-/** Convert GADM camelCase state name to display form ("TamilNadu" → "Tamil Nadu"). */
+/** Return the display name for a state (names already use proper spacing in 2019 GeoJSON). */
 export function formatStateName(raw: string): string {
-  return raw.replace(/([A-Z])/g, (c, _m, i) => (i > 0 ? ' ' + c : c)).trim();
+  return raw;
 }
