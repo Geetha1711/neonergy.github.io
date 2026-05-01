@@ -54,7 +54,7 @@
   <div class="proj-summary">
     <div class="container proj-summary__inner">
 
-      <div class="proj-sum-card proj-sum-card--dev">
+      <div class="proj-sum-card proj-sum-card--dev" slideIn [slideInDelay]="0">
         <div class="proj-sum-card__header">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <div class="proj-sum-card proj-sum-card--comm">
+      <div class="proj-sum-card proj-sum-card--comm" slideIn [slideInDelay]="0.15">
         <div class="proj-sum-card__header">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
             <polyline points="20 6 9 17 4 12"/>
@@ -94,7 +94,7 @@
   </div>
 
   <!-- ── Services & Capacity ── -->
-  <div class="proj-svc-header">
+  <div class="proj-svc-header" slideIn>
     <div class="container">
       <h2 class="proj-svc-header__title">Services &amp; Capacity Summary</h2>
       <p class="proj-svc-header__lead">Breakdown of service types delivered across our ongoing project portfolio, by capacity in MWp.</p>
@@ -104,8 +104,9 @@
   <section class="proj-table-section">
     <div class="container">
       <div class="proj-cards">
-        @for (row of serviceTable; track row.service) {
-          <div class="proj-card" [class.proj-card--bess]="row.unit === 'MWH'">
+        @for (row of serviceTable; track row.service; let i = $index) {
+          <div class="proj-card" [class.proj-card--bess]="row.unit === 'MWH'"
+               slideIn [slideInDelay]="i * 0.07">
             <div class="proj-card__type">{{ row.service }}</div>
             <div class="proj-card__val-row">
               <span class="proj-card__cap">{{ row.mwp }}</span>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FootprintMapComponent } from '../footprint-map/footprint-map.component';
 import { HeroIntroComponent } from '../hero-intro/hero-intro.component';
+import { SlideInDirective } from '../../shared/slide-in.directive';
 
 // Star colours matching the reference JPEG
 const COLORS = {
@@ -62,7 +63,7 @@ interface PosterSlide {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, RouterLink, FootprintMapComponent, HeroIntroComponent],
+  imports: [CommonModule, RouterLink, FootprintMapComponent, HeroIntroComponent, SlideInDirective],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })

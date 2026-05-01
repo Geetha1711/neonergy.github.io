@@ -51,11 +51,26 @@
           </div>
         </div>
       </div>
+
     </div>
 
-    <div class="projects-band__map">
+    <div class="projects-band__map" slideIn>
       <div class="projects-band__map-frame">
-        <app-footprint-map [autoplay]="true" [loop]="false" />
+        <img src="assets/images/footprint-map-snapshot.png" alt="Neonergy project footprint across South India" class="pb-map-snapshot" />
+      </div>
+      <div class="pb-map-legend">
+        <div class="pb-legend-row">
+          <span class="pb-legend-dot pb-legend-dot--green"></span>
+          <span class="pb-legend-label">Solar Project Development</span>
+        </div>
+        <div class="pb-legend-row">
+          <span class="pb-legend-dot pb-legend-dot--amber"></span>
+          <span class="pb-legend-label">Plant Performance Monitoring</span>
+        </div>
+        <div class="pb-legend-row">
+          <span class="pb-legend-dot pb-legend-dot--blue"></span>
+          <span class="pb-legend-label">Solar &amp; BESS Project</span>
+        </div>
       </div>
       <div class="projects-band__map-cta">
         <a routerLink="/projects" class="btn-explore">Explore All Projects →</a>

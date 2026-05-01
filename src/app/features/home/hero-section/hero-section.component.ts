@@ -54,6 +54,15 @@ export class HeroSectionComponent implements AfterViewInit {
     }
   }
 
+  replayVideo(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+    video.currentTime = 0;
+    video.play();
+    this.isPlaying = true;
+    this.videoEnded = false;
+  }
+
   toggleMute(): void {
     const video = this.videoRef?.nativeElement;
     if (!video) return;

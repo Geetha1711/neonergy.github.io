@@ -1,4 +1,7 @@
 <!-- src/app/features/hero-intro/hero-intro.component.html -->
+<!-- Audio: no autoplay, no preload — started only via toggleMute() -->
+<audio #audioEl src="assets/footprint-map/music.mp3" preload="none" muted></audio>
+
 <div class="hi-stage" aria-label="Neonergy hero intro animation">
 
   <!-- ═══════════════ SCENE 1–2: GLOBE ═══════════════ -->
@@ -243,7 +246,7 @@
       }
     </div>
 
-    <!-- Legend -->
+    <!-- Legend — appears after India zooms in -->
     @if (legendVisible()) {
       <div class="hi-legend" [style.opacity]="legendOpacity()">
         <div class="hi-legend__title">Legend</div>
@@ -260,5 +263,43 @@
 
   </div>
   <!-- /map content -->
+
+  <!-- Controls — at stage level, visible from globe start -->
+  <div class="hi-controls">
+    <button class="hi-ctrl-btn" (click)="finished() ? reset() : (playing() ? pause() : play())"
+            [attr.aria-label]="finished() ? 'Replay' : (playing() ? 'Pause' : 'Play')">
+      @if (finished()) {
+        <svg viewBox="0 0 24 24" fill="white" width="20" height="20" aria-hidden="true">
+          <path d="M17.65 6.35A7.96 7.96 0 0 0 12 4C7.58 4 4 7.58 4 12s3.58 8 8 8 8-3.58 8-8h-2c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L11 11h7V4l-2.35 2.35z"/>
+        </svg>
+      } @else if (playing()) {
+        <svg viewBox="0 0 24 24" fill="white" width="20" height="20" aria-hidden="true">
+          <rect x="6" y="4" width="4" height="16" rx="1"/>
+          <rect x="14" y="4" width="4" height="16" rx="1"/>
+        </svg>
+      } @else {
+        <svg viewBox="0 0 24 24" fill="white" width="20" height="20" aria-hidden="true">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      }
+    </button>
+
+    <button class="hi-ctrl-btn" (click)="toggleMute()"
+            [attr.aria-label]="muted() ? 'Unmute' : 'Mute'">
+      @if (muted()) {
+        <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" fill="white"/>
+          <line x1="23" y1="9" x2="17" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="17" y1="9" x2="23" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      } @else {
+        <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" fill="white"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      }
+    </button>
+  </div>
 
 </div>

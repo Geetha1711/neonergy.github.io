@@ -49,18 +49,18 @@ export const TYPE_STYLES: Record<ProjectType, TypeStyle> = {
  * label card height of ~55 px). Alternate sides further reduce conflicts.
  */
 export const LABEL_LAYOUTS: Record<string, LabelLayout> = {
-  'k-gul':    { side: 'left',  offX:  -90, offY:   30 },
-  'k-chi':    { side: 'right', offX:  110, offY: -110 },
-  'k-kol':    { side: 'right', offX:  100, offY:   40 },
-  'k-dav':    { side: 'left',  offX: -120, offY:    0 },
-  // Mysore: two projects at identical coords — push one far above, one below
-  'k-mys-1':  { side: 'left',  offX: -120, offY: -200 },
-  'k-mys-2':  { side: 'left',  offX: -120, offY:   30 },
-  'k-ben':    { side: 'right', offX:  130, offY:  160 },
-  // Thoothukudi: three projects at identical coords — alternate sides
-  'tn-thu-1': { side: 'right', offX:  180, offY: -260 },
-  'tn-thu-2': { side: 'right', offX:  180, offY:   10 },
-  'tn-thu-3': { side: 'left',  offX: -150, offY:  -80 },
+  'k-gul':    { side: 'left',  offX: -300, offY:    0 },
+  'k-chi':    { side: 'right', offX:  140, offY: -140 },  // pushed higher to clear Kolar
+  'k-kol':    { side: 'right', offX:  130, offY:   40 },  // pushed lower to clear Chintamani
+  'k-dav':    { side: 'left',  offX: -160, offY:   20 },
+  // Mysore: two projects at identical coords — wide vertical split
+  'k-mys-1':  { side: 'left',  offX: -160, offY:  0 },
+  'k-mys-2':  { side: 'left',  offX: -160, offY:  140 },
+  'k-ben':    { side: 'right', offX:  160, offY:  160 },
+  // Thoothukudi: three projects at identical coords — stacked right, top to bottom
+  'tn-thu-1': { side: 'right', offX:  200, offY:  -40 },
+  'tn-thu-2': { side: 'right', offX:  200, offY:  70 },
+  'tn-thu-3': { side: 'right', offX:  200, offY:  160 },
 };
 
 /** Aggregate totals shown in the bottom-left stats strip. */

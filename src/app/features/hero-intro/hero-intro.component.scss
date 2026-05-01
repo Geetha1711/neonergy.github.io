@@ -196,7 +196,7 @@
 // ── Legend ────────────────────────────────────────────────────────────────────
 .hi-legend {
   position: absolute;
-  bottom: clamp(10px, 1.8vw, 36px);
+  bottom: clamp(80px, 8vw, 130px);
   right: clamp(10px, 2.5vw, 48px);
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid #DCEEE4;
@@ -238,4 +238,35 @@
     color: #0E1A14;
     letter-spacing: -0.005em;
   }
+}
+
+.hi-controls {
+  position: absolute;
+  bottom: clamp(16px, 2.5vw, 36px);
+  right: clamp(10px, 2.5vw, 48px);
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.hi-ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: #0070C0;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 112, 192, 0.45);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+
+  &:hover {
+    background: #005a9e;
+    transform: scale(1.1);
+    box-shadow: 0 6px 22px rgba(0, 112, 192, 0.6);
+  }
+  &:active { transform: scale(0.94); }
 }

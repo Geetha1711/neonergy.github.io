@@ -8,6 +8,7 @@ import {
   ElementRef,
   HostListener,
   OnInit,
+  ViewChild,
   computed,
   inject,
   signal,
@@ -69,6 +70,9 @@ const MAP_SOUTHLIGHT_AT   = 9.5;
 const MAP_MARKERS_START   = 11.0;
 const MAP_MARKER_SPACING  = 0.85;
 const MAP_MARKER_FADE_IN  = 0.6;
+
+// Audio stops after the last label (index 9) finishes fading in
+const AUDIO_STOP_AT = MAP_MARKERS_START + 9 * MAP_MARKER_SPACING + 0.15 + 0.55; // ≈19.35s
 
 const WORLD_ATLAS_URL =
   'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
@@ -177,9 +181,13 @@ export class HeroIntroComponent implements OnInit, AfterViewInit {
   // Static star definitions — computed once
   readonly stars = makeStars(120);
 
+  @ViewChild('audioEl') private audioEl?: ElementRef<HTMLAudioElement>;
+
   // ── State signals ──────────────────────────────────────────────────────────
-  readonly time    = signal(0);
-  readonly playing = signal(false);
+  readonly time     = signal(0);
+  readonly playing  = signal(false);
+  readonly muted    = signal(true);
+  readonly finished = computed(() => !this.playing() && this.time() >= DURATION);
   readonly worldGeo  = signal<FeatureCollection<Geometry> | null>(null);
   readonly indiaGeo  = signal<StatesGeo | null>(null);
   readonly hostDims  = signal({ w: 0, h: 0 });
@@ -510,8 +518,37 @@ export class HeroIntroComponent implements OnInit, AfterViewInit {
         const next = Math.min(this.time() + dt, DURATION);
         if (next >= DURATION) this.playing.set(false);
         this.time.set(next);
+        // Stop audio after last label fades in
+        if (next >= AUDIO_STOP_AT && !this.muted()) {
+          this.muted.set(true);
+          const audio = this.audioEl?.nativeElement;
+          if (audio) { audio.pause(); audio.muted = true; }
+        }
       });
   }
 
-  pause(): void { this.playing.set(false); }
+  pause(): void {
+    this.playing.set(false);
+  }
+
+  reset(): void {
+    this.time.set(0);
+    this.play();
+  }
+
+  toggleMute(): void {
+    const audio = this.audioEl?.nativeElement;
+    if (!audio) return;
+    const next = !this.muted();
+    this.muted.set(next);
+    if (!next) {
+      audio.loop   = true;
+      audio.volume = 0.2;
+      audio.muted  = false;
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+      audio.muted = true;
+    }
+  }
 }
